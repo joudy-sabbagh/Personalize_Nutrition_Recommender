@@ -9,15 +9,24 @@ def calculate_carbs(nrg, fat, protein):
     carbs = calories_from_carbs / 4  # 1g of carbs = 4 kcal
     return carbs
 
-# Load the JSON file
+# Load the JSON files
 with open('../../recipes_with_nutritional_info.json') as f:
-    data = json.load(f)
+    recipes_data = json.load(f)
 
-# Create a list to store the extracted nutritional info
+with open('../../layer2+.json', encoding='utf-8-sig') as f:
+    image_data = json.load(f)
+
+# Step 1: Create a mapping of recipe id to image id
+image_mapping = {}
+for item in image_data:
+    recipe_id = item['id']  # outer 'id' is the recipe ID
+    for image in item['images']:
+        image_mapping[recipe_id] = image['id']  # mapping recipe_id to image_id
+
+# Step 2: Loop through each recipe and link image id
 nutritional_info = []
 
-# Loop through each recipe
-for recipe in data:  
+for recipe in recipes_data:
     recipe_id = recipe['id']
     
     # Initialize variables for nutritional data
@@ -33,6 +42,9 @@ for recipe in data:
     total_fat = nutrition.get('fat', 0)
     total_calories = nutrition.get('energy', 0)
     total_carbs = calculate_carbs(total_calories, total_fat, total_protein)
+    
+    # Link recipe id to image id
+    image_id = image_mapping.get(recipe_id, None)
 
     # Append the results to the list
     nutritional_info.append({
@@ -40,11 +52,12 @@ for recipe in data:
         'protein': total_protein,
         'fat': total_fat,
         'carbs': total_carbs,
-        'total_calories': total_calories
+        'total_calories': total_calories,
+        'image_id': image_id 
     })
 
-    print("Finished recipe " + recipe_id)
+    print(f"Finished recipe {recipe_id}")
 
 # Optionally: Save to CSV
 df = pd.DataFrame(nutritional_info)
-df.to_csv('Dataset/nutrition_info.csv', index=False)
+df.to_csv('Dataset/nutrition_info_with_images.csv', index=False)
