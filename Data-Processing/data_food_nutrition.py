@@ -46,18 +46,22 @@ for recipe in recipes_data:
     # Link recipe id to image id
     image_id = image_mapping.get(recipe_id, None)
 
+    # Extract the title
+    recipe_title = recipe.get('title', 'No title')  # default to 'No title' if missing
+    
     # Append the results to the list
     nutritional_info.append({
         'id': recipe_id,
+        'title': recipe_title,  # Add the title
         'protein': total_protein,
         'fat': total_fat,
         'carbs': total_carbs,
         'total_calories': total_calories,
-        'image_id': image_id 
+        'image_id': image_id
     })
 
     print(f"Finished recipe {recipe_id}")
 
 # Optionally: Save to CSV
 df = pd.DataFrame(nutritional_info)
-df.to_csv('Dataset/nutrition_info_with_images.csv', index=False)
+df.to_csv('Dataset/nutrition_info.csv', index=False)
