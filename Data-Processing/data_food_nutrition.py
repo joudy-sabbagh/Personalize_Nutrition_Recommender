@@ -47,4 +47,4 @@ for recipe in data:
 
 # Optionally: Save to CSV
 df = pd.DataFrame(nutritional_info)
-df.to_csv('nutrition_info.csv', index=False)
+df.to_csv('Dataset/nutrition_info.csv', index=False)
