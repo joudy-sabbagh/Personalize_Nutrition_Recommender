@@ -1,6 +1,7 @@
 # Ignore Python virtual environment
 venv/
 .venv/
+.env
 
 # Python bytecode
 __pycache__/
@@ -12,3 +13,5 @@ __pycache__/
 # OS-specific junk
 .DS_Store
 Thumbs.db
+
+#IEP-FoodAnalyzer/testing.png
