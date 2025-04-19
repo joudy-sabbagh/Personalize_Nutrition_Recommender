@@ -1,25 +1,34 @@
-from transformers import BlipProcessor, BlipForConditionalGeneration
-from PIL import Image
-import torch
+# RUN: uvicorn app:app --reload --port 8001
 
-# Load BLIP-2 model
-processor = BlipProcessor.from_pretrained("Salesforce/blip2-opt-2.7b")
-model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b")
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import JSONResponse
+import requests
+import os
+from dotenv import load_dotenv
 
-# Load image
-image_path = "testing.png"
-image = Image.open(image_path).convert("RGB")
+load_dotenv()
+HF_TOKEN = os.getenv("HF_TOKEN") 
+API_URL = "https://api-inference.huggingface.co/models/nlpconnect/vit-gpt2-image-captioning"
+headers = {
+    "Authorization": f"Bearer {HF_TOKEN}"
+}
 
-# Use a strong prompt to force detailed caption
-prompt = "Describe the dish in detail, listing all visible food items and their textures."
+app = FastAPI()
 
-# Tokenize with prompt injection
-inputs = processor(image, prompt, return_tensors="pt").to(device)
-
-# Generate caption
-out = model.generate(**inputs, max_length=50)
-caption = processor.decode(out[0], skip_special_tokens=True)
-
-print("Caption:", caption)
+# GENERATE CAPTION USING VIT-GPT2-IMAGE-CAPTIONING THROUGH API CALL -> RETURN CAPTION
+@app.post("/generate-caption")
+async def generate_caption(image: UploadFile = File(...)):
+    image_bytes = await image.read()
+    response = requests.post(
+        API_URL,
+        headers=headers,
+        data=image_bytes
+    )
+    if response.status_code == 200:
+        caption = response.json()[0]["generated_text"]
+        return {"caption": caption}
+    else:
+        return JSONResponse(
+            status_code=response.status_code,
+            content={"error": "Captioning failed", "details": response.text}
+        )
