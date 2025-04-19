@@ -1,15 +1,34 @@
-from transformers import BlipProcessor, BlipForConditionalGeneration
-from PIL import Image
+# RUN: uvicorn app:app --reload --port 8001
+
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import JSONResponse
 import requests
+import os
+from dotenv import load_dotenv
 
-# Load model and processor
-processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+load_dotenv()
+HF_TOKEN = os.getenv("HF_TOKEN") 
+API_URL = "https://api-inference.huggingface.co/models/nlpconnect/vit-gpt2-image-captioning"
+headers = {
+    "Authorization": f"Bearer {HF_TOKEN}"
+}
 
-# Load image (replace with your own if needed)
-img = Image.open("testing.png").convert("RGB")
+app = FastAPI()
 
-# Generate caption
-inputs = processor(images=img, return_tensors="pt")
-out = model.generate(**inputs)
-print("Caption:", processor.decode(out[0], skip_special_tokens=True))
+# GENERATE CAPTION USING VIT-GPT2-IMAGE-CAPTIONING THROUGH API CALL -> RETURN CAPTION
+@app.post("/generate-caption")
+async def generate_caption(image: UploadFile = File(...)):
+    image_bytes = await image.read()
+    response = requests.post(
+        API_URL,
+        headers=headers,
+        data=image_bytes
+    )
+    if response.status_code == 200:
+        caption = response.json()[0]["generated_text"]
+        return {"caption": caption}
+    else:
+        return JSONResponse(
+            status_code=response.status_code,
+            content={"error": "Captioning failed", "details": response.text}
+        )

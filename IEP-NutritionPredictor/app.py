@@ -1,3 +1,5 @@
+# RUN: uvicorn app:app --host 0.0.0.0 --port 8002
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
@@ -7,7 +9,6 @@ import os
 import openai
 
 load_dotenv()
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI()
@@ -15,6 +16,7 @@ app = FastAPI()
 class FoodDescription(BaseModel):
     caption: str
 
+# GENERATE NUTRITION ESTIMATE GIVEN CAPTION USING GPT-3.5-TURBO THROUGH API CALL -> RETURN [PROTEIN, FAT, CARBS, TOTAL CALORIES]
 @app.post("/predict-nutrition")
 def predict_nutrition(payload: FoodDescription):
     caption = payload.caption
