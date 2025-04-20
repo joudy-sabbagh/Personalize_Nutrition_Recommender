@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 # Load dataset
-df = pd.read_csv("Dataset/bio.csv")
+df = pd.read_csv("Dataset/original_bio.csv")
 
 # Keep and rename relevant columns
 df = df[[
@@ -35,6 +35,6 @@ df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
 df['Gender'] = df['Gender'].map({'F': 0, 'M': 1})
 
 # Save final cleaned and normalized dataset
-df.to_csv("Dataset/clinical_data.csv", index=False)
+df.to_csv("Dataset/cleaned_clinical_data.csv", index=False)
 
 print("Cleaned dataset saved as clinical_data.csv")
