@@ -1,0 +1,54 @@
+meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
+2,00000003-PHOTO-2024-12-12-12-42-0.jpg,2024-12-12 12:42:00,-4.800000000000011,2.1999999999999886,a person holding a sandwich in their hand ,medium,medium,medium
+3,00000008-PHOTO-2024-12-13-8-2-0.jpg,2024-12-13 08:02:00,142.2,142.2,a metal object with a metal handle ,,,
+4,00000012-PHOTO-2024-12-13-8-56-0.jpg,2024-12-13 08:56:00,0.0,-44.0,a white plate with a white substance on it ,low,medium,high
+5,00000019-PHOTO-2024-12-13-12-15-0.jpg,2024-12-13 12:15:00,-10.199999999999989,39.400000000000006,a plate of food with a salad and a fork ,medium,low,medium
+6,00000020-PHOTO-2024-12-13-12-49-0.jpg,2024-12-13 12:49:00,34.400000000000006,21.599999999999994,a plate of food with a spoon and a bowl of food ,medium,medium,medium
+7,00000021-PHOTO-2024-12-13-20-56-0.jpg,2024-12-13 20:56:00,14.0,-1.0,a plate of food with broccoli and a fork ,medium,low,medium
+7,00000022-PHOTO-2024-12-13-20-56-0.jpg,2024-12-13 20:56:00,14.0,-1.0,a fork is on a plate with a piece of cake ,low,high,high
+8,00000023-PHOTO-2024-12-14-7-10-0.jpg,2024-12-14 07:10:00,44.400000000000006,93.80000000000001,a camera with a black lens on it ,,,
+9,00000024-PHOTO-2024-12-14-8-1-0.jpg,2024-12-14 08:01:00,43.0,67.0,a small hole in the wall of a swimming pool ,,,
+10,00000028-PHOTO-2024-12-14-12-4-0.jpg,2024-12-14 12:04:00,-2.5999999999999943,-14.199999999999989,a bowl of food on a table ,,,
+11,00000029-PHOTO-2024-12-14-12-33-0.jpg,2024-12-14 12:33:00,-11.400000000000006,-25.599999999999994,a spoon is in a pan with a fork ,,,
+12,00000034-PHOTO-2024-12-14-20-57-0.jpg,2024-12-14 20:57:00,13.599999999999994,60.19999999999999,"a sandwich with lettuce, tomatoes, and onions ",medium,low,medium
+12,00000035-PHOTO-2024-12-14-21-1-0.jpg,2024-12-14 21:01:00,28.0,65.0,a piece of bread with some vegetables on it ,low,low,medium
+13,00000038-PHOTO-2024-12-15-6-20-0.jpg,2024-12-15 06:20:00,73.0,147.99999999999997,a black and white photo of a person holding a coffee cup ,,,
+13,00000039-PHOTO-2024-12-15-6-23-0.jpg,2024-12-15 06:23:00,79.19999999999999,160.2,a black object in a black and white photo ,,,
+14,00000042-PHOTO-2024-12-15-14-2-0.jpg,2024-12-15 14:02:00,20.19999999999999,-15.199999999999989,a sandwich is wrapped in foil and sitting on a table ,medium,medium,medium
+14,00000043-PHOTO-2024-12-15-14-2-0.jpg,2024-12-15 14:02:00,20.19999999999999,-15.199999999999989,a piece of food is sitting in a foil wrapper ,low,medium,medium
+15,00000044-PHOTO-2024-12-15-20-26-0.jpg,2024-12-15 20:26:00,5.0,4.0,a plate of food with broccoli and meat ,high,medium,low
+15,00000045-PHOTO-2024-12-15-20-39-0.jpg,2024-12-15 20:39:00,1.0,-3.799999999999983,a knife is cutting a piece of cake ,low,high,high
+16,00000046-PHOTO-2024-12-16-8-32-0.jpg,2024-12-16 08:32:00,61.0,118.80000000000001,a black and white photo of a man holding a gun ,,,
+17,00000047-PHOTO-2024-12-16-9-9-0.jpg,2024-12-16 09:09:00,43.599999999999966,57.0,a black object in a bowl on a table ,,,
+18,00000051-PHOTO-2024-12-16-13-13-0.jpg,2024-12-16 13:13:00,-2.5999999999999943,-9.0,a salad with a spoon in a bowl ,medium,low,medium
+18,00000054-PHOTO-2024-12-16-13-26-0.jpg,2024-12-16 13:26:00,-4.0,-10.0,a bowl of food with a fork and spoon ,medium,medium,medium
+19,00000057-PHOTO-2024-12-16-18-50-0.jpg,2024-12-16 18:50:00,13.599999999999994,40.400000000000006,a white plate topped with a fried egg and vegetables ,medium,medium,low
+20,00000060-PHOTO-2024-12-16-19-7-0.jpg,2024-12-16 19:07:00,1.6000000000000227,34.60000000000002,a spoon is in a bowl of water ,low,low,low
+21,00000061-PHOTO-2024-12-17-6-29-0.jpg,2024-12-17 06:29:00,19.799999999999983,69.79999999999998,a person holding a cigarette in their hand ,,,
+21,00000062-PHOTO-2024-12-17-6-44-0.jpg,2024-12-17 06:44:00,66.19999999999999,76.6,a bowl of liquid in a sink ,low,low,low
+22,00000066-PHOTO-2024-12-17-12-19-0.jpg,2024-12-17 12:19:00,45.0,96.80000000000001,a plate of food with a piece of meat on it ,high,medium,low
+23,00000067-PHOTO-2024-12-17-19-5-0.jpg,2024-12-17 19:05:00,0.0,-32.20000000000002,a salad with a side of greens on a plate ,medium,low,medium
+24,00000068-PHOTO-2024-12-17-19-31-0.jpg,2024-12-17 19:31:00,-29.0,-45.0,a plate of food with broccoli and a fork ,medium,low,medium
+25,00000070-PHOTO-2024-12-18-7-10-0.jpg,2024-12-18 07:10:00,117.20000000000002,198.20000000000002,a black and white photo of a lighted up vase ,,,
+26,00000073-PHOTO-2024-12-18-9-15-0.jpg,2024-12-18 09:15:00,-42.39999999999998,-51.39999999999998,a black and white photo of an open oven ,,,
+27,00000077-PHOTO-2024-12-18-13-2-0.jpg,2024-12-18 13:02:00,15.400000000000006,71.4,a piece of food is sitting on a piece of paper ,low,low,low
+28,00000078-PHOTO-2024-12-18-13-35-0.jpg,2024-12-18 13:35:00,56.0,80.60000000000002,a piece of paper with a hole in it ,low,low,low
+29,00000081-PHOTO-2024-12-18-20-9-0.jpg,2024-12-18 20:09:00,33.79999999999998,39.599999999999994,"a salad with tomatoes, lettuce, and a pickle ",low,low,medium
+29,00000082-PHOTO-2024-12-18-20-19-0.jpg,2024-12-18 20:19:00,10.599999999999994,8.200000000000017,a fork and a spoon on a table ,,,
+30,00000084-PHOTO-2024-12-19-6-25-0.jpg,2024-12-19 06:25:00,50.20000000000002,143.20000000000002,a blue and yellow bottle sitting on top of a blue table ,,,
+30,00000085-PHOTO-2024-12-19-6-33-0.jpg,2024-12-19 06:33:00,94.20000000000002,141.4,a black object in a pot with a hole in it ,medium,medium,low
+31,00000087-PHOTO-2024-12-19-12-9-0.jpg,2024-12-19 12:09:00,3.0,2.4000000000000057,a white bowl filled with vegetables and meat ,medium,low,medium
+32,00000088-PHOTO-2024-12-19-12-51-0.jpg,2024-12-19 12:51:00,13.0,46.0,a bowl of food in a bowl on a counter ,medium,medium,medium
+32,00000089-PHOTO-2024-12-19-12-51-0.jpg,2024-12-19 12:51:00,13.0,46.0,a bag of food sitting on top of a stove ,medium,medium,low
+33,00000092-PHOTO-2024-12-19-18-42-0.jpg,2024-12-19 18:42:00,14.200000000000017,70.80000000000001,"a salad with lettuce, tomato, and other vegetables ",medium,low,medium
+34,00000093-PHOTO-2024-12-19-19-4-0.jpg,2024-12-19 19:04:00,50.20000000000002,81.80000000000001,a fork and knife are on a table ,,,
+35,00000094-PHOTO-2024-12-20-6-39-0.jpg,2024-12-20 06:39:00,13.799999999999983,72.80000000000001,a small orange object is in the air ,,,
+36,00000095-PHOTO-2024-12-20-7-37-0.jpg,2024-12-20 07:37:00,32.60000000000002,26.0,a small bowl of water is being held by a person ,low,low,low
+37,00000102-PHOTO-2024-12-20-12-45-0.jpg,2024-12-20 12:45:00,114.79999999999998,91.20000000000002,"a salad with tomatoes, lettuce, and cheese ",medium,medium,low
+37,00000103-PHOTO-2024-12-20-12-45-0.jpg,2024-12-20 12:45:00,114.79999999999998,91.20000000000002,a bowl of food with a white bowl inside ,,,
+38,00000104-PHOTO-2024-12-20-18-58-0.jpg,2024-12-20 18:58:00,33.19999999999999,27.799999999999983,a plate of food with a salad on it ,medium,low,medium
+38,00000105-PHOTO-2024-12-20-19-9-0.jpg,2024-12-20 19:09:00,11.400000000000006,0.6000000000000227,a piece of carrot on a plate with a knife ,low,low,low
+39,00000106-PHOTO-2024-12-21-6-53-0.jpg,2024-12-21 06:53:00,41.400000000000006,121.20000000000002,a coffee cup with a chocolate frosting on top ,low,medium,high
+40,00000107-PHOTO-2024-12-21-8-8-0.jpg,2024-12-21 08:08:00,41.80000000000001,-62.0,a small black object in a car's dashboard ,,,
+41,00000110-PHOTO-2024-12-21-12-58-0.jpg,2024-12-21 12:58:00,-6.199999999999989,2.8000000000000114,a piece of bread with a piece of foil on it ,low,low,medium
+42,00000111-PHOTO-2024-12-21-13-38-0.jpg,2024-12-21 13:38:00,30.19999999999999,44.19999999999999,a piece of foil sitting on top of a metal foil wrapper ,,,

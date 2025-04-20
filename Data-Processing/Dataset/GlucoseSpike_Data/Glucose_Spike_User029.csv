@@ -1,0 +1,56 @@
+meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
+4,00000005-PHOTO-2024-1-17-12-6-0.jpg,2024-01-17 12:06:00,8.0,93.0,,,,
+4,00000006-PHOTO-2024-1-17-12-20-0.jpg,2024-01-17 12:20:00,69.00000000000001,122.60000000000001,,,,
+5,00000007-PHOTO-2024-1-17-17-22-0.jpg,2024-01-17 17:22:00,16.39999999999999,63.999999999999986,a plate of food with a sandwich and a drink ,medium,medium,high
+6,00000008-PHOTO-2024-1-17-17-40-0.jpg,2024-01-17 17:40:00,52.80000000000001,18.400000000000006,a cup of tea sitting on a table ,low,low,low
+7,00000009-PHOTO-2024-1-18-5-44-0.jpg,2024-01-18 05:44:00,35.19999999999999,79.19999999999999,a glass of milk sitting on top of a counter ,medium,low,low
+8,00000011-PHOTO-2024-1-18-11-56-0.jpg,2024-01-18 11:56:00,26.0,47.0,a bowl of soup with a fork and spoon ,medium,low,medium
+9,00000014-PHOTO-2024-1-18-17-4-0.jpg,2024-01-18 17:04:00,17.799999999999997,44.19999999999999,a sandwich and salad on a plate ,medium,medium,medium
+9,00000015-PHOTO-2024-1-18-17-18-0.jpg,2024-01-18 17:18:00,35.000000000000014,26.799999999999997,a white plate with some food on it ,,,
+10,00000016-PHOTO-2024-1-19-6-18-0.jpg,2024-01-19 06:18:00,5.200000000000003,27.0,a coffee cup sitting on a table next to a napkin ,,,
+10,00000017-PHOTO-2024-1-19-6-21-0.jpg,2024-01-19 06:21:00,10.0,24.0,a table with a drink and a paper towel ,low,low,low
+11,00000018-PHOTO-2024-1-19-11-38-0.jpg,2024-01-19 11:38:00,2.3999999999999915,15.799999999999997,a salad on a plate with a glass of water ,medium,low,medium
+12,00000019-PHOTO-2024-1-19-11-54-0.jpg,2024-01-19 11:54:00,14.599999999999994,17.200000000000003,a plate of food with a fork and spoon ,medium,medium,medium
+13,00000020-PHOTO-2024-1-19-16-20-0.jpg,2024-01-19 16:20:00,13.399999999999991,74.8,a sandwich and a bottle of water on a table ,medium,medium,medium
+13,00000021-PHOTO-2024-1-19-16-29-0.jpg,2024-01-19 16:29:00,26.0,90.4,a bowl of soup sitting on a table ,medium,low,medium
+14,00000022-PHOTO-2024-1-20-6-22-0.jpg,2024-01-20 06:22:00,26.599999999999994,90.6,a piece of cake sitting on a table next to a bottle of water ,low,high,high
+14,00000023-PHOTO-2024-1-20-6-25-0.jpg,2024-01-20 06:25:00,37.400000000000006,89.4,a glass of water next to a coffee cup ,low,low,low
+15,00000024-PHOTO-2024-1-20-11-53-0.jpg,2024-01-20 11:53:00,24.799999999999997,93.0,a piece of bread sitting on top of a table ,low,low,high
+15,00000025-PHOTO-2024-1-20-12-0-0.jpg,2024-01-20 12:00:00,42.400000000000006,110.0,a plastic container filled with ice water and a plastic bag ,,,
+16,00000026-PHOTO-2024-1-20-17-19-0.jpg,2024-01-20 17:19:00,16.799999999999997,17.799999999999997,a table topped with plates of food and drinks ,medium,medium,high
+17,00000027-PHOTO-2024-1-20-17-35-0.jpg,2024-01-20 17:35:00,21.400000000000006,17.400000000000006,a white bowl filled with food on top of a table ,,,
+18,00000028-PHOTO-2024-1-21-6-30-0.jpg,2024-01-21 06:30:00,24.200000000000017,52.0,a glass bowl filled with a mixture of food ,medium,medium,high
+18,00000029-PHOTO-2024-1-21-6-33-0.jpg,2024-01-21 06:33:00,33.000000000000014,50.8,a cup of water sitting on a table ,low,low,low
+19,00000030-PHOTO-2024-1-21-11-55-0.jpg,2024-01-21 11:55:00,-1.2000000000000028,7.799999999999997,a bowl of pasta and vegetables on a table ,medium,low,high
+19,00000031-PHOTO-2024-1-21-12-5-0.jpg,2024-01-21 12:05:00,8.200000000000003,15.399999999999991,a bowl of food on a table ,,,
+20,00000032-PHOTO-2024-1-21-17-37-0.jpg,2024-01-21 17:37:00,0.6000000000000085,18.200000000000003,a plate of food with a sandwich and a knife ,medium,medium,medium
+20,00000033-PHOTO-2024-1-21-17-48-0.jpg,2024-01-21 17:48:00,8.599999999999994,24.599999999999994,a plate with a piece of cake on it ,low,high,high
+21,00000034-PHOTO-2024-1-22-5-40-0.jpg,2024-01-22 05:40:00,8.399999999999991,19.19999999999999,a cup of coffee and a bowl of food on a table ,low,low,medium
+22,00000035-PHOTO-2024-1-22-6-36-0.jpg,2024-01-22 06:36:00,-25.0,-23.0,a bowl of water sitting on top of a table ,low,low,low
+23,00000036-PHOTO-2024-1-22-11-40-0.jpg,2024-01-22 11:40:00,7.3999999999999915,64.19999999999999,a piece of paper with a knife and a plastic bag ,,,
+23,00000037-PHOTO-2024-1-22-11-54-0.jpg,2024-01-22 11:54:00,33.0,65.80000000000001,a piece of foil on a table ,,,
+24,00000038-PHOTO-2024-1-22-17-35-0.jpg,2024-01-22 17:35:00,14.200000000000003,31.400000000000006,a pizza sitting on a tray on a table ,medium,high,high
+24,00000039-PHOTO-2024-1-22-17-45-0.jpg,2024-01-22 17:45:00,23.200000000000003,38.8,a plate of food on a table ,,,
+25,00000040-PHOTO-2024-1-23-5-57-0.jpg,2024-01-23 05:57:00,20.200000000000003,29.400000000000006,a glass of milk and a cup of juice ,medium,low,high
+25,00000041-PHOTO-2024-1-23-5-58-0.jpg,2024-01-23 05:58:00,21.39999999999999,30.799999999999997,a glass of water and a spoon on a table ,low,low,low
+26,00000042-PHOTO-2024-1-23-11-41-0.jpg,2024-01-23 11:41:00,13.0,52.0,a piece of bread with a piece of foil on it ,low,low,medium
+26,00000043-PHOTO-2024-1-23-11-53-0.jpg,2024-01-23 11:53:00,35.79999999999998,62.79999999999998,a metal tray with a piece of foil on it ,,,
+27,00000044-PHOTO-2024-1-23-17-36-0.jpg,2024-01-23 17:36:00,28.0,46.0,a plate of food on a table ,medium,medium,medium
+27,00000045-PHOTO-2024-1-23-17-48-0.jpg,2024-01-23 17:48:00,57.60000000000001,41.8,a bowl of food on a table ,,,
+28,00000046-PHOTO-2024-1-24-6-19-0.jpg,2024-01-24 06:19:00,10.600000000000009,51.8,a glass of water with a spoon in it ,low,low,low
+28,00000047-PHOTO-2024-1-24-6-21-0.jpg,2024-01-24 06:21:00,15.0,51.0,a glass of water sitting on top of a counter ,low,low,low
+29,00000048-PHOTO-2024-1-24-11-39-0.jpg,2024-01-24 11:39:00,1.3999999999999915,21.799999999999997,a bowl of pasta with vegetables and meat ,medium,medium,high
+30,00000050-PHOTO-2024-1-24-16-0-0.jpg,2024-01-24 16:00:00,-1.0,7.200000000000003,a slice of pizza on a plate on a table ,medium,high,high
+30,00000051-PHOTO-2024-1-24-16-7-0.jpg,2024-01-24 16:07:00,1.4000000000000057,12.400000000000006,a plate of food with a slice of pizza on it ,medium,high,high
+31,00000052-PHOTO-2024-1-25-5-51-0.jpg,2024-01-25 05:51:00,1.0,23.0,,,,
+31,00000053-PHOTO-2024-1-25-5-54-0.jpg,2024-01-25 05:54:00,8.799999999999997,29.599999999999994,a glass of water sitting on a table ,low,low,low
+32,00000054-PHOTO-2024-1-25-11-39-0.jpg,2024-01-25 11:39:00,4.400000000000006,26.400000000000006,a plate of food with broccoli and cheese ,medium,medium,low
+32,00000055-PHOTO-2024-1-25-11-50-0.jpg,2024-01-25 11:50:00,14.799999999999997,35.599999999999994,a bowl of food on a table ,,,
+33,00000056-PHOTO-2024-1-25-16-34-0.jpg,2024-01-25 16:34:00,9.400000000000006,31.80000000000001,a plate of food on a table ,,,
+33,00000057-PHOTO-2024-1-25-16-46-0.jpg,2024-01-25 16:46:00,33.0,30.0,a plate of food on a table ,medium,medium,medium
+34,00000058-PHOTO-2024-1-26-5-37-0.jpg,2024-01-26 05:37:00,31.400000000000006,54.80000000000001,a blender filled with liquid and a spoon ,low,low,low
+34,00000059-PHOTO-2024-1-26-5-39-0.jpg,2024-01-26 05:39:00,38.2,52.39999999999999,a glass of water and a bowl of food ,medium,low,medium
+35,00000060-PHOTO-2024-1-26-11-39-0.jpg,2024-01-26 11:39:00,11.200000000000003,66.80000000000001,a plastic bag with a toothbrush on it ,,,
+36,00000061-PHOTO-2024-1-26-11-55-0.jpg,2024-01-26 11:55:00,38.60000000000001,75.39999999999999,a piece of food is sitting on a table ,,,
+37,00000062-PHOTO-2024-1-26-18-13-0.jpg,2024-01-26 18:13:00,9.800000000000011,39.20000000000002,a bowl of soup with a spoon on a table ,medium,low,medium
+38,00000063-PHOTO-2024-1-26-18-35-0.jpg,2024-01-26 18:35:00,20.19999999999999,71.19999999999999,a bowl of food sitting on a table ,medium,medium,medium

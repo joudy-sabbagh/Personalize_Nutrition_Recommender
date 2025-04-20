@@ -1,0 +1,53 @@
+meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
+5,00000006-PHOTO-2021-3-26-12-14-0.jpg,2021-03-26 12:14:00,-3.4000000000000057,29.599999999999994,a piece of pizza sitting on top of a table ,medium,high,high
+6,00000007-PHOTO-2021-3-26-12-31-0.jpg,2021-03-26 12:31:00,18.0,30.0,a metal foil covered tray with a piece of meat ,high,medium,low
+7,00000008-PHOTO-2021-3-26-16-48-0.jpg,2021-03-26 16:48:00,28.60000000000001,49.2,a container filled with food in a kitchen ,,,
+7,00000009-PHOTO-2021-3-26-16-51-0.jpg,2021-03-26 16:51:00,34.0,42.0,a container filled with food in a kitchen ,,,
+8,00000010-PHOTO-2021-3-26-19-36-0.jpg,2021-03-26 19:36:00,-1.0,51.0,a bag of food with some food inside of it ,,,
+9,00000011-PHOTO-2021-3-26-20-5-0.jpg,2021-03-26 20:05:00,51.60000000000001,8.399999999999991,a bag of chips and a fork on a table ,low,high,high
+10,00000012-PHOTO-2021-3-27-9-6-0.jpg,2021-03-27 09:06:00,50.0,67.0,a pot of liquid is being poured into a pot ,,,
+10,00000013-PHOTO-2021-3-27-9-12-0.jpg,2021-03-27 09:12:00,75.6,66.0,a bucket filled with water and a metal object ,low,low,low
+11,00000014-PHOTO-2021-3-27-12-28-0.jpg,2021-03-27 12:28:00,49.60000000000001,37.400000000000006,a salad with a side of cheese and tomatoes ,medium,medium,low
+11,00000015-PHOTO-2021-3-27-12-42-0.jpg,2021-03-27 12:42:00,35.400000000000006,54.80000000000001,a bowl of soup and a spoon on a table ,medium,low,medium
+12,00000016-PHOTO-2021-3-27-16-54-0.jpg,2021-03-27 16:54:00,14.599999999999994,42.400000000000006,a person holding a piece of food in their hand ,medium,medium,low
+12,00000017-PHOTO-2021-3-27-17-2-0.jpg,2021-03-27 17:02:00,26.000000000000014,54.39999999999999,a hand holding a white bowl with a skateboard ,,,
+12,00000018-PHOTO-2021-3-27-17-14-0.jpg,2021-03-27 17:14:00,29.19999999999999,42.19999999999999,a person holding a piece of food in their hand ,medium,medium,low
+12,00000019-PHOTO-2021-3-27-17-15-0.jpg,2021-03-27 17:15:00,29.60000000000001,40.60000000000001,a person holding a cell phone in their hand ,,,
+13,00000020-PHOTO-2021-3-27-18-6-0.jpg,2021-03-27 18:06:00,-28.0,-44.0,a table with a bag of chips and a bowl of food ,low,high,high
+13,00000021-PHOTO-2021-3-27-18-11-0.jpg,2021-03-27 18:11:00,-23.0,-39.0,a cup of coffee and a cookie on a table ,low,medium,high
+14,00000022-PHOTO-2021-3-28-12-42-0.jpg,2021-03-28 12:42:00,-0.5999999999999943,3.5999999999999943,a bowl of food with vegetables and meat ,medium,medium,low
+15,00000023-PHOTO-2021-3-28-12-58-0.jpg,2021-03-28 12:58:00,7.200000000000003,4.3999999999999915,a bowl of soup with a fork and spoon ,medium,low,medium
+16,00000024-PHOTO-2021-3-28-18-0-0.jpg,2021-03-28 18:00:00,85.60000000000001,73.8,a sandwich and a drink on a table ,medium,medium,medium
+17,00000025-PHOTO-2021-3-28-18-27-0.jpg,2021-03-28 18:27:00,-5.199999999999989,-35.0,a table with a knife and a bowl of food ,medium,medium,medium
+18,00000026-PHOTO-2021-3-28-22-47-0.jpg,2021-03-28 22:47:00,3.5999999999999943,-2.4000000000000057,"a banana, a bottle of water, and a bag of fruit ",low,low,high
+19,00000027-PHOTO-2021-3-29-9-44-0.jpg,2021-03-29 09:44:00,54.80000000000001,35.80000000000001,a person holding a spoon in a blender ,medium,low,high
+19,00000028-PHOTO-2021-3-29-9-49-0.jpg,2021-03-29 09:49:00,59.60000000000001,33.8,a person holding a cup in their hand ,low,medium,medium
+20,00000029-PHOTO-2021-3-29-13-25-0.jpg,2021-03-29 13:25:00,16.0,54.80000000000001,a piece of bread is sitting on a piece of foil ,low,low,medium
+21,00000030-PHOTO-2021-3-29-13-41-0.jpg,2021-03-29 13:41:00,35.0,80.0,a piece of food is sitting on a paper ,,,
+22,00000031-PHOTO-2021-3-29-16-16-0.jpg,2021-03-29 16:16:00,21.0,-10.0,a plate of food with a bowl of food ,medium,medium,medium
+22,00000032-PHOTO-2021-3-29-16-28-0.jpg,2021-03-29 16:28:00,27.400000000000006,-73.6,a bowl of food with a fork and a drink ,medium,medium,medium
+23,00000033-PHOTO-2021-3-29-20-49-0.jpg,2021-03-29 20:49:00,12.199999999999989,35.400000000000006,a tray of food with some food inside ,medium,medium,medium
+23,00000034-PHOTO-2021-3-29-20-55-0.jpg,2021-03-29 20:55:00,31.799999999999997,40.2,a container filled with food sitting on top of a table ,,,
+24,00000035-PHOTO-2021-3-29-22-30-0.jpg,2021-03-29 22:30:00,24.599999999999994,37.79999999999998,a banana and a banana peel on a bed ,low,low,high
+25,00000036-PHOTO-2021-3-30-8-58-0.jpg,2021-03-30 08:58:00,47.400000000000006,30.19999999999999,a pot of liquid sitting on top of a counter ,,,
+25,00000037-PHOTO-2021-3-30-9-9-0.jpg,2021-03-30 09:09:00,48.20000000000002,12.400000000000006,a toilet bowl sitting on top of a table ,,,
+26,00000038-PHOTO-2021-3-30-12-19-0.jpg,2021-03-30 12:19:00,-8.399999999999991,-4.599999999999994,a bowl of pasta with meat and vegetables ,medium,medium,high
+26,00000039-PHOTO-2021-3-30-12-34-0.jpg,2021-03-30 12:34:00,8.199999999999989,5.199999999999989,a fork and spoon are in a bowl of food ,medium,medium,medium
+27,00000040-PHOTO-2021-3-30-16-9-0.jpg,2021-03-30 16:09:00,80.0,100.4,a plate of food with a glass of orange juice ,medium,low,high
+33,00000048-PHOTO-2021-4-1-18-8-0.jpg,2021-04-01 18:08:00,63.80000000000001,44.80000000000001,,,,
+34,00000049-PHOTO-2021-4-1-23-6-0.jpg,2021-04-01 23:06:00,38.400000000000006,19.599999999999994,,,,
+35,00000050-PHOTO-2021-4-2-10-1-0.jpg,2021-04-02 10:01:00,76.8,8.799999999999997,,,,
+35,00000051-PHOTO-2021-4-2-10-12-0.jpg,2021-04-02 10:12:00,75.0,1.0,,,,
+36,00000052-PHOTO-2021-4-2-13-40-0.jpg,2021-04-02 13:40:00,5.0,12.0,,,,
+37,00000053-PHOTO-2021-4-2-14-7-0.jpg,2021-04-02 14:07:00,10.0,3.0,a person holding a bowl of food in their hand ,medium,medium,medium
+38,00000054-PHOTO-2021-4-2-16-18-0.jpg,2021-04-02 16:18:00,75.0,14.599999999999994,a plate of food with a sandwich and a drink ,medium,medium,medium
+39,00000055-PHOTO-2021-4-3-10-0-0.jpg,2021-04-03 10:00:00,103.0,61.599999999999994,a bowl of liquid sitting on a counter ,low,low,low
+39,00000056-PHOTO-2021-4-3-10-8-0.jpg,2021-04-03 10:08:00,122.0,7.800000000000011,a small metal object in a bowl ,low,low,low
+40,00000057-PHOTO-2021-4-3-14-0-0.jpg,2021-04-03 14:00:00,10.599999999999994,24.400000000000006,a salad with a spoon and a bowl of salad ,medium,low,medium
+41,00000058-PHOTO-2021-4-3-14-26-0.jpg,2021-04-03 14:26:00,22.000000000000014,11.200000000000003,a fork and a spoon on a table ,,,
+42,00000059-PHOTO-2021-4-4-10-19-0.jpg,2021-04-04 10:19:00,26.200000000000017,12.200000000000017,a bowl of food with a spoon in it ,medium,medium,medium
+42,00000060-PHOTO-2021-4-4-10-25-0.jpg,2021-04-04 10:25:00,17.80000000000001,14.599999999999994,a bowl of water in a metal bowl ,low,low,low
+43,00000061-PHOTO-2021-4-4-12-51-0.jpg,2021-04-04 12:51:00,38.80000000000001,81.6,a piece of bread with a piece of cheese on it ,medium,medium,medium
+44,00000062-PHOTO-2021-4-4-13-14-0.jpg,2021-04-04 13:14:00,64.19999999999999,47.0,a piece of foil sitting on top of a piece of paper ,,,
+45,00000063-PHOTO-2021-4-5-11-49-0.jpg,2021-04-05 11:49:00,56.60000000000002,71.80000000000001,a pot of liquid is being poured into a pot ,,,
+45,00000064-PHOTO-2021-4-5-11-58-0.jpg,2021-04-05 11:58:00,74.6,57.0,a pan of food on a stove top ,medium,medium,medium

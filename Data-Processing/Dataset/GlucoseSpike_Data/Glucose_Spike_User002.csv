@@ -1,0 +1,86 @@
+meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
+2,00000002-PHOTO-2019-11-14-17-19-0.jpg,2019-11-14 17:19:00,0.0,0.0,a trash can with a plastic container on top of it ,,,
+3,00000003-PHOTO-2019-11-15-8-21-0.jpg,2019-11-15 08:21:00,0.0,0.0,a spoon is in a bowl with a mixture of ingredients ,medium,medium,medium
+3,00000004-PHOTO-2019-11-15-8-34-0.jpg,2019-11-15 08:34:00,0.0,0.0,a glass vase with a metal object in it ,,,
+4,00000005-PHOTO-2019-11-15-12-22-0.jpg,2019-11-15 12:22:00,0.0,0.0,a piece of bread with a piece of cheese on it ,medium,medium,low
+5,00000006-PHOTO-2019-11-15-12-53-0.jpg,2019-11-15 12:53:00,0.0,0.0,a piece of food in a plastic bag ,low,low,low
+6,00000007-PHOTO-2019-11-15-17-57-0.jpg,2019-11-15 17:57:00,0.0,0.0,"a plate of food with rice, beans, and vegetables ",medium,low,high
+7,00000008-PHOTO-2019-11-16-10-3-0.jpg,2019-11-16 10:03:00,36.000000000000014,67.00000000000001,a bowl of food with a spoon in it ,medium,medium,medium
+8,00000009-PHOTO-2019-11-16-10-19-0.jpg,2019-11-16 10:19:00,75.0,65.0,a bird is spraying water into a pan ,,,
+9,00000010-PHOTO-2019-11-16-13-27-0.jpg,2019-11-16 13:27:00,56.2,60.60000000000001,a white plate topped with pasta and vegetables ,medium,low,high
+9,00000011-PHOTO-2019-11-16-13-27-0.jpg,2019-11-16 13:27:00,56.2,60.60000000000001,a bowl of food with a spoon in it ,medium,medium,medium
+10,00000012-PHOTO-2019-11-16-13-55-0.jpg,2019-11-16 13:55:00,10.800000000000011,-2.200000000000003,a bowl of food with a spoon in it ,medium,medium,medium
+11,00000013-PHOTO-2019-11-16-15-21-0.jpg,2019-11-16 15:21:00,22.400000000000006,6.400000000000006,,,,
+12,00000014-PHOTO-2019-11-16-16-2-0.jpg,2019-11-16 16:02:00,4.199999999999989,-32.0,,,,
+13,00000015-PHOTO-2019-11-16-17-14-0.jpg,2019-11-16 17:14:00,14.0,15.0,,,,
+14,00000016-PHOTO-2019-11-16-17-31-0.jpg,2019-11-16 17:31:00,11.0,28.39999999999999,a plate of food with meat and potatoes ,medium,medium,medium
+15,00000017-PHOTO-2019-11-16-19-18-0.jpg,2019-11-16 19:18:00,12.800000000000011,50.400000000000006,a piece of cake with a spoon on a plate ,low,high,high
+15,00000018-PHOTO-2019-11-16-19-18-0.jpg,2019-11-16 19:18:00,12.800000000000011,50.400000000000006,a cup of coffee sitting on a table ,low,low,low
+15,00000019-PHOTO-2019-11-16-19-32-0.jpg,2019-11-16 19:32:00,47.0,80.4,a spoon is sitting on a plate with a cup ,,,
+16,00000020-PHOTO-2019-11-17-10-33-0.jpg,2019-11-17 10:33:00,31.799999999999983,62.0,a bowl of liquid is being poured into a pot ,low,low,medium
+17,00000021-PHOTO-2019-11-17-11-8-0.jpg,2019-11-17 11:08:00,11.600000000000023,-7.199999999999989,a small pool of water with a small orange substance ,low,low,low
+18,00000022-PHOTO-2019-11-17-14-24-0.jpg,2019-11-17 14:24:00,0.0,-4.0,a plate of food with a fork and spoon ,medium,medium,medium
+19,00000023-PHOTO-2019-11-17-14-50-0.jpg,2019-11-17 14:50:00,-4.0,-1.7999999999999972,a fork is in a bowl of food ,medium,medium,medium
+20,00000024-PHOTO-2019-11-17-19-34-0.jpg,2019-11-17 19:34:00,28.0,30.0,"a plate of food with meat, vegetables and a fork ",high,medium,low
+20,00000025-PHOTO-2019-11-17-19-47-0.jpg,2019-11-17 19:47:00,32.0,10.0,a fork and knife are on a plate ,,,
+20,00000026-PHOTO-2019-11-17-19-47-0.jpg,2019-11-17 19:47:00,32.0,10.0,a piece of pizza on a plate ,medium,high,high
+20,00000027-PHOTO-2019-11-17-19-55-0.jpg,2019-11-17 19:55:00,21.19999999999999,-4.0,a piece of cake on a plate with a spoon ,low,high,high
+21,00000028-PHOTO-2019-11-18-9-41-0.jpg,2019-11-18 09:41:00,37.0,81.6,a glass of water with a white substance in it ,low,low,low
+22,00000029-PHOTO-2019-11-18-9-59-0.jpg,2019-11-18 09:59:00,36.0,66.0,a small hole in the wall of a room ,,,
+23,00000030-PHOTO-2019-11-18-13-15-0.jpg,2019-11-18 13:15:00,26.0,103.4,a piece of bread with cheese and nuts on it ,medium,medium,medium
+24,00000031-PHOTO-2019-11-18-14-8-0.jpg,2019-11-18 14:08:00,5.799999999999983,40.19999999999999,a fork and a piece of paper on a table ,,,
+25,00000032-PHOTO-2019-11-18-18-3-0.jpg,2019-11-18 18:03:00,11.400000000000006,15.0,a plate of food with meat and vegetables ,high,medium,low
+25,00000033-PHOTO-2019-11-18-18-3-0.jpg,2019-11-18 18:03:00,11.400000000000006,15.0,a glass bowl with a bird shaped bowl on it ,,,
+26,00000034-PHOTO-2019-11-18-18-33-0.jpg,2019-11-18 18:33:00,3.5999999999999943,10.599999999999994,a fork and knife on a plate ,medium,medium,low
+26,00000035-PHOTO-2019-11-18-18-45-0.jpg,2019-11-18 18:45:00,-8.200000000000003,19.400000000000006,a glass bowl with a bowl of water in it ,low,low,low
+27,00000037-PHOTO-2019-11-19-9-28-0.jpg,2019-11-19 09:28:00,-19.599999999999994,26.400000000000006,a spoon is in a small bowl ,low,low,low
+28,00000038-PHOTO-2019-11-19-9-53-0.jpg,2019-11-19 09:53:00,35.0,16.0,a broken pipe in a pool of water ,,,
+29,00000039-PHOTO-2019-11-19-13-5-0.jpg,2019-11-19 13:05:00,-0.20000000000000284,-2.3999999999999915,"a plate of food with meat, vegetables and cheese ",medium,medium,low
+30,00000040-PHOTO-2019-11-19-13-25-0.jpg,2019-11-19 13:25:00,-3.200000000000003,3.0,a fork and a plate of food on a table ,medium,medium,medium
+31,00000041-PHOTO-2019-11-19-19-9-0.jpg,2019-11-19 19:09:00,20.0,92.0,a piece of bread with a piece of cheese on it ,medium,medium,medium
+31,00000042-PHOTO-2019-11-19-19-14-0.jpg,2019-11-19 19:14:00,35.0,103.0,a knife on a plate with a white bowl ,,,
+31,00000043-PHOTO-2019-11-19-19-15-0.jpg,2019-11-19 19:15:00,39.999999999999986,104.99999999999999,a plate of food with meat and vegetables ,high,medium,low
+31,00000044-PHOTO-2019-11-19-19-21-0.jpg,2019-11-19 19:21:00,64.80000000000001,114.6,a plate of food with a fork and knife ,,,
+31,00000045-PHOTO-2019-11-19-19-26-0.jpg,2019-11-19 19:26:00,75.2,118.60000000000001,a plate of fries and a sandwich on a table ,low,high,high
+31,00000046-PHOTO-2019-11-19-19-38-0.jpg,2019-11-19 19:38:00,73.4,99.80000000000001,a plate of fries and a sandwich on a table ,low,high,high
+32,00000047-PHOTO-2019-11-20-7-35-0.jpg,2019-11-20 07:35:00,35.400000000000006,27.400000000000006,a spoon is in a bowl with a fork ,,,
+32,00000048-PHOTO-2019-11-20-7-49-0.jpg,2019-11-20 07:49:00,42.0,15.0,a metal object with a light coming out of it ,,,
+33,00000049-PHOTO-2019-11-20-12-25-0.jpg,2019-11-20 12:25:00,54.599999999999994,100.4,a piece of meat is sitting on a piece of foil ,high,medium,low
+34,00000050-PHOTO-2019-11-20-12-59-0.jpg,2019-11-20 12:59:00,25.0,-7.0,a bird is sitting in a bird feeder ,,,
+35,00000051-PHOTO-2019-11-20-18-54-0.jpg,2019-11-20 18:54:00,13.0,66.0,a white plate with some food on it ,,,
+35,00000052-PHOTO-2019-11-20-18-56-0.jpg,2019-11-20 18:56:00,17.799999999999997,66.39999999999999,a glass bowl filled with a liquid ,low,low,low
+35,00000053-PHOTO-2019-11-20-19-3-0.jpg,2019-11-20 19:03:00,37.000000000000014,58.2,a piece of food is sitting on a table ,,,
+36,00000054-PHOTO-2019-11-20-20-4-0.jpg,2019-11-20 20:04:00,-30.0,-15.0,a glass bowl filled with water and a glass ,,,
+37,00000055-PHOTO-2019-11-21-9-55-0.jpg,2019-11-21 09:55:00,45.400000000000006,99.6,a glass vase with a blue liquid inside of it ,,,
+37,00000056-PHOTO-2019-11-21-10-10-0.jpg,2019-11-21 10:10:00,82.6,116.6,a metal object with a hole in it ,,,
+38,00000057-PHOTO-2019-11-21-13-49-0.jpg,2019-11-21 13:49:00,33.0,112.0,a piece of bread with a piece of foil on it ,low,low,high
+38,00000058-PHOTO-2019-11-21-14-4-0.jpg,2019-11-21 14:04:00,84.0,124.0,a piece of food is sitting in a plastic bag ,,,
+39,00000059-PHOTO-2019-11-21-18-17-0.jpg,2019-11-21 18:17:00,4.200000000000003,66.4,a salad with vegetables and cheese on a tray ,medium,medium,low
+39,00000060-PHOTO-2019-11-21-18-30-0.jpg,2019-11-21 18:30:00,19.0,107.4,"a sign that says ""don't eat the grass"" ",,,
+40,00000061-PHOTO-2019-11-21-18-53-0.jpg,2019-11-21 18:53:00,77.8,81.60000000000001,a piece of bread with a bite taken out of it ,low,low,medium
+40,00000062-PHOTO-2019-11-21-18-53-0.jpg,2019-11-21 18:53:00,77.8,81.60000000000001,a spoon is sitting on a plate with a cup of coffee ,low,low,low
+41,00000063-PHOTO-2019-11-21-19-11-0.jpg,2019-11-21 19:11:00,46.599999999999994,28.0,a piece of bread with a bite taken out of it ,low,low,medium
+42,00000064-PHOTO-2019-11-21-19-40-0.jpg,2019-11-21 19:40:00,-19.799999999999983,-24.19999999999999,a cup of coffee in a white bowl ,low,low,low
+43,00000065-PHOTO-2019-11-22-8-48-0.jpg,2019-11-22 08:48:00,29.400000000000006,22.80000000000001,a cup of coffee with a spoon in it ,low,low,low
+43,00000066-PHOTO-2019-11-22-9-3-0.jpg,2019-11-22 09:03:00,42.2,6.400000000000006,a small bucket filled with water and a small orange substance ,low,low,low
+44,00000067-PHOTO-2019-11-22-13-16-0.jpg,2019-11-22 13:16:00,8.0,54.60000000000001,a plate of food with broccoli and other vegetables ,medium,low,medium
+45,00000068-PHOTO-2019-11-22-14-35-0.jpg,2019-11-22 14:35:00,-14.0,-20.0,a piece of cake with a knife on it ,low,high,high
+46,00000069-PHOTO-2019-11-22-18-50-0.jpg,2019-11-22 18:50:00,14.800000000000011,7.0,a plate of food with a bowl of food ,medium,medium,medium
+47,00000070-PHOTO-2019-11-22-19-11-0.jpg,2019-11-22 19:11:00,-2.8000000000000114,-8.199999999999989,a plate of food with a drink and a fork ,medium,medium,medium
+48,00000071-PHOTO-2019-11-23-9-59-0.jpg,2019-11-23 09:59:00,15.0,88.0,a pan of food with a spoon ,medium,medium,medium
+49,00000072-PHOTO-2019-11-23-10-15-0.jpg,2019-11-23 10:15:00,49.0,82.4,a small metal object in a bowl ,low,low,low
+50,00000073-PHOTO-2019-11-23-14-30-0.jpg,2019-11-23 14:30:00,16.60000000000001,77.39999999999999,a bowl of salad with a spoon in it ,medium,low,medium
+51,00000074-PHOTO-2019-11-23-14-48-0.jpg,2019-11-23 14:48:00,51.20000000000002,79.6,a bowl of food with a sauce on it ,medium,medium,high
+52,00000075-PHOTO-2019-11-23-19-4-0.jpg,2019-11-23 19:04:00,13.0,64.0,a plate of food with a piece of cake ,low,medium,high
+52,00000076-PHOTO-2019-11-23-19-15-0.jpg,2019-11-23 19:15:00,37.400000000000006,70.4,a fork is sitting on a plate with a fork ,,,
+52,00000077-PHOTO-2019-11-23-19-21-0.jpg,2019-11-23 19:21:00,46.60000000000001,68.00000000000001,a chocolate cake with a spoon in it ,low,high,high
+52,00000078-PHOTO-2019-11-23-19-21-0.jpg,2019-11-23 19:21:00,46.60000000000001,68.00000000000001,a cup of coffee sitting on a table next to a white bowl ,low,low,low
+53,00000079-PHOTO-2019-11-23-19-45-0.jpg,2019-11-23 19:45:00,33.0,25.799999999999983,a bowl of liquid with a spoon in it ,low,low,high
+54,00000080-PHOTO-2019-11-24-8-9-0.jpg,2019-11-24 08:09:00,34.0,49.0,a glass of water with a spoon in it ,low,low,low
+55,00000081-PHOTO-2019-11-24-8-26-0.jpg,2019-11-24 08:26:00,42.20000000000002,36.0,a metal object with a paint job on it ,,,
+56,00000082-PHOTO-2019-11-24-15-54-0.jpg,2019-11-24 15:54:00,-14.0,-16.0,a piece of bread on a plate ,low,low,medium
+56,00000083-PHOTO-2019-11-24-15-54-0.jpg,2019-11-24 15:54:00,-14.0,-16.0,a fork and knife on a plate ,medium,medium,low
+57,00000084-PHOTO-2019-11-24-17-58-0.jpg,2019-11-24 17:58:00,25.999999999999986,28.999999999999986,a plate of food with a fork and knife ,medium,medium,medium
+57,00000085-PHOTO-2019-11-24-18-12-0.jpg,2019-11-24 18:12:00,45.19999999999999,4.400000000000006,a piece of cake on a plate with a fork ,low,high,high
+57,00000087-PHOTO-2019-11-24-18-18-0.jpg,2019-11-24 18:18:00,32.000000000000014,-5.599999999999994,a bowl of soup with a spoon in it ,medium,low,medium
+58,00000088-PHOTO-2019-11-24-18-38-0.jpg,2019-11-24 18:38:00,-32.400000000000006,-21.400000000000006,a bowl of water with a spoon in it ,low,low,low

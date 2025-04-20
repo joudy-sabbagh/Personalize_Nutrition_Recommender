@@ -1,0 +1,64 @@
+meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
+4,00000005-PHOTO-2020-3-11-12-9-0.jpg,2020-03-11 12:09:00,1.0,30.0,a sandwich on a white plate ,medium,medium,medium
+5,00000006-PHOTO-2020-3-11-12-36-0.jpg,2020-03-11 12:36:00,28.39999999999999,72.60000000000001,a white plate topped with a mixture of vegetables ,medium,low,medium
+6,00000007-PHOTO-2020-3-11-19-38-0.jpg,2020-03-11 19:38:00,8.400000000000006,81.8,a plate of food with vegetables and meat ,high,medium,low
+7,00000008-PHOTO-2020-3-11-20-15-0.jpg,2020-03-11 20:15:00,66.4,63.0,a plate of food with carrots and broccoli ,medium,low,high
+8,00000009-PHOTO-2020-3-12-10-17-0.jpg,2020-03-12 10:17:00,64.20000000000002,161.4,a bowl of water with a spoon in it ,low,low,low
+8,00000010-PHOTO-2020-3-12-10-30-0.jpg,2020-03-12 10:30:00,111.4,131.00000000000003,,,,
+9,00000011-PHOTO-2020-3-12-14-25-0.jpg,2020-03-12 14:25:00,8.799999999999997,43.60000000000001,,,,
+10,00000012-PHOTO-2020-3-12-14-54-0.jpg,2020-03-12 14:54:00,36.0,64.0,,,,
+11,00000013-PHOTO-2020-3-12-20-4-0.jpg,2020-03-12 20:04:00,9.0,54.0,a sandwich on a plate with a bowl of soup ,medium,medium,medium
+12,00000014-PHOTO-2020-3-12-20-23-0.jpg,2020-03-12 20:23:00,40.19999999999999,68.0,a bowl of soup on a table ,medium,low,medium
+13,00000015-PHOTO-2020-3-13-8-27-0.jpg,2020-03-13 08:27:00,40.2,75.39999999999999,a pot of food is being stirred in a pot ,medium,medium,medium
+14,00000016-PHOTO-2020-3-13-8-48-0.jpg,2020-03-13 08:48:00,58.19999999999999,3.8000000000000114,a metal object in a blue bowl ,,,
+15,00000017-PHOTO-2020-3-13-12-33-0.jpg,2020-03-13 12:33:00,-3.799999999999997,-4.200000000000003,a bowl of food with a spoon in it ,medium,medium,medium
+15,00000018-PHOTO-2020-3-13-12-42-0.jpg,2020-03-13 12:42:00,-1.6000000000000085,-0.6000000000000085,a bowl of food with vegetables and meat ,medium,medium,low
+16,00000019-PHOTO-2020-3-13-17-3-0.jpg,2020-03-13 17:03:00,54.8,56.2,a plate of food with a stuffed animal on it ,,,
+17,00000020-PHOTO-2020-3-13-20-53-0.jpg,2020-03-13 20:53:00,54.8,83.39999999999999,a piece of broccoli on a plate with a fork ,low,low,low
+18,00000021-PHOTO-2020-3-14-9-35-0.jpg,2020-03-14 09:35:00,54.8,123.99999999999999,a bowl of liquid sitting on a table ,low,low,low
+18,00000022-PHOTO-2020-3-14-9-48-0.jpg,2020-03-14 09:48:00,80.4,120.6,a bucket of water is being poured into a pool ,low,low,low
+19,00000023-PHOTO-2020-3-14-13-33-0.jpg,2020-03-14 13:33:00,22.599999999999994,83.19999999999999,a plate of food on a table ,medium,medium,medium
+20,00000024-PHOTO-2020-3-14-13-49-0.jpg,2020-03-14 13:49:00,65.0,102.0,a plate of food with a fork and a fork ,medium,medium,medium
+20,00000025-PHOTO-2020-3-14-13-49-0.jpg,2020-03-14 13:49:00,65.0,102.0,a piece of cake on a plate with a fork ,low,high,high
+21,00000026-PHOTO-2020-3-14-19-57-0.jpg,2020-03-14 19:57:00,4.400000000000006,39.400000000000006,a plate of food with rice and vegetables ,medium,low,high
+22,00000027-PHOTO-2020-3-14-20-19-0.jpg,2020-03-14 20:19:00,23.0,67.0,a bowl of food on a table ,,,
+23,00000028-PHOTO-2020-3-15-9-12-0.jpg,2020-03-15 09:12:00,17.39999999999999,63.000000000000014,a bowl of food is being stirred in a pot ,medium,medium,medium
+24,00000029-PHOTO-2020-3-15-9-30-0.jpg,2020-03-15 09:30:00,44.60000000000001,57.2,a small pot with a black lid on it ,,,
+25,00000030-PHOTO-2020-3-15-14-6-0.jpg,2020-03-15 14:06:00,2.4000000000000057,12.800000000000011,"a salad with tomatoes, cheese, and lettuce ",medium,medium,low
+25,00000031-PHOTO-2020-3-15-14-17-0.jpg,2020-03-15 14:17:00,5.400000000000006,6.400000000000006,a plate of food with a salad and a fork ,medium,low,medium
+26,00000032-PHOTO-2020-3-15-20-5-0.jpg,2020-03-15 20:05:00,1.4000000000000057,12.0,a plate of food with broccoli and meat ,high,medium,low
+27,00000033-PHOTO-2020-3-15-20-23-0.jpg,2020-03-15 20:23:00,12.199999999999989,14.199999999999989,a white plate with a piece of food on it ,,,
+28,00000034-PHOTO-2020-3-16-8-14-0.jpg,2020-03-16 08:14:00,16.0,91.0,a bowl of food with a spoon in it ,medium,medium,high
+28,00000035-PHOTO-2020-3-16-8-27-0.jpg,2020-03-16 08:27:00,55.599999999999994,71.4,a bowl of food is being poured into a pot ,medium,medium,medium
+29,00000039-PHOTO-2020-3-16-13-32-0.jpg,2020-03-16 13:32:00,13.799999999999997,53.599999999999994,a white plate with a fish in it ,high,medium,low
+29,00000040-PHOTO-2020-3-16-13-42-0.jpg,2020-03-16 13:42:00,28.80000000000001,50.80000000000001,a piece of bread on a plate with a fork ,low,low,medium
+30,00000041-PHOTO-2020-3-16-17-20-0.jpg,2020-03-16 17:20:00,3.6000000000000085,16.799999999999997,a white plate with a flower on it ,,,
+31,00000042-PHOTO-2020-3-16-20-15-0.jpg,2020-03-16 20:15:00,-4.200000000000003,-2.0,a plate of food with vegetables and a salad ,medium,low,medium
+32,00000043-PHOTO-2020-3-16-20-39-0.jpg,2020-03-16 20:39:00,1.0,7.0,a bowl of vegetables on a table ,low,low,medium
+33,00000044-PHOTO-2020-3-17-9-7-0.jpg,2020-03-17 09:07:00,35.80000000000001,111.19999999999999,a bowl of soup is being stirred in a pot ,medium,low,medium
+34,00000045-PHOTO-2020-3-17-9-26-0.jpg,2020-03-17 09:26:00,88.6,98.0,a metal bowl filled with a mixture of water and a metal object ,low,low,low
+35,00000046-PHOTO-2020-3-17-13-24-0.jpg,2020-03-17 13:24:00,16.0,57.0,a plate of food with a fish on it ,high,medium,low
+36,00000047-PHOTO-2020-3-17-13-40-0.jpg,2020-03-17 13:40:00,34.0,70.4,a plate of food on a table ,,,
+37,00000048-PHOTO-2020-3-17-20-2-0.jpg,2020-03-17 20:02:00,42.2,54.60000000000001,a sandwich and french fries on a plate ,medium,medium,high
+38,00000049-PHOTO-2020-3-17-20-28-0.jpg,2020-03-17 20:28:00,23.400000000000006,23.400000000000006,a dirty white bowl on a table ,,,
+39,00000050-PHOTO-2020-3-18-9-15-0.jpg,2020-03-18 09:15:00,26.39999999999999,60.2,a pot of food is being stirred in a pot ,medium,medium,medium
+40,00000051-PHOTO-2020-3-18-9-35-0.jpg,2020-03-18 09:35:00,47.2,9.999999999999986,a metal bowl with a metal bowl on top of it ,,,
+41,00000052-PHOTO-2020-3-18-13-34-0.jpg,2020-03-18 13:34:00,-4.0,-1.0,a bowl of food with vegetables and meat ,medium,medium,low
+42,00000053-PHOTO-2020-3-18-13-50-0.jpg,2020-03-18 13:50:00,-4.799999999999997,1.7999999999999972,a bowl of food with a bowl of rice ,medium,low,high
+43,00000054-PHOTO-2020-3-18-16-56-0.jpg,2020-03-18 16:56:00,17.200000000000003,47.39999999999999,a plate of grapes and a red rose ,low,low,high
+44,00000055-PHOTO-2020-3-18-20-12-0.jpg,2020-03-18 20:12:00,17.0,19.400000000000006,"a plate of food with carrots, potatoes and meat ",medium,medium,medium
+45,00000056-PHOTO-2020-3-18-20-28-0.jpg,2020-03-18 20:28:00,18.599999999999994,20.39999999999999,a piece of cake sitting on a white plate ,low,high,high
+46,00000057-PHOTO-2020-3-19-10-8-0.jpg,2020-03-19 10:08:00,18.0,109.80000000000001,a pan filled with a mixture of brown and white food ,medium,medium,high
+47,00000058-PHOTO-2020-3-19-10-34-0.jpg,2020-03-19 10:34:00,87.0,73.0,a pan filled with a mixture of food ,medium,medium,medium
+48,00000059-PHOTO-2020-3-19-14-7-0.jpg,2020-03-19 14:07:00,-6.799999999999997,0.0,a bowl of salad with a spoon ,medium,low,medium
+48,00000060-PHOTO-2020-3-19-14-22-0.jpg,2020-03-19 14:22:00,0.5999999999999943,17.599999999999994,a bowl of salad with a side of cheese ,medium,medium,low
+49,00000061-PHOTO-2020-3-19-18-20-0.jpg,2020-03-19 18:20:00,7.599999999999994,40.400000000000006,a piece of cake with a flower in it ,low,high,high
+50,00000062-PHOTO-2020-3-19-19-46-0.jpg,2020-03-19 19:46:00,-10.0,20.0,"a tray of food with meat, carrots, and potatoes ",medium,medium,medium
+51,00000063-PHOTO-2020-3-19-20-15-0.jpg,2020-03-19 20:15:00,30.0,22.19999999999999,a fork and knife are on a plate ,medium,medium,medium
+52,00000064-PHOTO-2020-3-20-8-13-0.jpg,2020-03-20 08:13:00,38.2,45.60000000000001,a pot of water with a spoon in it ,low,low,low
+52,00000065-PHOTO-2020-3-20-8-25-0.jpg,2020-03-20 08:25:00,56.19999999999999,2.0,a metal object with a hole in it ,,,
+53,00000066-PHOTO-2020-3-20-12-45-0.jpg,2020-03-20 12:45:00,23.80000000000001,74.4,a white plate with a piece of food on it ,,,
+53,00000067-PHOTO-2020-3-20-12-55-0.jpg,2020-03-20 12:55:00,45.8,83.00000000000001,a plate of food with a piece of bread ,low,low,medium
+54,00000068-PHOTO-2020-3-20-17-52-0.jpg,2020-03-20 17:52:00,9.200000000000003,14.799999999999997,a plate with a red apple on it ,low,low,medium
+55,00000069-PHOTO-2020-3-20-19-46-0.jpg,2020-03-20 19:46:00,-5.200000000000003,0.5999999999999943,"a plate of meat, potatoes, and carrots ",medium,medium,medium
+56,00000070-PHOTO-2020-3-20-20-8-0.jpg,2020-03-20 20:08:00,-2.799999999999997,11.400000000000006,a dirty bowl of food in a dirty sink ,,,
