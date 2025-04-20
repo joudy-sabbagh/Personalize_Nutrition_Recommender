@@ -1,12 +1,8 @@
-# RUN: uvicorn app:app --host 0.0.0.0 --port 8002
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
 import os
 from dotenv import load_dotenv
-import os
-import openai
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -16,13 +12,15 @@ app = FastAPI()
 class FoodDescription(BaseModel):
     caption: str
 
-# GENERATE NUTRITION ESTIMATE GIVEN CAPTION USING GPT-3.5-TURBO THROUGH API CALL -> RETURN [PROTEIN, FAT, CARBS, TOTAL CALORIES]
 @app.post("/predict-nutrition")
 def predict_nutrition(payload: FoodDescription):
     caption = payload.caption
     prompt = f"""
-    Given the following food description, estimate the macronutrients typically found in the dish.
-    Provide the values in grams and total calories. Format your response simply as:
+    Given the following food description, estimate the typical macronutrient content of the dish.
+    You must guess whether each of the following is high, medium, or low: protein, fat, carbs, total calories.
+    Do not answer with "varies" or "depends" — just guess based on what you'd expect from the dish.
+
+    Format your response like this:
     [protein = , fat = , carbs = , total calories = ]
 
     Food description: {caption}
@@ -37,6 +35,22 @@ def predict_nutrition(payload: FoodDescription):
             temperature=0.5,
         )
         result = response['choices'][0]['message']['content'].strip()
-        return {"nutrition": result}
+
+        # Extract labels (high/medium/low) using regex
+        import re
+        def extract(label):
+            match = re.search(rf"{label}\s*=\s*(high|medium|low)", result, re.IGNORECASE)
+            return match.group(1).lower() if match else None
+
+        return {
+            "caption": caption,
+            "nutrition": {
+                "protein": extract("protein"),
+                "fat": extract("fat"),
+                "carbs": extract("carbs"),
+            },
+            "result": result
+        }
+
     except Exception as e:
         return {"error": str(e)}
