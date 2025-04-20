@@ -6,6 +6,7 @@ df = pd.read_csv("Dataset/original_bio.csv")
 
 # Keep and rename relevant columns
 df = df[[
+    'subject',
     'Age',
     'Gender',
     'BMI',
