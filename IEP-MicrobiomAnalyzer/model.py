@@ -45,7 +45,7 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 print("\nAccuracy: ", accuracy_score(y_test, y_pred))
 #print("\nClassification Report:\n", classification_report(y_test, y_pred, target_names=unique_classes))
-#print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
 
 joblib.dump({
     'model': clf,
