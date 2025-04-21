@@ -31,3 +31,16 @@ def analyze_meal(image: UploadFile = File(...)):
         "caption": caption,
         "nutrition": nutrition
     }
+
+@app.post("/predict-gut-health")
+def predict_gut_health(file: UploadFile = File(...)):
+    # Read the uploaded CSV
+    csv_bytes = file.file.read()
+    # Call Gut Health Predictor (port 8003)
+    gut_response = requests.post(
+        "http://localhost:8003/predict-gut-health-file",
+        files={"file": ("subject.csv", csv_bytes, file.content_type)}
+    )
+    if gut_response.status_code != 200:
+        return {"error": "Gut health prediction failed", "details": gut_response.text}
+    return gut_response.json()
