@@ -31,7 +31,7 @@ for file_path in glucose_files:
     microbiome_row = microbiome_df[microbiome_df['subject'] == subject_id]
 
     if clinical_row.empty or microbiome_row.empty:
-        print(f"⚠️ Skipping subject {subject_id} (missing clinical or microbiome data)")
+        print(f"Skipping subject {subject_id} (missing clinical or microbiome data)")
         continue
 
     clinical_flat = clinical_row.iloc[0].add_prefix("clinical_")
@@ -44,9 +44,43 @@ for file_path in glucose_files:
 # === Create final DataFrame ===
 combined_df = pd.DataFrame(combined_rows)
 
-# === Drop duplicate columns and empty rows ===
+# === Drop duplicate columns ===
 combined_df = combined_df.loc[:, ~combined_df.columns.duplicated()]
+
+# === Drop specific unwanted columns if they exist ===
+cols_to_drop = ["food_img", "caption", "clinical_subject", "microbe_subject"]
+combined_df.drop(columns=[col for col in cols_to_drop if col in combined_df.columns], inplace=True)
+
+# === Convert timestamp to meal category and then drop it ===
+def categorize_meal_time(timestamp):
+    try:
+        hour = pd.to_datetime(timestamp).hour
+        if 5 <= hour < 11:
+            return "breakfast"
+        elif 11 <= hour < 17:
+            return "lunch"
+        elif 17 <= hour <= 23:
+            return "dinner"
+        else:
+            return "other"
+    except:
+        return "unknown"
+
+if "timestamp" in combined_df.columns:
+    combined_df["meal_category"] = combined_df["timestamp"].apply(categorize_meal_time)
+    combined_df.drop(columns=["timestamp"], inplace=True)
+
+# === Drop rows with missing values ===
 combined_df.dropna(inplace=True)
+
+# === Keep only the row with highest glucose spike per subject+meal ===
+if {"meal_id", "glucose_spike_30min", "subject"}.issubset(combined_df.columns):
+    combined_df = combined_df.loc[
+        combined_df.groupby(["subject", "meal_id"])["glucose_spike_30min"].idxmax()
+    ].reset_index(drop=True)
+
+    # Drop subject and meal_id after grouping
+    combined_df.drop(columns=["subject", "meal_id"], inplace=True)
 
 # === Save merged dataset ===
 output_path = os.path.join(data_dir, "filtered_merged_alldata.csv")
