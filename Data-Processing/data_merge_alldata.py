@@ -59,14 +59,12 @@ combined_df.drop(columns=[col for col in cols_to_drop if col in combined_df.colu
 def categorize_meal_time(timestamp):
     try:
         hour = pd.to_datetime(timestamp).hour
-        if 5 <= hour < 11:
+        if 4 <= hour < 11:
             return "breakfast"
         elif 11 <= hour < 17:
             return "lunch"
-        elif 17 <= hour <= 23:
-            return "dinner"
         else:
-            return "other"
+            return "dinner"
     except:
         return "unknown"
 
