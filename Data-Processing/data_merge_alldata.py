@@ -47,6 +47,10 @@ combined_df = pd.DataFrame(combined_rows)
 # === Drop duplicate columns ===
 combined_df = combined_df.loc[:, ~combined_df.columns.duplicated()]
 
+# === Remove unwanted subjects ===
+excluded_subjects = [46, 47, 49]
+combined_df = combined_df[~combined_df['subject'].isin(excluded_subjects)]
+
 # === Drop specific unwanted columns if they exist ===
 cols_to_drop = ["food_img", "caption", "clinical_subject", "microbe_subject"]
 combined_df.drop(columns=[col for col in cols_to_drop if col in combined_df.columns], inplace=True)
