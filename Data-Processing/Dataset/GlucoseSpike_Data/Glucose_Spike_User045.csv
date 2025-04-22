@@ -1,51 +1,16 @@
-meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
-2,00000005-PHOTO-2025-3-25-8-35-0.jpg,2025-03-25 08:35:00,0.0,0.0,a bowl filled with a mixture of liquid and a spoon ,low,low,medium
-3,00000006-PHOTO-2025-3-25-12-6-0.jpg,2025-03-25 12:06:00,0.0,0.0,a piece of bread with a slice of cheese on it ,medium,medium,medium
-3,00000007-PHOTO-2025-3-25-12-18-0.jpg,2025-03-25 12:18:00,0.0,0.0,a plate of food with some food inside ,medium,medium,medium
-4,00000010-PHOTO-2025-3-26-8-41-0.jpg,2025-03-26 08:41:00,20.39999999999999,89.99999999999999,a spoon is in a bowl of liquid ,low,low,low
-5,00000011-PHOTO-2025-3-26-9-5-0.jpg,2025-03-26 09:05:00,99.00000000000001,98.8,a chocolate cake with a spoon in it ,low,high,high
-6,00000013-PHOTO-2025-3-26-11-47-0.jpg,2025-03-26 11:47:00,-43.0,-49.599999999999994,a bowl of salad and a bowl of salad dressing ,medium,medium,low
-7,00000014-PHOTO-2025-3-26-12-8-0.jpg,2025-03-26 12:08:00,-11.0,-4.0,a bowl of food on a table ,,,
-8,00000015-PHOTO-2025-3-26-20-4-0.jpg,2025-03-26 20:04:00,30.599999999999994,88.6,a basket of food with some meat and vegetables ,medium,medium,low
-9,00000016-PHOTO-2025-3-26-20-32-0.jpg,2025-03-26 20:32:00,68.60000000000002,97.60000000000002,a piece of food that is in a paper bag ,low,medium,medium
-10,00000017-PHOTO-2025-3-27-8-55-0.jpg,2025-03-27 08:55:00,62.79999999999998,146.79999999999998,a bowl of liquid in a pot on a table ,low,low,low
-11,00000021-PHOTO-2025-3-27-12-4-0.jpg,2025-03-27 12:04:00,-10.0,14.0,a bowl of food with vegetables and meat ,medium,medium,low
-12,00000025-PHOTO-2025-3-27-18-31-0.jpg,2025-03-27 18:31:00,12.599999999999994,57.400000000000006,a plate of food with broccoli and other vegetables ,medium,low,medium
-12,00000026-PHOTO-2025-3-27-18-38-0.jpg,2025-03-27 18:38:00,16.0,81.0,a spoon is in a bowl with a fork ,,,
-13,00000027-PHOTO-2025-3-27-22-48-0.jpg,2025-03-27 22:48:00,32.0,75.0,a box of broccoli and other vegetables ,medium,low,medium
-14,00000029-PHOTO-2025-3-28-8-50-0.jpg,2025-03-28 08:50:00,21.799999999999983,135.39999999999998,a person is pouring a cup of liquid into a bowl ,low,low,low
-15,00000030-PHOTO-2025-3-28-9-10-0.jpg,2025-03-28 09:10:00,150.79999999999998,136.6,a metal object is being held up by a metal pipe ,,,
-16,00000032-PHOTO-2025-3-28-13-43-0.jpg,2025-03-28 13:43:00,115.0,109.0,a plastic bag with a sandwich on it ,medium,medium,high
-16,00000033-PHOTO-2025-3-28-13-58-0.jpg,2025-03-28 13:58:00,78.0,50.0,a silver tray with a piece of foil on it ,,,
-17,00000034-PHOTO-2025-3-28-17-12-0.jpg,2025-03-28 17:12:00,39.0,1.0,a plate of food with a piece of cake ,low,medium,high
-18,00000037-PHOTO-2025-3-28-22-1-0.jpg,2025-03-28 22:01:00,21.39999999999999,35.000000000000014,a piece of chicken in a basket ,high,medium,low
-19,00000038-PHOTO-2025-3-28-22-28-0.jpg,2025-03-28 22:28:00,16.0,20.0,a piece of bread with a lot of seeds in it ,medium,medium,high
-20,00000039-PHOTO-2025-3-29-8-43-0.jpg,2025-03-29 08:43:00,-13.0,30.0,a person is pouring a cup of liquid into a bowl ,low,low,medium
-21,00000043-PHOTO-2025-3-29-9-10-0.jpg,2025-03-29 09:10:00,32.20000000000002,71.20000000000002,a metal object is being held up by a metal pipe ,,,
-22,00000044-PHOTO-2025-3-29-12-34-0.jpg,2025-03-29 12:34:00,-45.400000000000006,-91.6,a plate of food with a salad on it ,medium,low,medium
-22,00000045-PHOTO-2025-3-29-12-47-0.jpg,2025-03-29 12:47:00,-43.0,-74.8,a bowl of food with a spoon in it ,medium,medium,high
-23,00000046-PHOTO-2025-3-29-14-14-0.jpg,2025-03-29 14:14:00,59.400000000000006,36.80000000000001,a dog laying on a blanket with a ball in its mouth ,,,
-24,00000047-PHOTO-2025-3-29-21-29-0.jpg,2025-03-29 21:29:00,34.20000000000002,6.400000000000006,a plate of food with a fork and a knife ,,,
-25,00000048-PHOTO-2025-3-30-8-50-0.jpg,2025-03-30 08:50:00,36.19999999999999,64.4,a bowl of food in a kitchen ,,,
-25,00000049-PHOTO-2025-3-30-8-58-0.jpg,2025-03-30 08:58:00,62.0,63.0,a bowl filled with lots of fruit ,low,low,high
-26,00000050-PHOTO-2025-3-30-12-18-0.jpg,2025-03-30 12:18:00,14.0,29.0,a piece of bread is sitting on a piece of foil ,low,low,medium
-27,00000051-PHOTO-2025-3-30-12-34-0.jpg,2025-03-30 12:34:00,30.599999999999994,36.80000000000001,a piece of food is laying on a piece of paper ,low,low,low
-28,00000053-PHOTO-2025-3-30-20-16-0.jpg,2025-03-30 20:16:00,45.400000000000006,61.400000000000006,a hot dog with ketchup and mustard on a bun ,medium,medium,high
-29,00000054-PHOTO-2025-3-31-8-56-0.jpg,2025-03-31 08:56:00,58.599999999999994,67.20000000000002,a bowl of food in a bowl ,medium,medium,high
-30,00000055-PHOTO-2025-3-31-9-50-0.jpg,2025-03-31 09:50:00,23.400000000000006,0.4000000000000057,a bowl filled with lots of fruit ,low,low,high
-31,00000056-PHOTO-2025-3-31-12-33-0.jpg,2025-03-31 12:33:00,6.0,33.0,a sandwich on a car seat ,medium,high,medium
-31,00000057-PHOTO-2025-3-31-12-38-0.jpg,2025-03-31 12:38:00,4.0,23.0,a sandwich on a tray with a plastic bag ,medium,medium,medium
-32,00000058-PHOTO-2025-4-1-9-5-0.jpg,2025-04-01 09:05:00,83.4,141.40000000000003,a bowl of food in a kitchen ,medium,medium,medium
-33,00000060-PHOTO-2025-4-1-9-21-0.jpg,2025-04-01 09:21:00,165.2,114.0,a bowl of food in a kitchen ,,,
-34,00000063-PHOTO-2025-4-1-12-43-0.jpg,2025-04-01 12:43:00,-28.0,-32.0,a bowl of pasta and vegetables on a table ,medium,low,high
-35,00000066-PHOTO-2025-4-1-20-34-0.jpg,2025-04-01 20:34:00,16.0,12.200000000000017,a bowl of salad and a bowl of salad dressing ,medium,high,low
-35,00000068-PHOTO-2025-4-1-20-39-0.jpg,2025-04-01 20:39:00,25.200000000000017,9.0,a bowl of food with a spoon in it ,medium,medium,medium
-35,00000069-PHOTO-2025-4-1-20-39-0.jpg,2025-04-01 20:39:00,25.200000000000017,9.0,a plate of food with a variety of vegetables ,medium,low,high
-36,00000072-PHOTO-2025-4-1-20-58-0.jpg,2025-04-01 20:58:00,15.0,2.0,a bowl of food on a table ,,,
-37,00000074-PHOTO-2025-4-2-9-40-0.jpg,2025-04-02 09:40:00,89.19999999999999,227.79999999999998,a bowl of water with a small bowl of ice cream ,low,medium,high
-38,00000075-PHOTO-2025-4-2-10-3-0.jpg,2025-04-02 10:03:00,201.0,147.0,a bowl of liquid in a kitchen ,low,low,low
-39,00000077-PHOTO-2025-4-2-17-30-0.jpg,2025-04-02 17:30:00,16.200000000000017,21.80000000000001,a bowl of salad with a spoon in it ,medium,low,medium
-40,00000080-PHOTO-2025-4-3-8-46-0.jpg,2025-04-03 08:46:00,52.0,32.20000000000002,a cup of coffee sitting on a table ,low,low,low
-41,00000081-PHOTO-2025-4-3-9-7-0.jpg,2025-04-03 09:07:00,18.80000000000001,15.200000000000017,a bowl of food with a toothbrush in it ,low,low,low
-42,00000084-PHOTO-2025-4-3-12-16-0.jpg,2025-04-03 12:16:00,28.0,20.599999999999994,a piece of bread with a lot of cheese on it ,medium,high,low
-43,00000086-PHOTO-2025-4-3-16-18-0.jpg,2025-04-03 16:18:00,64.0,108.0,a plate of food with a fork and a salad ,medium,low,medium
+food_img,timestamp,glucose_spike_30min,glucose_spike_60min,protein_pct,fat_pct,carbs_pct,sugar_risk,refined_carb
+00000015-PHOTO-2025-3-26-20-4-0.jpg,2025-03-26 20:04:00,30.599999999999994,88.6,21,0,11,0,0
+00000025-PHOTO-2025-3-27-18-31-0.jpg,2025-03-27 18:31:00,12.599999999999994,57.400000000000006,59,23,18,0,0
+00000027-PHOTO-2025-3-27-22-48-0.jpg,2025-03-27 22:48:00,32.0,75.0,27,25,48,0,0
+00000032-PHOTO-2025-3-28-13-43-0.jpg,2025-03-28 13:43:00,115.0,109.0,10,10,80,0,1
+00000034-PHOTO-2025-3-28-17-12-0.jpg,2025-03-28 17:12:00,39.0,1.0,51,14,33,1,1
+00000037-PHOTO-2025-3-28-22-1-0.jpg,2025-03-28 22:01:00,21.39999999999999,35.000000000000014,65,10,25,0,0
+00000047-PHOTO-2025-3-29-21-29-0.jpg,2025-03-29 21:29:00,34.20000000000002,6.400000000000006,5,5,90,1,0
+00000050-PHOTO-2025-3-30-12-18-0.jpg,2025-03-30 12:18:00,14.0,29.0,12,45,43,0,0
+00000053-PHOTO-2025-3-30-20-16-0.jpg,2025-03-30 20:16:00,45.400000000000006,61.400000000000006,30,60,10,1,0
+00000066-PHOTO-2025-4-1-20-34-0.jpg,2025-04-01 20:34:00,16.0,12.200000000000017,5,40,55,1,1
+00000069-PHOTO-2025-4-1-20-39-0.jpg,2025-04-01 20:39:00,25.200000000000017,9.0,7,57,35,0,1
+00000072-PHOTO-2025-4-1-20-58-0.jpg,2025-04-01 20:58:00,15.0,2.0,40,10,50,0,0
+00000077-PHOTO-2025-4-2-17-30-0.jpg,2025-04-02 17:30:00,16.200000000000017,21.80000000000001,18,60,22,0,0
+00000084-PHOTO-2025-4-3-12-16-0.jpg,2025-04-03 12:16:00,28.0,20.599999999999994,6,33,61,1,1
+00000086-PHOTO-2025-4-3-16-18-0.jpg,2025-04-03 16:18:00,64.0,108.0,30,10,60,0,0
