@@ -73,19 +73,10 @@ def predict_glucose_from_all(
     meal_category: str = Form(...)
 ):
     try:
-        # === Macro mapping for text → numeric encoding ===
-        macro_map = {
-            "extremely low": 0,
-            "low": 1,
-            "medium": 2,
-            "high": 3,
-            "extremely high": 4
-        }
-
         # === Read input files ===
         image_bytes = image.file.read()
-        micro_bytes = micro_file.file.read()
         bio_bytes = bio_file.file.read()
+        micro_bytes = micro_file.file.read()
 
         # === STEP 1: Analyze Meal ===
         analyze_response = requests.post(
@@ -96,31 +87,17 @@ def predict_glucose_from_all(
             return {"error": "analyze-meal failed", "details": analyze_response.text}
 
         analyze = analyze_response.json()
-        caption = analyze.get("caption", "")
         nutrition = analyze.get("nutrition", {})
 
-        if "nutrition" in nutrition:
-            nutrition = nutrition["nutrition"]
-
-        # === STEP 2: Predict Gut Health ===
-        gut_response = requests.post(
-            "http://localhost:8000/predict-gut-health",
-            files={"file": ("micro.csv", micro_bytes, micro_file.content_type)}
-        )
-        if gut_response.status_code != 200:
-            return {"error": "predict-gut-health failed", "details": gut_response.text}
-        gut_health = gut_response.json().get("gut_health", "bad")
-
-        # === STEP 3: Predict Glucose Spike ===
+        # === STEP 2: Predict Glucose Spike ===
         glucose_response = requests.post(
             "http://localhost:8004/predict-glucose",
             data={
-                "protein": nutrition.get("protein_pct", 0),
-                "fat": nutrition.get("fat_pct", 0),
-                "carbs": nutrition.get("carbs_pct", 0),
+                "protein_pct": nutrition.get("protein_pct", 0),
+                "fat_pct": nutrition.get("fat_pct", 0),
+                "carbs_pct": nutrition.get("carbs_pct", 0),
                 "sugar_risk": nutrition.get("sugar_risk", 0),
                 "refined_carb": nutrition.get("refined_carb", 0),
-                "gut_health": gut_health,
                 "meal_category": meal_category
             },
             files={
@@ -134,9 +111,8 @@ def predict_glucose_from_all(
         glucose = glucose_response.json()
 
         return {
-            "caption": caption,
+            "caption": analyze.get("caption"),
             "nutrition": nutrition,
-            "gut_health": gut_health,
             "glucose_prediction": glucose
         }
 
