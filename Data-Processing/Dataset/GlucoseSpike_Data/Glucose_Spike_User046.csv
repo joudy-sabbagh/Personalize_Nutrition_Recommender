@@ -1,52 +1,10 @@
-meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
-3,00000005-PHOTO-2025-5-1-11-58-0.jpg,2025-05-01 11:58:00,-39.0,-32.0,a sandwich on a paper towel on a table ,medium,medium,medium
-3,00000007-PHOTO-2025-5-1-12-10-0.jpg,2025-05-01 12:10:00,-35.19999999999999,-38.0,a plate of food on a table ,,,
-4,00000008-PHOTO-2025-5-1-21-9-0.jpg,2025-05-01 21:09:00,9.600000000000023,66.80000000000001,,,,
-4,00000009-PHOTO-2025-5-1-21-17-0.jpg,2025-05-01 21:17:00,10.399999999999977,41.19999999999999,,,,
-5,00000010-PHOTO-2025-5-2-8-56-0.jpg,2025-05-02 08:56:00,54.19999999999999,-27.200000000000017,,,,
-5,00000011-PHOTO-2025-5-2-8-56-0.jpg,2025-05-02 08:56:00,54.19999999999999,-27.200000000000017,a coffee cup sitting on top of a counter ,,,
-6,00000012-PHOTO-2025-5-2-11-39-0.jpg,2025-05-02 11:39:00,-2.0,12.0,a plate of food with a fork and a spoon ,,,
-7,00000014-PHOTO-2025-5-2-15-10-0.jpg,2025-05-02 15:10:00,3.8000000000000114,25.0,a cake with a lot of different colors on it ,low,high,high
-7,00000015-PHOTO-2025-5-2-15-25-0.jpg,2025-05-02 15:25:00,27.80000000000001,-3.0,a plate of food with a fork and a drink ,medium,medium,medium
-8,00000017-PHOTO-2025-5-3-11-47-0.jpg,2025-05-03 11:47:00,-10.200000000000003,-14.400000000000006,a bowl of soup on a table ,medium,low,medium
-9,00000018-PHOTO-2025-5-3-15-10-0.jpg,2025-05-03 15:10:00,4.600000000000023,-10.799999999999983,a sandwich and a cup of coffee on a white plate ,medium,medium,medium
-9,00000019-PHOTO-2025-5-3-15-19-0.jpg,2025-05-03 15:19:00,-2.1999999999999886,-15.199999999999989,a white plate topped with a bowl of food ,medium,medium,medium
-10,00000020-PHOTO-2025-5-4-8-6-0.jpg,2025-05-04 08:06:00,97.6,102.39999999999998,a coffee cup sitting on top of a wooden bench ,,,
-11,00000022-PHOTO-2025-5-4-11-17-0.jpg,2025-05-04 11:17:00,-18.200000000000003,1.1999999999999886,a piece of bread on a plate on a table ,low,low,medium
-11,00000023-PHOTO-2025-5-4-11-22-0.jpg,2025-05-04 11:22:00,-19.200000000000003,-3.799999999999997,a white plate with a piece of food on it ,,,
-12,00000024-PHOTO-2025-5-4-14-49-0.jpg,2025-05-04 14:49:00,-7.800000000000011,23.19999999999999,a bowl of food on a wooden table ,,,
-12,00000025-PHOTO-2025-5-4-14-50-0.jpg,2025-05-04 14:50:00,-3.5999999999999943,26.400000000000006,a plate of food on a table ,medium,medium,medium
-13,00000037-PHOTO-2025-5-5-11-1-0.jpg,2025-05-05 11:01:00,22.0,18.0,a plate of food with a salad and a bottle of water ,medium,low,medium
-14,00000038-PHOTO-2025-5-5-11-19-0.jpg,2025-05-05 11:19:00,25.19999999999999,-40.20000000000002,a white bowl filled with food on top of a white counter ,,,
-15,00000039-PHOTO-2025-5-5-18-57-0.jpg,2025-05-05 18:57:00,13.799999999999983,125.0,a banana and a piece of bread on a counter ,low,low,medium
-16,00000040-PHOTO-2025-5-5-19-18-0.jpg,2025-05-05 19:18:00,75.0,128.0,a banana peel and a piece of bread on a counter ,low,low,medium
-16,00000041-PHOTO-2025-5-5-19-30-0.jpg,2025-05-05 19:30:00,114.6,124.79999999999998,a plate of food on a table ,medium,medium,medium
-16,00000042-PHOTO-2025-5-5-19-36-0.jpg,2025-05-05 19:36:00,102.6,113.4,a plate of food on a table ,,,
-17,00000043-PHOTO-2025-5-6-7-52-0.jpg,2025-05-06 07:52:00,46.19999999999999,107.39999999999998,a blender sitting on top of a sink ,,,
-18,00000053-PHOTO-2025-5-6-16-23-0.jpg,2025-05-06 16:23:00,-29.0,-40.0,a glass of beer sitting on a table ,low,low,high
-18,00000055-PHOTO-2025-5-6-16-28-0.jpg,2025-05-06 16:28:00,-23.0,-38.0,a glass of water with a small amount of liquid in it ,low,low,low
-18,00000056-PHOTO-2025-5-6-16-31-0.jpg,2025-05-06 16:31:00,-18.80000000000001,-34.400000000000006,a plate of pizza on a table ,medium,high,high
-19,00000059-PHOTO-2025-5-6-16-56-0.jpg,2025-05-06 16:56:00,-13.399999999999977,-16.0,a plate of food with a slice of pizza ,medium,high,high
-20,00000060-PHOTO-2025-5-7-7-55-0.jpg,2025-05-07 07:55:00,55.599999999999994,158.6,a black and white water bottle sitting on a counter top ,,,
-21,00000061-PHOTO-2025-5-7-11-29-0.jpg,2025-05-07 11:29:00,-13.400000000000006,24.19999999999999,a piece of food is sitting on a plastic bag ,,,
-21,00000062-PHOTO-2025-5-7-11-32-0.jpg,2025-05-07 11:32:00,-17.599999999999994,30.80000000000001,a cat is eating a piece of food ,,,
-22,00000063-PHOTO-2025-5-7-17-32-0.jpg,2025-05-07 17:32:00,-19.200000000000017,12.800000000000011,a plate of food with a salad and a drink ,medium,low,medium
-22,00000064-PHOTO-2025-5-7-17-43-0.jpg,2025-05-07 17:43:00,-3.0,18.0,a fork and spoon sit on a plate ,,,
-23,00000065-PHOTO-2025-5-7-18-33-0.jpg,2025-05-07 18:33:00,-32.0,-60.0,a banana and a sandwich on a white plate ,medium,medium,high
-23,00000066-PHOTO-2025-5-7-18-44-0.jpg,2025-05-07 18:44:00,-21.400000000000006,-80.6,a banana and a banana peel on a white plate ,low,low,medium
-24,00000067-PHOTO-2025-5-8-7-59-0.jpg,2025-05-08 07:59:00,22.0,46.400000000000006,a black and white water bottle and a white cup ,,,
-25,00000068-PHOTO-2025-5-8-11-43-0.jpg,2025-05-08 11:43:00,-9.0,-27.0,a plate of food with meat and vegetables ,high,medium,low
-25,00000069-PHOTO-2025-5-8-11-52-0.jpg,2025-05-08 11:52:00,-3.8000000000000114,-32.60000000000001,a bowl of food on a table ,,,
-26,00000070-PHOTO-2025-5-8-16-10-0.jpg,2025-05-08 16:10:00,40.0,68.4,a white plate topped with meat and vegetables ,medium,medium,low
-26,00000071-PHOTO-2025-5-8-16-15-0.jpg,2025-05-08 16:15:00,48.400000000000006,65.6,a white plate with a piece of meat and some vegetables ,high,medium,low
-27,00000072-PHOTO-2025-5-9-7-59-0.jpg,2025-05-09 07:59:00,40.0,130.8,a small black contraption with a remote control ,,,
-28,00000078-PHOTO-2025-5-9-12-23-0.jpg,2025-05-09 12:23:00,-27.0,-29.0,a bowl of pasta with broccoli and meat ,medium,medium,high
-28,00000079-PHOTO-2025-5-9-12-34-0.jpg,2025-05-09 12:34:00,-17.39999999999999,-17.599999999999994,a bowl of food with a fork in it ,medium,medium,medium
-29,00000081-PHOTO-2025-5-9-14-6-0.jpg,2025-05-09 14:06:00,17.400000000000006,36.8,a bag of paper with a receipt on it ,,,
-30,00000082-PHOTO-2025-5-9-15-4-0.jpg,2025-05-09 15:04:00,35.0,83.0,a sandwich is sitting on a tray in a kitchen ,medium,medium,medium
-30,00000083-PHOTO-2025-5-9-15-18-0.jpg,2025-05-09 15:18:00,18.0,40.0,a sandwich with a side of pickles on it ,medium,medium,medium
-31,00000088-PHOTO-2025-5-10-8-17-0.jpg,2025-05-10 08:17:00,57.0,52.0,a small black and silver fire hydrant with a handle ,,,
-32,00000098-PHOTO-2025-5-10-11-46-0.jpg,2025-05-10 11:46:00,18.60000000000001,37.60000000000001,a piece of bread on a plate ,low,low,medium
-32,00000099-PHOTO-2025-5-10-11-57-0.jpg,2025-05-10 11:57:00,41.39999999999999,57.000000000000014,a plate with a white plate on it ,,,
-33,00000100-PHOTO-2025-5-10-14-28-0.jpg,2025-05-10 14:28:00,13.0,33.0,a piece of pizza on a white plate ,medium,high,high
-33,00000101-PHOTO-2025-5-10-14-38-0.jpg,2025-05-10 14:38:00,3.0,33.0,a white plate with a piece of pizza on it ,medium,high,high
+food_img,timestamp,glucose_spike_30min,glucose_spike_60min,protein_pct,fat_pct,carbs_pct,sugar_risk,refined_carb
+00000009-PHOTO-2025-5-1-21-17-0.jpg,2025-05-01 21:17:00,10.399999999999977,41.19999999999999,7,3,90,0,0
+00000037-PHOTO-2025-5-5-11-1-0.jpg,2025-05-05 11:01:00,22.0,18.0,29,34,37,0,0
+00000039-PHOTO-2025-5-5-18-57-0.jpg,2025-05-05 18:57:00,13.799999999999983,125.0,0,60,40,1,1
+00000041-PHOTO-2025-5-5-19-30-0.jpg,2025-05-05 19:30:00,114.6,124.79999999999998,33,33,34,0,0
+00000070-PHOTO-2025-5-8-16-10-0.jpg,2025-05-08 16:10:00,40.0,68.4,30,30,40,0,0
+00000082-PHOTO-2025-5-9-15-4-0.jpg,2025-05-09 15:04:00,35.0,83.0,19,63,18,0,1
+00000083-PHOTO-2025-5-9-15-18-0.jpg,2025-05-09 15:18:00,18.0,40.0,11,55,34,1,1
+00000098-PHOTO-2025-5-10-11-46-0.jpg,2025-05-10 11:46:00,18.60000000000001,37.60000000000001,10,30,60,0,1
+00000100-PHOTO-2025-5-10-14-28-0.jpg,2025-05-10 14:28:00,13.0,33.0,40,30,30,1,1

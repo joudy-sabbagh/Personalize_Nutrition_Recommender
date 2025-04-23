@@ -1,61 +1,6 @@
-meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
-3,00000006-PHOTO-2022-1-25-11-50-0.jpg,2022-01-25 11:50:00,-6.200000000000003,7.800000000000011,a sandwich is sitting on a counter top ,medium,medium,medium
-4,00000008-PHOTO-2022-1-25-12-19-0.jpg,2022-01-25 12:19:00,15.0,17.0,a piece of paper with a person's face on it ,low,low,low
-5,00000009-PHOTO-2022-1-26-8-0-0.jpg,2022-01-26 08:00:00,47.599999999999994,111.6,a bowl of liquid in a bowl on a counter ,low,low,low
-6,00000014-PHOTO-2022-1-26-11-48-0.jpg,2022-01-26 11:48:00,-5.200000000000003,20.200000000000003,a bowl of soup and a bowl of broccoli ,medium,low,medium
-6,00000015-PHOTO-2022-1-26-12-0-0.jpg,2022-01-26 12:00:00,-3.8000000000000114,31.599999999999994,a bowl of soup and a spoon on a table ,medium,low,medium
-6,00000016-PHOTO-2022-1-26-12-8-0.jpg,2022-01-26 12:08:00,7.400000000000006,46.000000000000014,a bowl of food with a spoon and a fork ,medium,medium,medium
-7,00000017-PHOTO-2022-1-26-16-18-0.jpg,2022-01-26 16:18:00,-7.400000000000006,9.599999999999994,a red bowl of fruit sitting on a table ,low,low,high
-7,00000018-PHOTO-2022-1-26-16-31-0.jpg,2022-01-26 16:31:00,8.600000000000009,13.200000000000003,a plate of food with a fork and spoon ,,,
-8,00000019-PHOTO-2022-1-27-6-27-0.jpg,2022-01-27 06:27:00,49.60000000000002,19.600000000000023,a bowl of soup sitting on a table ,medium,low,medium
-8,00000020-PHOTO-2022-1-27-6-29-0.jpg,2022-01-27 06:29:00,58.0,24.0,a cup of water sitting on a table ,low,low,low
-9,00000022-PHOTO-2022-1-27-11-22-0.jpg,2022-01-27 11:22:00,-6.0,14.800000000000011,a salad with a side of vegetables on a plate ,medium,low,medium
-10,00000023-PHOTO-2022-1-27-11-40-0.jpg,2022-01-27 11:40:00,12.0,31.599999999999994,a bowl of soup sitting on a table ,medium,low,medium
-10,00000024-PHOTO-2022-1-27-11-46-0.jpg,2022-01-27 11:46:00,14.799999999999997,26.39999999999999,a green plant sitting on top of a wooden table ,,,
-11,00000031-PHOTO-2022-1-27-15-59-0.jpg,2022-01-27 15:59:00,4.0,5.0,,,,
-12,00000032-PHOTO-2022-1-27-17-46-0.jpg,2022-01-27 17:46:00,1.799999999999983,22.400000000000006,,,,
-13,00000033-PHOTO-2022-1-28-6-16-0.jpg,2022-01-28 06:16:00,41.400000000000006,65.20000000000002,,,,
-13,00000034-PHOTO-2022-1-28-6-18-0.jpg,2022-01-28 06:18:00,37.79999999999998,64.4,a bowl of food on a table ,,,
-14,00000035-PHOTO-2022-1-28-11-24-0.jpg,2022-01-28 11:24:00,29.0,145.0,a piece of bread sitting on top of a table ,low,low,medium
-14,00000036-PHOTO-2022-1-28-11-39-0.jpg,2022-01-28 11:39:00,92.0,158.0,a cup of coffee sitting on a table ,low,low,low
-15,00000038-PHOTO-2022-1-28-15-47-0.jpg,2022-01-28 15:47:00,-10.400000000000006,-25.80000000000001,a small container filled with a teddy bear ,low,low,low
-16,00000039-PHOTO-2022-1-28-17-0-0.jpg,2022-01-28 17:00:00,-23.799999999999997,-23.39999999999999,a bowl of soup with a spoon and chopsticks ,medium,low,medium
-17,00000041-PHOTO-2022-1-29-6-38-0.jpg,2022-01-29 06:38:00,25.399999999999977,40.39999999999998,a bowl of soup sitting on a table ,medium,low,medium
-17,00000042-PHOTO-2022-1-29-6-39-0.jpg,2022-01-29 06:39:00,30.0,40.0,a bowl of water sitting on a table ,low,low,low
-18,00000043-PHOTO-2022-1-29-11-29-0.jpg,2022-01-29 11:29:00,-6.0,1.0,a plate of food with a fork and a spoon ,,,
-19,00000044-PHOTO-2022-1-29-12-0-0.jpg,2022-01-29 12:00:00,7.0,8.200000000000003,a bowl of food and a fork on a table ,,,
-20,00000045-PHOTO-2022-1-29-16-23-0.jpg,2022-01-29 16:23:00,6.599999999999994,33.599999999999994,a bowl of fruit and a bowl of juice ,low,low,high
-20,00000046-PHOTO-2022-1-29-16-25-0.jpg,2022-01-29 16:25:00,8.200000000000003,35.2,a plastic container filled with a white and pink jelly ,low,low,high
-21,00000048-PHOTO-2022-1-29-16-57-0.jpg,2022-01-29 16:57:00,29.0,57.0,a cake with a frosting on it ,low,high,high
-22,00000050-PHOTO-2022-1-30-6-48-0.jpg,2022-01-30 06:48:00,57.19999999999999,37.599999999999994,a bowl of water with a bowl of paint on it ,low,low,low
-22,00000051-PHOTO-2022-1-30-6-49-0.jpg,2022-01-30 06:49:00,60.0,38.0,a bowl of food on a table ,,,
-23,00000052-PHOTO-2022-1-30-11-23-0.jpg,2022-01-30 11:23:00,0.20000000000000284,41.400000000000006,a piece of cake sitting on a white plate ,low,high,high
-24,00000053-PHOTO-2022-1-30-11-53-0.jpg,2022-01-30 11:53:00,41.2,74.60000000000001,a piece of paper with a flower on it ,low,low,low
-25,00000054-PHOTO-2022-1-30-14-59-0.jpg,2022-01-30 14:59:00,-37.0,-29.0,a white bowl filled with food on top of a table ,,,
-26,00000056-PHOTO-2022-1-30-18-20-0.jpg,2022-01-30 18:20:00,-4.6000000000000085,36.19999999999999,a slice of pizza on a plate on a table ,medium,high,high
-27,00000058-PHOTO-2022-1-31-7-3-0.jpg,2022-01-31 07:03:00,73.39999999999998,78.39999999999998,a bowl of soup sitting on a table ,medium,low,medium
-27,00000059-PHOTO-2022-1-31-7-4-0.jpg,2022-01-31 07:04:00,78.0,79.0,a bowl of liquid sitting on a table ,low,low,low
-28,00000060-PHOTO-2022-1-31-11-30-0.jpg,2022-01-31 11:30:00,-1.5999999999999943,26.599999999999994,a piece of food is sitting on a table ,,,
-28,00000061-PHOTO-2022-1-31-11-43-0.jpg,2022-01-31 11:43:00,9.599999999999994,17.799999999999983,a piece of paper with a piece of bread on it ,low,low,high
-29,00000062-PHOTO-2022-1-31-14-38-0.jpg,2022-01-31 14:38:00,18.200000000000003,68.00000000000001,a bowl of fruit and vegetables on a table ,low,low,medium
-30,00000064-PHOTO-2022-1-31-17-9-0.jpg,2022-01-31 17:09:00,27.0,43.0,a white plate with a donut on it ,low,high,high
-31,00000066-PHOTO-2022-2-1-7-18-0.jpg,2022-02-01 07:18:00,41.79999999999998,65.6,a bowl of water with a spoon on a table ,low,low,low
-31,00000067-PHOTO-2022-2-1-7-19-0.jpg,2022-02-01 07:19:00,46.0,68.0,a cat sitting in a bowl on a table ,,,
-32,00000068-PHOTO-2022-2-1-11-13-0.jpg,2022-02-01 11:13:00,-4.199999999999989,1.6000000000000085,a bowl of food with a salad in it ,medium,low,high
-33,00000069-PHOTO-2022-2-1-11-55-0.jpg,2022-02-01 11:55:00,5.3999999999999915,10.399999999999991,a bowl of food with a fork in it ,medium,medium,medium
-34,00000072-PHOTO-2022-2-1-15-22-0.jpg,2022-02-01 15:22:00,24.400000000000006,52.599999999999994,a bowl of fruit sitting on top of a table ,low,low,high
-35,00000073-PHOTO-2022-2-1-17-12-0.jpg,2022-02-01 17:12:00,2.5999999999999943,-1.0,a person is sitting on a table with a piece of paper ,,,
-36,00000074-PHOTO-2022-2-2-7-2-0.jpg,2022-02-02 07:02:00,60.19999999999999,27.80000000000001,a bowl of coffee is sitting on a table ,low,low,low
-36,00000075-PHOTO-2022-2-2-7-2-0.jpg,2022-02-02 07:02:00,60.19999999999999,27.80000000000001,a bowl of water with a flower in it ,low,low,low
-37,00000076-PHOTO-2022-2-2-11-34-0.jpg,2022-02-02 11:34:00,-5.0,1.0,a plate of food with a salad on it ,medium,low,medium
-38,00000077-PHOTO-2022-2-2-11-50-0.jpg,2022-02-02 11:50:00,9.400000000000006,1.4000000000000057,a fork is in a plate with a piece of meat ,high,medium,low
-39,00000080-PHOTO-2022-2-2-15-14-0.jpg,2022-02-02 15:14:00,2.0,2.0,a sandwich in a plastic container with a bite taken out ,medium,medium,medium
-40,00000082-PHOTO-2022-2-2-16-4-0.jpg,2022-02-02 16:04:00,26.0,35.0,a plastic container filled with oranges and a piece of bread ,low,low,medium
-41,00000084-PHOTO-2022-2-3-7-17-0.jpg,2022-02-03 07:17:00,29.0,63.400000000000006,a bowl of liquid sitting on a table ,low,low,low
-41,00000085-PHOTO-2022-2-3-7-17-0.jpg,2022-02-03 07:17:00,29.0,63.400000000000006,a bowl of water sitting on a table ,low,low,low
-42,00000086-PHOTO-2022-2-3-11-3-0.jpg,2022-02-03 11:03:00,5.200000000000003,31.39999999999999,a piece of bread is being cut into pieces ,low,low,medium
-43,00000088-PHOTO-2022-2-3-11-21-0.jpg,2022-02-03 11:21:00,24.599999999999994,35.400000000000006,a plastic bag with a lot of stuff on it ,,,
-44,00000089-PHOTO-2022-2-3-13-41-0.jpg,2022-02-03 13:41:00,3.1999999999999886,22.399999999999977,a plate of food with a sandwich and a fork ,medium,medium,medium
-45,00000090-PHOTO-2022-2-3-16-39-0.jpg,2022-02-03 16:39:00,12.0,1.0,a plate with a piece of cake on it ,low,high,high
-46,00000091-PHOTO-2022-2-4-6-2-0.jpg,2022-02-04 06:02:00,41.400000000000006,117.0,a bowl of soup sitting on a table ,medium,low,medium
-46,00000092-PHOTO-2022-2-4-6-3-0.jpg,2022-02-04 06:03:00,41.20000000000002,114.0,a bowl of liquid sitting on a table ,low,low,low
+food_img,timestamp,glucose_spike_30min,glucose_spike_60min,protein_pct,fat_pct,carbs_pct,sugar_risk,refined_carb
+00000035-PHOTO-2022-1-28-11-24-0.jpg,2022-01-28 11:24:00,29.0,145.0,15,60,25,0,1
+00000048-PHOTO-2022-1-29-16-57-0.jpg,2022-01-29 16:57:00,29.0,57.0,10,60,30,1,0
+00000062-PHOTO-2022-1-31-14-38-0.jpg,2022-01-31 14:38:00,18.200000000000003,68.00000000000001,2,2,96,1,0
+00000072-PHOTO-2022-2-1-15-22-0.jpg,2022-02-01 15:22:00,24.400000000000006,52.599999999999994,13,48,39,0,0
+00000090-PHOTO-2022-2-3-16-39-0.jpg,2022-02-03 16:39:00,12.0,1.0,20,70,10,0,0

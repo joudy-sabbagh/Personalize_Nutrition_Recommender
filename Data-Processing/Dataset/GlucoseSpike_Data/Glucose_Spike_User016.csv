@@ -1,72 +1,20 @@
-meal_id,food_img,timestamp,glucose_spike_30min,glucose_spike_60min,caption,protein,fat,carbs
-4,00000005-PHOTO-2023-7-14-11-58-0.jpg,2023-07-14 11:58:00,18.0,43.0,a piece of food is sitting on a paper plate ,low,medium,medium
-5,00000006-PHOTO-2023-7-14-12-28-0.jpg,2023-07-14 12:28:00,25.0,-2.0,a plate of food with a fork and knife ,medium,medium,medium
-6,00000007-PHOTO-2023-7-14-17-48-0.jpg,2023-07-14 17:48:00,16.0,11.0,a sandwich is sitting on a counter next to a bag of chips ,medium,medium,high
-7,00000008-PHOTO-2023-7-14-19-40-0.jpg,2023-07-14 19:40:00,-3.5999999999999943,10.599999999999994,a plate of food with broccoli and meat ,high,medium,low
-8,00000009-PHOTO-2023-7-15-8-17-0.jpg,2023-07-15 08:17:00,31.200000000000017,42.599999999999994,a person holding a cup of liquid in their hand ,low,low,low
-9,00000010-PHOTO-2023-7-15-8-34-0.jpg,2023-07-15 08:34:00,44.0,3.799999999999997,a wooden table with a box of doughnuts ,low,high,high
-10,00000011-PHOTO-2023-7-15-12-13-0.jpg,2023-07-15 12:13:00,10.0,36.0,a bowl of salad with a spoon in it ,medium,low,medium
-11,00000012-PHOTO-2023-7-15-12-43-0.jpg,2023-07-15 12:43:00,26.0,13.0,a bowl of food with a fork and spoon ,medium,medium,medium
-12,00000013-PHOTO-2023-7-15-17-26-0.jpg,2023-07-15 17:26:00,18.0,35.0,a person holding a piece of bread with a piece of cheese ,medium,medium,low
-12,00000014-PHOTO-2023-7-15-17-30-0.jpg,2023-07-15 17:30:00,26.0,34.599999999999994,a tray of food on a counter ,medium,medium,medium
-13,00000015-PHOTO-2023-7-15-19-4-0.jpg,2023-07-15 19:04:00,-11.200000000000003,11.0,a plate of food with a fork and spoon ,medium,medium,medium
-14,00000016-PHOTO-2023-7-15-21-26-0.jpg,2023-07-15 21:26:00,11.600000000000009,23.999999999999986,a cake with a spoon and a drink in it ,low,high,high
-15,00000017-PHOTO-2023-7-16-7-32-0.jpg,2023-07-16 07:32:00,14.200000000000003,18.0,a bowl of liquid is sitting on a counter ,low,low,low
-15,00000018-PHOTO-2023-7-16-7-47-0.jpg,2023-07-16 07:47:00,36.000000000000014,1.0,a metal object with a metal handle ,,,
-16,00000019-PHOTO-2023-7-16-12-6-0.jpg,2023-07-16 12:06:00,0.5999999999999943,4.200000000000003,a plate of food with a fish in it ,high,medium,low
-17,00000020-PHOTO-2023-7-16-12-33-0.jpg,2023-07-16 12:33:00,6.0,-3.0,a plate of food with a fork and knife ,,,
-18,00000021-PHOTO-2023-7-16-18-3-0.jpg,2023-07-16 18:03:00,45.0,43.0,a plate of food with a red and white plate ,medium,medium,medium
-18,00000022-PHOTO-2023-7-16-18-6-0.jpg,2023-07-16 18:06:00,43.79999999999998,39.400000000000006,a plate of food with a red and white frosting ,low,medium,high
-19,00000023-PHOTO-2023-7-16-19-19-0.jpg,2023-07-16 19:19:00,23.0,2.6000000000000227,a plate of food with a slice of pizza ,medium,high,high
-20,00000024-PHOTO-2023-7-17-7-31-0.jpg,2023-07-17 07:31:00,15.800000000000011,25.0,a person holding a bowl of liquid in it ,low,low,medium
-20,00000025-PHOTO-2023-7-17-7-46-0.jpg,2023-07-17 07:46:00,24.200000000000003,8.799999999999997,a person spraying a bucket of water with a sponge ,,,
-21,00000026-PHOTO-2023-7-17-12-24-0.jpg,2023-07-17 12:24:00,34.8,62.60000000000001,a plate of food on a table ,,,
-22,00000027-PHOTO-2023-7-17-12-41-0.jpg,2023-07-17 12:41:00,57.39999999999999,60.39999999999999,a fork and knife on a plate with a fork ,medium,medium,low
-23,00000028-PHOTO-2023-7-17-18-37-0.jpg,2023-07-17 18:37:00,13.399999999999991,42.19999999999999,a pizza with cheese and sauce on a plate ,medium,high,high
-24,00000029-PHOTO-2023-7-17-18-59-0.jpg,2023-07-17 18:59:00,35.2,21.200000000000003,a bowl of food in a kitchen ,,,
-25,00000030-PHOTO-2023-7-17-21-3-0.jpg,2023-07-17 21:03:00,10.0,-6.0,a blue and white cup of coffee sitting on a table ,low,low,low
-26,00000031-PHOTO-2023-7-17-21-20-0.jpg,2023-07-17 21:20:00,-0.5999999999999943,2.0,a person holding a cup in their hand ,low,low,medium
-27,00000032-PHOTO-2023-7-18-7-53-0.jpg,2023-07-18 07:53:00,9.0,5.0,a bowl of soup with a spoon in it ,medium,low,medium
-27,00000033-PHOTO-2023-7-18-8-7-0.jpg,2023-07-18 08:07:00,18.0,5.400000000000006,a metal object in a metal bowl ,low,low,low
-28,00000034-PHOTO-2023-7-18-12-22-0.jpg,2023-07-18 12:22:00,-10.0,0.4000000000000057,a plate of food with vegetables and meat ,medium,medium,low
-29,00000035-PHOTO-2023-7-18-12-42-0.jpg,2023-07-18 12:42:00,9.799999999999997,12.0,a bowl of food with a fork and spoon ,medium,medium,medium
-30,00000036-PHOTO-2023-7-18-17-6-0.jpg,2023-07-18 17:06:00,-4.0,-0.20000000000000284,a book with a bunch of books on it ,,,
-30,00000037-PHOTO-2023-7-18-17-9-0.jpg,2023-07-18 17:09:00,-0.3999999999999915,1.2000000000000028,a box of books on a table ,,,
-31,00000038-PHOTO-2023-7-18-19-27-0.jpg,2023-07-18 19:27:00,10.0,32.20000000000002,a salad with a lot of greens in a bowl ,medium,low,medium
-32,00000039-PHOTO-2023-7-18-19-49-0.jpg,2023-07-18 19:49:00,23.80000000000001,18.400000000000006,a white plate with a fork and a bowl of food ,medium,medium,medium
-33,00000040-PHOTO-2023-7-18-21-47-0.jpg,2023-07-18 21:47:00,2.8000000000000114,19.0,a stuffed animal with a note on it ,,,
-34,00000041-PHOTO-2023-7-19-7-42-0.jpg,2023-07-19 07:42:00,14.200000000000003,1.2000000000000028,a person is pouring some liquid into a pot ,,,
-34,00000042-PHOTO-2023-7-19-7-53-0.jpg,2023-07-19 07:53:00,17.0,-4.0,a hand holding a glass filled with a liquid ,low,low,low
-35,00000043-PHOTO-2023-7-19-21-18-0.jpg,2023-07-19 21:18:00,25.0,72.0,a plate of food with a bunch of bananas on it ,low,low,high
-36,00000044-PHOTO-2023-7-20-7-32-0.jpg,2023-07-20 07:32:00,31.200000000000003,42.60000000000001,,,,
-36,00000045-PHOTO-2023-7-20-7-45-0.jpg,2023-07-20 07:45:00,43.80000000000001,7.6000000000000085,,,,
-37,00000046-PHOTO-2023-7-20-12-15-0.jpg,2023-07-20 12:15:00,4.6000000000000085,35.2,,,,
-37,00000047-PHOTO-2023-7-20-12-29-0.jpg,2023-07-20 12:29:00,13.599999999999994,35.400000000000006,a piece of pizza sitting on top of a foil wrapper ,medium,high,high
-38,00000048-PHOTO-2023-7-20-17-54-0.jpg,2023-07-20 17:54:00,21.200000000000003,61.2,a piece of bread with a piece of cheese on it ,medium,medium,medium
-38,00000049-PHOTO-2023-7-20-18-7-0.jpg,2023-07-20 18:07:00,38.0,58.599999999999994,a person holding a piece of paper with a piece of paper in it ,,,
-39,00000050-PHOTO-2023-7-20-21-43-0.jpg,2023-07-20 21:43:00,8.0,16.0,a stuffed animal in a box with a pizza in it ,medium,high,high
-39,00000051-PHOTO-2023-7-20-21-52-0.jpg,2023-07-20 21:52:00,25.19999999999999,15.400000000000006,a dirty looking room with a white object in the middle ,,,
-39,00000052-PHOTO-2023-7-20-21-54-0.jpg,2023-07-20 21:54:00,28.0,16.200000000000017,a piece of bread on a white plate ,low,low,medium
-40,00000053-PHOTO-2023-7-21-9-9-0.jpg,2023-07-21 09:09:00,41.20000000000002,39.60000000000002,a person pouring a substance into a bowl ,medium,low,high
-40,00000054-PHOTO-2023-7-21-9-20-0.jpg,2023-07-21 09:20:00,55.80000000000001,27.200000000000017,a person holding a glass of wine in front of a table ,low,low,low
-41,00000055-PHOTO-2023-7-21-12-24-0.jpg,2023-07-21 12:24:00,8.399999999999991,10.0,a bowl of food with a fork and spoon ,medium,medium,medium
-42,00000056-PHOTO-2023-7-21-12-41-0.jpg,2023-07-21 12:41:00,3.4000000000000057,-0.5999999999999943,a bowl of food with meat and vegetables ,high,medium,low
-43,00000057-PHOTO-2023-7-21-15-51-0.jpg,2023-07-21 15:51:00,12.800000000000011,39.400000000000006,a bowl of fruit with a spoon in it ,low,low,high
-44,00000058-PHOTO-2023-7-21-16-15-0.jpg,2023-07-21 16:15:00,30.80000000000001,23.19999999999999,a spoon is in a bowl with a cup ,low,low,medium
-45,00000059-PHOTO-2023-7-21-19-46-0.jpg,2023-07-21 19:46:00,10.0,25.200000000000003,a glass of red wine sitting on a table ,low,low,low
-46,00000060-PHOTO-2023-7-21-20-41-0.jpg,2023-07-21 20:41:00,0.7999999999999972,3.000000000000014,a sandwich on a paper plate ,medium,medium,medium
-46,00000061-PHOTO-2023-7-21-20-41-0.jpg,2023-07-21 20:41:00,0.7999999999999972,3.000000000000014,a glass of orange juice and a donut on a table ,low,medium,high
-46,00000062-PHOTO-2023-7-21-20-41-0.jpg,2023-07-21 20:41:00,0.7999999999999972,3.000000000000014,a glass of wine sitting on a table ,low,low,low
-47,00000063-PHOTO-2023-7-22-9-45-0.jpg,2023-07-22 09:45:00,37.000000000000014,50.2,a blender filled with liquid and a small amount of liquid ,low,low,high
-47,00000064-PHOTO-2023-7-22-9-56-0.jpg,2023-07-22 09:56:00,59.400000000000006,47.599999999999994,a hand holding a bird in a bowl ,medium,medium,low
-48,00000065-PHOTO-2023-7-22-13-19-0.jpg,2023-07-22 13:19:00,23.799999999999997,45.2,a bowl of vegetables with a spoon in it ,low,low,medium
-48,00000066-PHOTO-2023-7-22-13-29-0.jpg,2023-07-22 13:29:00,51.0,27.400000000000006,a pan of food with a fork and knife ,medium,medium,medium
-49,00000067-PHOTO-2023-7-22-17-35-0.jpg,2023-07-22 17:35:00,15.999999999999986,33.8,a hot dog on a bun with mustard and ketchup ,medium,medium,high
-50,00000068-PHOTO-2023-7-22-18-3-0.jpg,2023-07-22 18:03:00,23.0,1.0,a plate of food on a table ,medium,medium,medium
-51,00000069-PHOTO-2023-7-22-18-30-0.jpg,2023-07-22 18:30:00,-22.0,-12.600000000000023,a coffee cup sitting on top of a table ,,,
-52,00000070-PHOTO-2023-7-23-7-38-0.jpg,2023-07-23 07:38:00,34.0,20.0,a pot of liquid is being stirred in a kitchen ,low,medium,low
-52,00000071-PHOTO-2023-7-23-7-52-0.jpg,2023-07-23 07:52:00,23.400000000000006,5.799999999999997,a reflection of a car in a mirror ,,,
-53,00000072-PHOTO-2023-7-23-12-8-0.jpg,2023-07-23 12:08:00,39.0,91.0,a plate of food with a fork and a piece of bread ,medium,medium,high
-54,00000073-PHOTO-2023-7-23-12-31-0.jpg,2023-07-23 12:31:00,71.19999999999999,45.0,a sandwich with meat and vegetables on a white plate ,medium,medium,medium
-55,00000074-PHOTO-2023-7-23-19-9-0.jpg,2023-07-23 19:09:00,34.19999999999999,58.80000000000001,a sandwich and fries on a tray ,medium,medium,high
-56,00000075-PHOTO-2023-7-23-20-1-0.jpg,2023-07-23 20:01:00,-9.800000000000011,-36.000000000000014,a box of pizza with a person eating it ,medium,high,high
+food_img,timestamp,glucose_spike_30min,glucose_spike_60min,protein_pct,fat_pct,carbs_pct,sugar_risk,refined_carb
+00000006-PHOTO-2023-7-14-12-28-0.jpg,2023-07-14 12:28:00,25.0,-2.0,38,46,16,0,0
+00000007-PHOTO-2023-7-14-17-48-0.jpg,2023-07-14 17:48:00,16.0,11.0,5,45,50,1,1
+00000011-PHOTO-2023-7-15-12-13-0.jpg,2023-07-15 12:13:00,10.0,36.0,29,53,18,0,0
+00000013-PHOTO-2023-7-15-17-26-0.jpg,2023-07-15 17:26:00,18.0,35.0,5,60,35,1,1
+00000014-PHOTO-2023-7-15-17-30-0.jpg,2023-07-15 17:30:00,26.0,34.599999999999994,11,49,40,0,1
+00000021-PHOTO-2023-7-16-18-3-0.jpg,2023-07-16 18:03:00,45.0,43.0,69,0,30,0,0
+00000023-PHOTO-2023-7-16-19-19-0.jpg,2023-07-16 19:19:00,23.0,2.6000000000000227,20,60,20,0,0
+00000026-PHOTO-2023-7-17-12-24-0.jpg,2023-07-17 12:24:00,34.8,62.60000000000001,46,33,20,0,0
+00000028-PHOTO-2023-7-17-18-37-0.jpg,2023-07-17 18:37:00,13.399999999999991,42.19999999999999,56,44,0,0,0
+00000038-PHOTO-2023-7-18-19-27-0.jpg,2023-07-18 19:27:00,10.0,32.20000000000002,45,30,25,0,0
+00000043-PHOTO-2023-7-19-21-18-0.jpg,2023-07-19 21:18:00,25.0,72.0,2,35,62,0,0
+00000047-PHOTO-2023-7-20-12-29-0.jpg,2023-07-20 12:29:00,13.599999999999994,35.400000000000006,5,45,50,1,0
+00000048-PHOTO-2023-7-20-17-54-0.jpg,2023-07-20 17:54:00,21.200000000000003,61.2,15,25,60,1,1
+00000052-PHOTO-2023-7-20-21-54-0.jpg,2023-07-20 21:54:00,28.0,16.200000000000017,13,40,47,0,1
+00000057-PHOTO-2023-7-21-15-51-0.jpg,2023-07-21 15:51:00,12.800000000000011,39.400000000000006,5,5,90,1,0
+00000065-PHOTO-2023-7-22-13-19-0.jpg,2023-07-22 13:19:00,23.799999999999997,45.2,19,36,45,0,0
+00000067-PHOTO-2023-7-22-17-35-0.jpg,2023-07-22 17:35:00,15.999999999999986,33.8,14,36,50,0,1
+00000072-PHOTO-2023-7-23-12-8-0.jpg,2023-07-23 12:08:00,39.0,91.0,15,30,55,0,1
+00000074-PHOTO-2023-7-23-19-9-0.jpg,2023-07-23 19:09:00,34.19999999999999,58.80000000000001,11,61,27,0,0
