@@ -17,3 +17,6 @@ Thumbs.db
 #IEP-FoodAnalyzer/testing.png
 
 testing.py
+
+mlartifacts
+mlruns
