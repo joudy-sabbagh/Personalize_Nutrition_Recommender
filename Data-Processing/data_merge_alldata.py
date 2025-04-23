@@ -52,7 +52,7 @@ excluded_subjects = [46, 47, 49]
 combined_df = combined_df[~combined_df['subject'].isin(excluded_subjects)]
 
 # === Drop specific unwanted columns if they exist ===
-cols_to_drop = ["food_img", "subject", "microbe_gut_health_binary", "clinical_subject", "microbe_subject"]
+cols_to_drop = ["food_img", "microbe_gut_health_binary", "clinical_subject", "microbe_subject"]
 combined_df.drop(columns=[col for col in cols_to_drop if col in combined_df.columns], inplace=True)
 
 # === Convert timestamp to meal category and then drop it ===
