@@ -1,0 +1,64 @@
+services:
+  nutrition-controller:
+    build: ./EEP-NutritionController
+    ports:
+      - "8000:8000"
+    depends_on:
+      - food-analyzer
+      - nutrition-predictor
+      - microbiom-analyzer
+      - glucose-monitor
+    environment:
+      - FOOD_ANALYZER_URL=http://food-analyzer:8001
+      - NUTRITION_PREDICTOR_URL=http://nutrition-predictor:8002
+      - MICROBIOM_ANALYZER_URL=http://microbiom-analyzer:8003
+      - GLUCOSE_MONITOR_URL=http://glucose-monitor:8004
+    networks:
+      - nutrition-network
+    volumes:
+      - data-volume:/app/Data-Processing
+
+  food-analyzer:
+    build: ./IEP-FoodAnalyzer
+    ports:
+      - "8001:8001"
+    environment:
+      - CLARIFAI_PAT=${CLARIFAI_PAT}
+      - CLARIFAI_USER_ID=${CLARIFAI_USER_ID}
+      - CLARIFAI_APP_ID=${CLARIFAI_APP_ID}
+    networks:
+      - nutrition-network
+
+  nutrition-predictor:
+    build: ./IEP-NutritionPredictor
+    ports:
+      - "8002:8002"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    networks:
+      - nutrition-network
+
+  microbiom-analyzer:
+    build: ./IEP-MicrobiomAnalyzer
+    ports:
+      - "8003:8003"
+    networks:
+      - nutrition-network
+    volumes:
+      - data-volume:/app/Data-Processing
+
+  glucose-monitor:
+    build: ./IEP-GlucoseMonitor
+    ports:
+      - "8004:8004"
+    networks:
+      - nutrition-network
+    volumes:
+      - data-volume:/app/Data-Processing
+
+networks:
+  nutrition-network:
+    driver: bridge
+
+volumes:
+  data-volume:

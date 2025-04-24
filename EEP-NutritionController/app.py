@@ -1,9 +1,58 @@
+from fastapi.middleware.cors import CORSMiddleware
 # RUN: uvicorn app:app --host 0.0.0.0 --port 8000
 
-from fastapi import FastAPI, File, UploadFile, Form
+from fastapi import FastAPI, File, UploadFile, Form, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
 import requests
+import os
+from pydantic import BaseModel
+
+# Database setup
+DATABASE_URL = "sqlite:///./nutrition_app.db"
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+# Create database directory if it doesn't exist
+os.makedirs(os.path.dirname(DATABASE_URL.replace("sqlite:///", "")), exist_ok=True)
+
+# User model
+class User(Base):
+    __tablename__ = "users"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    email = Column(String, unique=True, index=True)
+    password = Column(String)
+
+# Create tables
+Base.metadata.create_all(bind=engine)
+
+# Dependency to get database session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# Pydantic models for request/response
+class UserCreate(BaseModel):
+    username: str
+    email: str
+    password: str
+    
+class UserLogin(BaseModel):
+    username: str
+    password: str
+    
+class UserResponse(BaseModel):
+    id: int
+    username: str
+    email: str
+    
+    class Config:
+        orm_mode = True
 
 app = FastAPI()
 
@@ -15,6 +64,54 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# User sign-up endpoint
+@app.post("/signup", response_model=UserResponse)
+async def signup(user: UserCreate, db: Session = Depends(get_db)):
+    """Register a new user"""
+    # Check if user exists
+    db_user = db.query(User).filter(
+        (User.email == user.email) | (User.username == user.username)
+    ).first()
+    if db_user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email or username already registered"
+        )
+        
+    # Create new user - store password as plain text (not secure, but simple for now)
+    db_user = User(
+        email=user.email,
+        username=user.username,
+        password=user.password  # In a real app, you'd hash this!
+    )
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    
+    return db_user
+
+# User sign-in endpoint
+@app.post("/signin")
+async def signin(user_login: UserLogin, db: Session = Depends(get_db)):
+    """Sign in a user"""
+    # Find the user by username
+    db_user = db.query(User).filter(User.username == user_login.username).first()
+    
+    # Check if user exists and password matches
+    if not db_user or db_user.password != user_login.password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid username or password"
+        )
+    
+    # Return user info on successful login
+    return {
+        "id": db_user.id,
+        "username": db_user.username,
+        "email": db_user.email,
+        "message": "Login successful"
+    }
 
 @app.post("/analyze-meal")
 async def analyze_meal(

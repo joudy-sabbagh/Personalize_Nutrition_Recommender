@@ -93,3 +93,7 @@ async def generate_labels(image: UploadFile = File(...)):
             os.remove(tmp_path)
         except OSError:
             pass
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
