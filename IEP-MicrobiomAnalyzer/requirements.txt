@@ -7,3 +7,5 @@ joblib==1.2.0
 fastapi==0.95.2
 uvicorn==0.22.0
 python-multipart==0.0.6
+boto3==1.28.15
+s3fs==2023.6.0

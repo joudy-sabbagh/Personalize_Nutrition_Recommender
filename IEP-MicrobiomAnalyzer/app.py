@@ -5,21 +5,60 @@ import pandas as pd
 import joblib
 import re
 from sklearn.preprocessing import StandardScaler
-from io import StringIO
+from io import StringIO, BytesIO
 import os
+import boto3
 
 app = FastAPI()
 
+def load_data_from_s3(bucket_name, file_key):
+    """Load data from S3 bucket"""
+    s3_client = boto3.client(
+        's3',
+        aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+        region_name=os.environ.get('AWS_DEFAULT_REGION', 'eu-north-1')
+    )
+    
+    try:
+        response = s3_client.get_object(Bucket=bucket_name, Key=file_key)
+        return response['Body'].read()
+    except Exception as e:
+        print(f"Error loading data from S3: {str(e)}")
+        return None
+
 def load_model_and_features(model_path):
-    model_data = joblib.load(model_path)
-    if isinstance(model_data, dict):
-        return (
-            model_data['model'],
-            model_data['features'],
-            model_data.get('scaler', StandardScaler())
-        )
-    else:
-        raise ValueError("Model missing feature metadata.")
+    """Load model from S3 or local path"""
+    # Try S3 first
+    bucket_name = os.environ.get('S3_BUCKET_NAME')
+    if bucket_name:
+        try:
+            model_bytes = load_data_from_s3(bucket_name, f"Dataset/{model_path}")
+            if model_bytes:
+                model_data = joblib.load(BytesIO(model_bytes))
+                if isinstance(model_data, dict):
+                    return (
+                        model_data['model'],
+                        model_data['features'],
+                        model_data.get('scaler', StandardScaler())
+                    )
+        except Exception as e:
+            print(f"S3 model loading failed: {str(e)}. Trying local file.")
+    
+    # Fallback to local file
+    try:
+        model_data = joblib.load(model_path)
+        if isinstance(model_data, dict):
+            return (
+                model_data['model'],
+                model_data['features'],
+                model_data.get('scaler', StandardScaler())
+            )
+        else:
+            raise ValueError("Model missing feature metadata.")
+    except Exception as e:
+        print(f"Local model loading failed: {str(e)}")
+        raise ValueError(f"Could not load model from any source: {str(e)}")
 
 def clean_column_names(df):
     raw_cols = df.columns.astype(str)

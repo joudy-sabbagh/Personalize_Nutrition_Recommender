@@ -13,10 +13,12 @@ services:
       - NUTRITION_PREDICTOR_URL=http://nutrition-predictor:8002
       - MICROBIOM_ANALYZER_URL=http://microbiom-analyzer:8003
       - GLUCOSE_MONITOR_URL=http://glucose-monitor:8004
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=eu-north-1
+      - S3_BUCKET_NAME=nutritiondataset
     networks:
       - nutrition-network
-    volumes:
-      - data-volume:/app/Data-Processing
 
   food-analyzer:
     build: ./IEP-FoodAnalyzer
@@ -42,23 +44,26 @@ services:
     build: ./IEP-MicrobiomAnalyzer
     ports:
       - "8003:8003"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=eu-north-1
+      - S3_BUCKET_NAME=nutritiondataset
     networks:
       - nutrition-network
-    volumes:
-      - data-volume:/app/Data-Processing
 
   glucose-monitor:
     build: ./IEP-GlucoseMonitor
     ports:
       - "8004:8004"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=eu-north-1
+      - S3_BUCKET_NAME=nutritiondataset
     networks:
       - nutrition-network
-    volumes:
-      - data-volume:/app/Data-Processing
 
 networks:
   nutrition-network:
     driver: bridge
-
-volumes:
-  data-volume:

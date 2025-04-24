@@ -3,8 +3,15 @@
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 import requests
+import os
 
 app = FastAPI()
+
+# Get service URLs from environment variables with fallback to localhost
+FOOD_ANALYZER_URL = os.environ.get('FOOD_ANALYZER_URL', 'http://localhost:8001')
+NUTRITION_PREDICTOR_URL = os.environ.get('NUTRITION_PREDICTOR_URL', 'http://localhost:8002')
+MICROBIOM_ANALYZER_URL = os.environ.get('MICROBIOM_ANALYZER_URL', 'http://localhost:8003')
+GLUCOSE_MONITOR_URL = os.environ.get('GLUCOSE_MONITOR_URL', 'http://localhost:8004')
 
 @app.post("/analyze-meal")
 async def analyze_meal(
@@ -14,7 +21,7 @@ async def analyze_meal(
     image_bytes = await image.read()
     # === Step 1: Clarifai label extraction ===
     caption_response = requests.post(
-        "http://localhost:8001/generate-labels",
+        f"{FOOD_ANALYZER_URL}/generate-labels",
         files={"image": ("filename.jpg", image_bytes, image.content_type)}
     )
     if caption_response.status_code != 200:
@@ -42,7 +49,7 @@ async def analyze_meal(
     caption = full_caption
     # === Step 4: Send to nutrition predictor ===
     nutrition_response = requests.post(
-        "http://localhost:8002/predict-nutrition",
+        f"{NUTRITION_PREDICTOR_URL}/predict-nutrition",
         json={"caption": caption}
     )
     if nutrition_response.status_code != 200:
@@ -57,7 +64,7 @@ def predict_gut_health(file: UploadFile = File(...)):
     csv_bytes = file.file.read()
 
     gut_response = requests.post(
-        "http://localhost:8003/predict-gut-health-file",
+        f"{MICROBIOM_ANALYZER_URL}/predict-gut-health-file",
         files={"file": ("subject.csv", csv_bytes, file.content_type)}
     )
     if gut_response.status_code != 200:
@@ -80,7 +87,7 @@ def predict_glucose_from_all(
 
         # === STEP 1: Analyze Meal ===
         analyze_response = requests.post(
-            "http://localhost:8000/analyze-meal",
+            f"{FOOD_ANALYZER_URL}/analyze-meal",
             files={"image": ("meal.jpg", image_bytes, image.content_type)}
         )
         if analyze_response.status_code != 200:
@@ -91,7 +98,7 @@ def predict_glucose_from_all(
 
         # === STEP 2: Predict Glucose Spike ===
         glucose_response = requests.post(
-            "http://localhost:8004/predict-glucose",
+            f"{GLUCOSE_MONITOR_URL}/predict-glucose",
             data={
                 "protein_pct": nutrition.get("protein_pct", 0),
                 "fat_pct": nutrition.get("fat_pct", 0),
