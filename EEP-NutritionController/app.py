@@ -2,9 +2,19 @@
 
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import requests
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/analyze-meal")
 async def analyze_meal(
@@ -21,7 +31,7 @@ async def analyze_meal(
         return {"error": "Caption failed", "details": caption_response.text}
     labels = [
         label for label in caption_response.json().get("labels", [])
-        if label.get("confidence", 0) >= 75
+        if label.get("confidence", 0) >= 20
     ]
     if not labels and (not description or description.strip().lower() == "none"):
         return {
