@@ -97,3 +97,7 @@ async def predict_glucose(
         "glucose_spike_60min": spike_60,
         "message": message
     }
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
