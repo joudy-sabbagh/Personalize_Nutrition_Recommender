@@ -4,11 +4,16 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import joblib
+import os
 
 app = FastAPI()
 
 # === Load top microbiome features ===
-top_bacteria = pd.read_csv("../Data-Processing/Dataset/top_bacteria_union.csv")["bacteria"].tolist()
+top_bacteria_path = "Data-Processing/Dataset/top_bacteria_union.csv"
+if not os.path.exists(top_bacteria_path):
+    top_bacteria_path = "../Data-Processing/Dataset/top_bacteria_union.csv"
+
+top_bacteria = pd.read_csv(top_bacteria_path)["bacteria"].tolist()
 
 # === Load local trained model ===
 model = joblib.load("glucose_predictor_local.pkl")
