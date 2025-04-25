@@ -8,6 +8,15 @@ import os
 
 app = FastAPI()
 
+# Configure CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for testing
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Get service URLs from environment variables with fallback to localhost
 FOOD_ANALYZER_URL = os.environ.get('FOOD_ANALYZER_URL', 'http://localhost:8001')
 NUTRITION_PREDICTOR_URL = os.environ.get('NUTRITION_PREDICTOR_URL', 'http://localhost:8002')
@@ -51,7 +60,11 @@ async def analyze_meal(
     # === Step 4: Send to nutrition predictor ===
     nutrition_response = requests.post(
         f"{NUTRITION_PREDICTOR_URL}/predict-nutrition",
-        json={"caption": caption}
+        json={"caption": caption},
+        headers={
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
     )
     if nutrition_response.status_code != 200:
         return {"error": "Nutrition failed", "details": nutrition_response.text}

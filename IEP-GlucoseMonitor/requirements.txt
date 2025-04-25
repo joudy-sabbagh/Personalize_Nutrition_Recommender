@@ -5,6 +5,6 @@ python-multipart==0.0.20
 boto3==1.28.15
 s3fs==2023.6.0
 pandas==2.2.3
-numpy==2.2.4
+numpy==1.26.4
 scikit-learn==1.6.1
 mlflow==2.21.3

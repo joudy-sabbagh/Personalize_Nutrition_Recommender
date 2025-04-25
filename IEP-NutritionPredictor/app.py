@@ -6,11 +6,21 @@ import openai
 import os
 from dotenv import load_dotenv
 import re
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 class FoodDescription(BaseModel):
     caption: str
@@ -28,7 +38,7 @@ def predict_nutrition(payload: FoodDescription):
         - sugar_risk = 1 if the food likely contains added sugar or naturally high sugar, else 0
         - refined_carb = 1 if the food includes refined carbs (e.g. white pasta, white bread), else 0
 
-        Assume the description includes visible ingredients, portion hints, and preparation (e.g., “with olive oil”, “large serving”). If no portion is provided, guess reasonably.
+        Assume the description includes visible ingredients, portion hints, and preparation (e.g., "with olive oil", "large serving"). If no portion is provided, guess reasonably.
 
         Format your output like this:
         [protein_pct = , fat_pct = , carbs_pct = , sugar_risk = , refined_carb = ]
