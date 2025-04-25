@@ -64,6 +64,17 @@ services:
     networks:
       - nutrition-network
 
+  frontend:
+    build: ./UI-NutritionAnalyzer/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nutrition-controller
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    networks:
+      - nutrition-network
+
 networks:
   nutrition-network:
     driver: bridge
