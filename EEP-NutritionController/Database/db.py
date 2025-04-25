@@ -54,7 +54,7 @@ def create_tables():
     cursor.execute('''CREATE TABLE IF NOT EXISTS microbiome_data (
                         user_id INTEGER REFERENCES user_profile(user_id),
                         bact_id SERIAL PRIMARY KEY,
-                        bact_test VARCHAR(255),
+                        bact_test TEXT,
                         FOREIGN KEY (user_id) REFERENCES user_profile(user_id));''')
 
     # Create the "Clinical User Data" table
@@ -170,6 +170,41 @@ def user_signin(username, password):
             return None, "Invalid password"
     
     except Exception as e:
+        return None, str(e)
+    
+    finally:
+        cursor.close()
+        conn.close()
+
+def save_bacteria_data(user_id, bacteria_string):
+    """
+    Save the bacteria data string for a user.
+    The string contains 0s and 1s indicating presence (1) or absence (0) of different bacteria.
+    
+    Args:
+        user_id (int): The user ID
+        bacteria_string (str): A string of 0s and 1s representing bacteria presence
+        
+    Returns:
+        tuple: (bact_id, message) - bact_id if successful, None if failed
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Insert the bacteria data
+        cursor.execute(
+            "INSERT INTO microbiome_data (user_id, bact_test) VALUES (%s, %s) RETURNING bact_id",
+            (user_id, bacteria_string)
+        )
+        
+        bact_id = cursor.fetchone()[0]
+        conn.commit()
+        
+        return bact_id, "Bacteria data saved successfully"
+    
+    except Exception as e:
+        conn.rollback()
         return None, str(e)
     
     finally:

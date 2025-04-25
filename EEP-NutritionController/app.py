@@ -124,17 +124,66 @@ async def analyze_meal(
     }
 
 @app.post("/predict-gut-health")
-def predict_gut_health(file: UploadFile = File(...)):
-    csv_bytes = file.file.read()
-
-    gut_response = requests.post(
-        f"{MICROBIOM_ANALYZER_URL}/predict-gut-health-file",
-        files={"file": ("subject.csv", csv_bytes, file.content_type)}
-    )
-    if gut_response.status_code != 200:
-        return {"error": "Gut health prediction failed", "details": gut_response.text}
-    return gut_response.json()
-
+def predict_gut_health(file: UploadFile = File(...), user_id: int = Form(None)):
+    try:
+        # Read the CSV file content
+        csv_bytes = file.file.read()
+        
+        # Extract bacteria data from CSV (if user_id is provided)
+        bacteria_saved = False
+        bact_id = None
+        
+        if user_id:
+            # Parse the CSV content
+            import pandas as pd
+            import io
+            
+            # Reset file pointer to beginning to read the content
+            file.file.seek(0)
+            csv_content = io.StringIO(csv_bytes.decode('utf-8'))
+            df = pd.read_csv(csv_content)
+            
+            # Extract bacteria presence data (assuming second row contains the 0s and 1s)
+            if len(df) >= 1:  # At least one row of data after header
+                # Get the first row (index 0) which contains the 0s and 1s values
+                bacteria_values = df.iloc[0].astype(str).values
+                # Remove any spaces and join into a single string
+                bacteria_string = ''.join([val.strip() for val in bacteria_values])
+                
+                # Save to database
+                from Database.db import save_bacteria_data
+                bact_id, message = save_bacteria_data(user_id, bacteria_string)
+                
+                if bact_id:
+                    bacteria_saved = True
+                else:
+                    print(f"Warning: Failed to save bacteria data: {message}")
+            
+            # Reset file pointer for sending to microbiome analyzer
+            file.file.seek(0)
+            csv_bytes = file.file.read()
+        
+        # Forward to microbiome analyzer service
+        gut_response = requests.post(
+            f"{MICROBIOM_ANALYZER_URL}/predict-gut-health-file",
+            files={"file": ("subject.csv", csv_bytes, file.content_type)}
+        )
+        
+        if gut_response.status_code != 200:
+            return {"error": "Gut health prediction failed", "details": gut_response.text}
+        
+        # Get the analysis results
+        result = gut_response.json()
+        
+        # Add bacteria save status if applicable
+        if user_id and bacteria_saved:
+            result["bacteria_saved"] = bacteria_saved
+            result["bact_id"] = bact_id
+            
+        return result
+        
+    except Exception as e:
+        return {"error": f"Error processing gut health data: {str(e)}"}
 
 @app.post("/predict-glucose-from-all")
 def predict_glucose_from_all(
