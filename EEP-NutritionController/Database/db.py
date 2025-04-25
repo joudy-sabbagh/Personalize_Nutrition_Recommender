@@ -4,6 +4,7 @@ import psycopg2
 from psycopg2 import sql
 from dotenv import load_dotenv
 import os
+import bcrypt
 
 # Load environment variables from .env file
 load_dotenv()
@@ -78,6 +79,102 @@ def create_tables():
     conn.close()
 
     print("Tables created successfully.")
+
+def hash_password(password):
+    """
+    Hash a password using bcrypt.
+    """
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed.decode('utf-8')
+
+def check_password(plain_password, hashed_password):
+    """
+    Verify a password against a hash.
+    """
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+
+def user_signup(username, email, password):
+    """
+    Register a new user in the database.
+    Returns user_id if successful, None if username/email already exists.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Check if username already exists
+        cursor.execute("SELECT 1 FROM user_profile WHERE username = %s", (username,))
+        if cursor.fetchone():
+            cursor.close()
+            conn.close()
+            return None, "Username already exists"
+        
+        # Check if email already exists
+        cursor.execute("SELECT 1 FROM user_profile WHERE email = %s", (email,))
+        if cursor.fetchone():
+            cursor.close()
+            conn.close()
+            return None, "Email already exists"
+        
+        # Hash the password
+        hashed_password = hash_password(password)
+        
+        # Insert the new user
+        cursor.execute(
+            "INSERT INTO user_profile (username, email, password) VALUES (%s, %s, %s) RETURNING user_id",
+            (username, email, hashed_password)
+        )
+        
+        user_id = cursor.fetchone()[0]
+        conn.commit()
+        
+        return user_id, "User created successfully"
+    
+    except Exception as e:
+        conn.rollback()
+        return None, str(e)
+    
+    finally:
+        cursor.close()
+        conn.close()
+
+def user_signin(username, password):
+    """
+    Authenticate a user by username and password.
+    Returns user data if successful, None otherwise.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Get user by username
+        cursor.execute(
+            "SELECT user_id, username, password, email FROM user_profile WHERE username = %s",
+            (username,)
+        )
+        
+        user = cursor.fetchone()
+        if not user:
+            return None, "Invalid username"
+        
+        # Verify password
+        user_id, username, hashed_password, email = user
+        if check_password(password, hashed_password):
+            return {
+                "user_id": user_id,
+                "username": username,
+                "email": email
+            }, "Login successful"
+        else:
+            return None, "Invalid password"
+    
+    except Exception as e:
+        return None, str(e)
+    
+    finally:
+        cursor.close()
+        conn.close()
 
 def main():
     """

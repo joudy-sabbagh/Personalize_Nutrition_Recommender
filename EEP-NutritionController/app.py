@@ -5,14 +5,77 @@ from fastapi import FastAPI, File, UploadFile, Form, Depends, HTTPException, sta
 from fastapi.responses import JSONResponse
 import requests
 import os
+import sys
+from pydantic import BaseModel
+
+# Add Database directory to the path so we can import the db module
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'Database')))
+from Database.db import user_signup, user_signin
+
+# Schemas for user authentication
+class UserSignup(BaseModel):
+    username: str
+    email: str
+    password: str
+
+class UserSignin(BaseModel):
+    username: str
+    password: str
 
 app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Get service URLs from environment variables with fallback to localhost
 FOOD_ANALYZER_URL = os.environ.get('FOOD_ANALYZER_URL', 'http://localhost:8001')
 NUTRITION_PREDICTOR_URL = os.environ.get('NUTRITION_PREDICTOR_URL', 'http://localhost:8002')
 MICROBIOM_ANALYZER_URL = os.environ.get('MICROBIOM_ANALYZER_URL', 'http://localhost:8003')
 GLUCOSE_MONITOR_URL = os.environ.get('GLUCOSE_MONITOR_URL', 'http://localhost:8004')
+
+# Authentication routes
+@app.post("/signup")
+async def signup(user_data: UserSignup):
+    """
+    Register a new user
+    """
+    user_id, message = user_signup(
+        username=user_data.username,
+        email=user_data.email,
+        password=user_data.password
+    )
+    
+    if user_id:
+        return {"status": "success", "message": message, "user_id": user_id}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=message
+        )
+
+@app.post("/signin")
+async def signin(user_data: UserSignin):
+    """
+    Authenticate a user
+    """
+    user, message = user_signin(
+        username=user_data.username,
+        password=user_data.password
+    )
+    
+    if user:
+        return {"status": "success", "message": message, "user": user}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=message
+        )
 
 @app.post("/analyze-meal")
 async def analyze_meal(
