@@ -5,15 +5,51 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import joblib
 import os
+import boto3
+from io import StringIO
+import json
 
 app = FastAPI()
 
-# === Load top microbiome features ===
-top_bacteria_path = "Data-Processing/Dataset/top_bacteria_union.csv"
-if not os.path.exists(top_bacteria_path):
-    top_bacteria_path = "../Data-Processing/Dataset/top_bacteria_union.csv"
+def load_data_from_s3(bucket_name, file_key):
+    """Load data from S3 bucket"""
+    s3_client = boto3.client(
+        's3',
+        aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+        region_name=os.environ.get('AWS_DEFAULT_REGION', 'eu-north-1')
+    )
+    
+    try:
+        response = s3_client.get_object(Bucket=bucket_name, Key=file_key)
+        return pd.read_csv(StringIO(response['Body'].read().decode('utf-8')))
+    except Exception as e:
+        print(f"Error loading data from S3: {str(e)}")
+        # Fallback to local if available (for development)
+        if os.path.exists(file_key):
+            return pd.read_csv(file_key)
+        else:
+            raise e
 
-top_bacteria = pd.read_csv(top_bacteria_path)["bacteria"].tolist()
+# === Load top microbiome features from S3 ===
+bucket_name = os.environ.get('S3_BUCKET_NAME', 'nutritiondataset')
+top_bacteria_path = "Dataset/top_bacteria_union.csv"
+try:
+    top_bacteria_df = load_data_from_s3(bucket_name, top_bacteria_path)
+    top_bacteria = top_bacteria_df["bacteria"].tolist()
+except Exception as e:
+    print(f"Warning: Could not load bacteria data from S3: {str(e)}")
+    # Fallback paths for local development
+    local_paths = [
+        "Data-Processing/Dataset/top_bacteria_union.csv",
+        "../Data-Processing/Dataset/top_bacteria_union.csv"
+    ]
+    for path in local_paths:
+        if os.path.exists(path):
+            top_bacteria = pd.read_csv(path)["bacteria"].tolist()
+            break
+    else:
+        top_bacteria = []  # Empty list as last resort
 
 # === Load local trained model ===
 model = joblib.load("glucose_predictor_local.pkl")
