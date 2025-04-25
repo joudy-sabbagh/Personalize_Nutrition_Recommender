@@ -210,12 +210,3 @@ def save_bacteria_data(user_id, bacteria_string):
     finally:
         cursor.close()
         conn.close()
-
-def main():
-    """
-    Main function to create tables in the PostgreSQL database.
-    """
-    create_tables()
-
-if __name__ == "__main__":
-    main()
