@@ -68,3 +68,7 @@ def predict_nutrition(payload: FoodDescription):
 
     except Exception as e:
         return {"error": str(e)}
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}

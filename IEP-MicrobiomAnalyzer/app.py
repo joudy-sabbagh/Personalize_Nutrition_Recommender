@@ -104,3 +104,7 @@ async def predict_gut_health_file(file: UploadFile = File(...)):
 
     except Exception as e:
         return {"error": str(e)}
+    
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}

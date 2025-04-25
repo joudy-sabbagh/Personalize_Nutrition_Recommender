@@ -1,6 +1,7 @@
+from fastapi.middleware.cors import CORSMiddleware
 # RUN: uvicorn app:app --host 0.0.0.0 --port 8000
 
-from fastapi import FastAPI, File, UploadFile, Form
+from fastapi import FastAPI, File, UploadFile, Form, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 import requests
 import os
@@ -28,7 +29,7 @@ async def analyze_meal(
         return {"error": "Caption failed", "details": caption_response.text}
     labels = [
         label for label in caption_response.json().get("labels", [])
-        if label.get("confidence", 0) >= 75
+        if label.get("confidence", 0) >= 20
     ]
     if not labels and (not description or description.strip().lower() == "none"):
         return {
