@@ -1,6 +1,6 @@
 # uvicorn app:app --reload --port 8003
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Request
 import pandas as pd
 import joblib
 import re
@@ -8,8 +8,32 @@ from sklearn.preprocessing import StandardScaler
 from io import StringIO, BytesIO
 import os
 import boto3
+import time
 
+from prometheus_client import make_asgi_app, Counter, Summary, Gauge
+
+# === Monitoring Metrics ===
+REQUEST_COUNT = Counter("microbiom_analyzer_request_count", "Total number of requests to Microbiom Analyzer")
+REQUEST_LATENCY = Summary("microbiom_analyzer_request_latency_seconds", "Request latency in seconds")
+LAST_GUT_HEALTH_PROB = Gauge("microbiom_analyzer_last_gut_health_probability", "Last predicted gut health probability")
+
+# === FastAPI App Setup ===
 app = FastAPI()
+
+# Mount /metrics for Prometheus
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
+
+# Middleware to track request counts and latencies
+@app.middleware("http")
+async def prometheus_middleware(request: Request, call_next):
+    REQUEST_COUNT.inc()
+    start_time = time.time()
+    response = await call_next(request)
+    REQUEST_LATENCY.observe(time.time() - start_time)
+    return response
+
+# === Functions ===
 
 def load_data_from_s3(bucket_name, file_key):
     """Load data from S3 bucket"""
@@ -29,7 +53,6 @@ def load_data_from_s3(bucket_name, file_key):
 
 def load_model_and_features(model_path):
     """Load model from S3 or local path"""
-    # Try S3 first
     bucket_name = os.environ.get('S3_BUCKET_NAME')
     if bucket_name:
         try:
@@ -72,30 +95,30 @@ def clean_column_names(df):
     df.columns = final_cols
     return df
 
+# === API Endpoints ===
+
 @app.post("/predict-gut-health-file")
 async def predict_gut_health_file(file: UploadFile = File(...)):
     try:
-        # Load CSV contents
         contents = await file.read()
         df = pd.read_csv(StringIO(contents.decode("utf-8")))
         df = clean_column_names(df)
 
-        # Load model, features, scaler
         MODEL_PATH = "microbiome_model.pkl"
         model, feature_cols, scaler = load_model_and_features(MODEL_PATH)
 
-        # Check for missing features
         missing_features = set(feature_cols) - set(df.columns)
         if missing_features:
             return {"error": f"Missing features: {missing_features}"}
 
-        # Select and scale input
         X = df[feature_cols]
         X_scaled = scaler.transform(X)
 
-        # Predict
         prob_good = model.predict_proba(X_scaled)[0, 1]
         prediction = "Good" if prob_good > 0.5 else "Bad"
+
+        # === Update Prometheus Metric ===
+        LAST_GUT_HEALTH_PROB.set(prob_good)
 
         return {
             "probability_good": round(float(prob_good), 3),
@@ -104,7 +127,7 @@ async def predict_gut_health_file(file: UploadFile = File(...)):
 
     except Exception as e:
         return {"error": str(e)}
-    
+
 @app.get("/health")
 def health_check():
     return {"status": "ok"}

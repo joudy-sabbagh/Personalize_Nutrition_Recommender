@@ -1,0 +1,69 @@
+{
+    "dashboard": {
+      "id": null,
+      "title": "Nutrition System Monitoring",
+      "panels": [
+        {
+          "type": "stat",
+          "title": "Glucose Spike (Last)",
+          "targets": [
+            {
+              "expr": "glucose_monitor_last_predicted_spike",
+              "refId": "A"
+            }
+          ],
+          "gridPos": { "x": 0, "y": 0, "w": 6, "h": 3 }
+        },
+        {
+          "type": "stat",
+          "title": "Gut Health Prob (Last)",
+          "targets": [
+            {
+              "expr": "microbiom_analyzer_last_gut_health_probability",
+              "refId": "B"
+            }
+          ],
+          "gridPos": { "x": 6, "y": 0, "w": 6, "h": 3 }
+        },
+        {
+          "type": "stat",
+          "title": "Carbs % (Last)",
+          "targets": [
+            {
+              "expr": "nutrition_predictor_last_predicted_carbs_pct",
+              "refId": "C"
+            }
+          ],
+          "gridPos": { "x": 12, "y": 0, "w": 6, "h": 3 }
+        },
+        {
+          "type": "graph",
+          "title": "Request Count by Service",
+          "targets": [
+            { "expr": "rate(nutrition_controller_request_count[1m])", "legendFormat": "Controller", "refId": "A" },
+            { "expr": "rate(food_analyzer_request_count[1m])", "legendFormat": "Food Analyzer", "refId": "B" },
+            { "expr": "rate(nutrition_predictor_request_count[1m])", "legendFormat": "Nutrition Predictor", "refId": "C" },
+            { "expr": "rate(glucose_monitor_request_count[1m])", "legendFormat": "Glucose Monitor", "refId": "D" },
+            { "expr": "rate(microbiom_analyzer_request_count[1m])", "legendFormat": "Microbiom Analyzer", "refId": "E" }
+          ],
+          "gridPos": { "x": 0, "y": 4, "w": 24, "h": 6 }
+        },
+        {
+          "type": "graph",
+          "title": "Request Latency (sec)",
+          "targets": [
+            { "expr": "rate(nutrition_controller_request_latency_seconds_sum[1m]) / rate(nutrition_controller_request_latency_seconds_count[1m])", "legendFormat": "Controller", "refId": "A" },
+            { "expr": "rate(food_analyzer_request_latency_seconds_sum[1m]) / rate(food_analyzer_request_latency_seconds_count[1m])", "legendFormat": "Food Analyzer", "refId": "B" },
+            { "expr": "rate(nutrition_predictor_request_latency_seconds_sum[1m]) / rate(nutrition_predictor_request_latency_seconds_count[1m])", "legendFormat": "Nutrition Predictor", "refId": "C" },
+            { "expr": "rate(glucose_monitor_request_latency_seconds_sum[1m]) / rate(glucose_monitor_request_latency_seconds_count[1m])", "legendFormat": "Glucose Monitor", "refId": "D" },
+            { "expr": "rate(microbiom_analyzer_request_latency_seconds_sum[1m]) / rate(microbiom_analyzer_request_latency_seconds_count[1m])", "legendFormat": "Microbiom Analyzer", "refId": "E" }
+          ],
+          "gridPos": { "x": 0, "y": 10, "w": 24, "h": 6 }
+        }
+      ],
+      "schemaVersion": 36,
+      "version": 1
+    },
+    "overwrite": true
+  }
+  

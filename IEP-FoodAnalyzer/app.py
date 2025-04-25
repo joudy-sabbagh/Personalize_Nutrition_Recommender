@@ -5,11 +5,19 @@ import base64
 from tempfile import NamedTemporaryFile
 import requests
 from dotenv import load_dotenv
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+import time
 
-# Load Environment Variables 
+from prometheus_client import make_asgi_app, Counter, Summary, Gauge
+
+# === Monitoring Metrics ===
+REQUEST_COUNT = Counter("food_analyzer_request_count", "Total number of requests to Food Analyzer")
+REQUEST_LATENCY = Summary("food_analyzer_request_latency_seconds", "Request latency in seconds")
+LAST_LABEL_CONFIDENCE = Gauge("food_analyzer_last_label_confidence", "Confidence score of the last label predicted")
+
+# === Load Environment Variables ===
 load_dotenv()  
 CLARIFAI_PAT      = os.getenv("CLARIFAI_PAT")
 CLARIFAI_USER_ID  = os.getenv("CLARIFAI_USER_ID")
@@ -21,7 +29,7 @@ if not CLARIFAI_PAT or not CLARIFAI_USER_ID or not CLARIFAI_APP_ID:
         "Ensure CLARIFAI_PAT, CLARIFAI_USER_ID, and CLARIFAI_APP_ID are set."
     )
 
-# Clarifai Model Configuration 
+# === Clarifai Model Configuration ===
 MODEL_ID         = "food-item-recognition"
 MODEL_VERSION_ID = "1d5fd481e0cf4826aa72ec3ff049e044"
 API_URL = (
@@ -29,10 +37,10 @@ API_URL = (
     f"/versions/{MODEL_VERSION_ID}/outputs"
 )
 
-# FastAPI App Setup 
+# === FastAPI App Setup ===
 app = FastAPI(title="IEP-FoodAnalyzer")
 
-# Allow all CORS for testing; tighten in production if needed
+# CORS for testing
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -40,24 +48,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Mount /metrics for Prometheus
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
+
+# Middleware to track request counts and latencies
+@app.middleware("http")
+async def prometheus_middleware(request: Request, call_next):
+    REQUEST_COUNT.inc()
+    start_time = time.time()
+    response = await call_next(request)
+    REQUEST_LATENCY.observe(time.time() - start_time)
+    return response
+
+# === API Endpoints ===
+
 @app.post("/generate-labels")
 async def generate_labels(image: UploadFile = File(...)):
-    """
-    Accepts a multipart/form-data upload under 'image',
-    forwards it to Clarifai, and returns detected food concepts.
-    """
-    # 1) Validate upload
+    """Uploads image to Clarifai API and returns detected food labels."""
     if not image.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Uploaded file must be an image")
-    # 2) Save to a temp file
+
     with NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
         tmp.write(await image.read())
         tmp_path = tmp.name
+
     try:
-        # 3) Read & base64-encode
         with open(tmp_path, "rb") as f:
             b64_data = base64.b64encode(f.read()).decode()
-        # 4) Build Clarifai REST payload
+
         payload = {
             "user_app_id": {
                 "user_id": CLARIFAI_USER_ID,
@@ -71,24 +90,29 @@ async def generate_labels(image: UploadFile = File(...)):
             "Authorization": f"Key {CLARIFAI_PAT}",
             "Content-Type":  "application/json"
         }
-        # 5) Call Clarifai
+
         resp = requests.post(API_URL, headers=headers, json=payload)
         resp.raise_for_status()
-        # 6) Parse out concepts (name + confidence)
+
         outputs  = resp.json().get("outputs", [])
         if not outputs:
             return JSONResponse(status_code=502, content={"error": "No output from Clarifai"})
+
         concepts = outputs[0]["data"].get("concepts", [])
         labels = [
             {"name": c["name"], "confidence": round(c["value"] * 100, 2)}
             for c in concepts
         ]
+
+        # === Monitor last label confidence ===
+        if labels:
+            LAST_LABEL_CONFIDENCE.set(labels[0]["confidence"])
+
         return {"labels": labels}
+
     except requests.HTTPError as http_err:
-        # Pass through Clarifai’s error message
         return JSONResponse(status_code=http_err.response.status_code, content=http_err.response.json())
     finally:
-        # 7) Clean up temp file
         try:
             os.remove(tmp_path)
         except OSError:
