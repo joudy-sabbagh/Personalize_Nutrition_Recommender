@@ -5,6 +5,23 @@ from fastapi import FastAPI, File, UploadFile, Form, Depends, HTTPException, sta
 from fastapi.responses import JSONResponse
 import requests
 import os
+import sys
+from pydantic import BaseModel
+
+# Add Database directory to the path so we can import the db module
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'Database')))
+from Database.db import user_signup, user_signin
+
+# Schemas for user authentication
+class UserSignup(BaseModel):
+    username: str
+    email: str
+    password: str
+
+class UserSignin(BaseModel):
+    username: str
+    password: str
+
 import time
 
 from prometheus_client import make_asgi_app, Counter, Summary, Gauge
@@ -16,6 +33,15 @@ PREDICTION_VALUE = Gauge("last_prediction_value", "Last predicted value")
 
 # === Setup App ===
 app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Mount /metrics
 metrics_app = make_asgi_app()
@@ -35,6 +61,44 @@ FOOD_ANALYZER_URL = os.environ.get('FOOD_ANALYZER_URL', 'http://localhost:8001')
 NUTRITION_PREDICTOR_URL = os.environ.get('NUTRITION_PREDICTOR_URL', 'http://localhost:8002')
 MICROBIOM_ANALYZER_URL = os.environ.get('MICROBIOM_ANALYZER_URL', 'http://localhost:8003')
 GLUCOSE_MONITOR_URL = os.environ.get('GLUCOSE_MONITOR_URL', 'http://localhost:8004')
+
+# Authentication routes
+@app.post("/signup")
+async def signup(user_data: UserSignup):
+    """
+    Register a new user
+    """
+    user_id, message = user_signup(
+        username=user_data.username,
+        email=user_data.email,
+        password=user_data.password
+    )
+    
+    if user_id:
+        return {"status": "success", "message": message, "user_id": user_id}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=message
+        )
+
+@app.post("/signin")
+async def signin(user_data: UserSignin):
+    """
+    Authenticate a user
+    """
+    user, message = user_signin(
+        username=user_data.username,
+        password=user_data.password
+    )
+    
+    if user:
+        return {"status": "success", "message": message, "user": user}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=message
+        )
 
 @app.post("/analyze-meal")
 async def analyze_meal(
@@ -90,6 +154,66 @@ async def analyze_meal(
     }
 
 @app.post("/predict-gut-health")
+def predict_gut_health(file: UploadFile = File(...), user_id: int = Form(None)):
+    try:
+        # Read the CSV file content
+        csv_bytes = file.file.read()
+        
+        # Extract bacteria data from CSV (if user_id is provided)
+        bacteria_saved = False
+        bact_id = None
+        
+        if user_id:
+            # Parse the CSV content
+            import pandas as pd
+            import io
+            
+            # Reset file pointer to beginning to read the content
+            file.file.seek(0)
+            csv_content = io.StringIO(csv_bytes.decode('utf-8'))
+            df = pd.read_csv(csv_content)
+            
+            # Extract bacteria presence data (assuming second row contains the 0s and 1s)
+            if len(df) >= 1:  # At least one row of data after header
+                # Get the first row (index 0) which contains the 0s and 1s values
+                bacteria_values = df.iloc[0].astype(str).values
+                # Remove any spaces and join into a single string
+                bacteria_string = ''.join([val.strip() for val in bacteria_values])
+                
+                # Save to database
+                from Database.db import save_bacteria_data
+                bact_id, message = save_bacteria_data(user_id, bacteria_string)
+                
+                if bact_id:
+                    bacteria_saved = True
+                else:
+                    print(f"Warning: Failed to save bacteria data: {message}")
+            
+            # Reset file pointer for sending to microbiome analyzer
+            file.file.seek(0)
+            csv_bytes = file.file.read()
+        
+        # Forward to microbiome analyzer service
+        gut_response = requests.post(
+            f"{MICROBIOM_ANALYZER_URL}/predict-gut-health-file",
+            files={"file": ("subject.csv", csv_bytes, file.content_type)}
+        )
+        
+        if gut_response.status_code != 200:
+            return {"error": "Gut health prediction failed", "details": gut_response.text}
+        
+        # Get the analysis results
+        result = gut_response.json()
+        
+        # Add bacteria save status if applicable
+        if user_id and bacteria_saved:
+            result["bacteria_saved"] = bacteria_saved
+            result["bact_id"] = bact_id
+            
+        return result
+        
+    except Exception as e:
+        return {"error": f"Error processing gut health data: {str(e)}"}
 def predict_gut_health(file: UploadFile = File(...)):
     csv_bytes = file.file.read()
 
