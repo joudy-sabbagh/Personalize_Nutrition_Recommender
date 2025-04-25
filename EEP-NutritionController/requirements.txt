@@ -6,3 +6,4 @@ boto3==1.28.15
 s3fs==2023.6.0
 joblib==1.4.2
 scikit-learn==1.6.1
+prometheus_client==0.19.0
