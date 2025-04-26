@@ -2,6 +2,11 @@
 
 A comprehensive microservices-based application for personalized nutrition analysis and glucose response prediction.
 
+## Problem
+
+![Biology Overview](Biology.jpg)
+
+
 ## Overview
 
 This project uses modern microservices architecture to analyze meals, predict glucose responses, and provide nutrition recommendations based on:
