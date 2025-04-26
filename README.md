@@ -20,33 +20,35 @@ Recognizing the limitations of generic diet plans and the critical role of gluco
 Our solution analyzes meal logs to evaluate macronutrients, sugar risk, and carb load, while also integrating microbiome test results to understand how gut bacteria influence metabolism. Additionally, clinical data such as fasting glucose, insulin levels, BMI, and lifestyle factors are considered to generate personalized nutrition insights.
 
 ## System Architecture
-Our system is built using a microservices architecture, where each major function operates as an independent service.
-These services are containerized using Docker to ensure modularity, scalability, and easier deployment.
-Each service communicates through the Nutrition Controller (API Gateway) to coordinate the system.
+
+Our system is built using a **microservices architecture**, where each major function operates as an independent service.  
+These services are **containerized using Docker** to ensure modularity, scalability, and easier deployment.  
+Each service communicates through the **Nutrition Controller (API Gateway)** to coordinate the system.
 
 The main services include:
 
-1. Food Analyzer
-This microservice uses a food item recognition model provided by Clarifai AI. It takes a meal image as input and returns a list of predicted ingredients present in the image.
+1. **Food Analyzer**  
+   This microservice uses a **food item recognition model** provided by **Clarifai AI**.  
+   It takes a meal image as input and returns a list of predicted ingredients present in the image.  
+   If the confidence score of the identified ingredients is low, the system prompts the user to provide an optional meal description to enhance prediction quality.
 
-2. Nutrition Predictor
-This service estimates the macronutrient composition (carbohydrates, protein, and fat) of a meal.
-The prediction process is divided into two steps:
+2. **Nutrition Predictor**  
+   This service estimates the **macronutrient composition** (carbohydrates, protein, and fat) of a meal.  
+   The prediction process is divided into two steps:
+   - **First**, the extracted ingredients (and optionally the user-provided description) are processed.
+   - **Second**, the combined input is passed to a **ChatGPT-based model**, which interprets the meal details and predicts the macronutrient distribution in percentage form.  
+   
+   This two-step approach helps **reduce prediction error** by focusing on proportionality rather than absolute values.  
+   Additionally, it predicts the **refined carbohydrate content** and **sugar risk** of the meal.
 
-- First, the extracted ingredients (and optionally the user-provided description) are processed. Note: if the confidence score of the identified ingredients is low, the system prompts the user to provide an optional meal description to enhance prediction quality.
-- Second, the combined input is passed to a ChatGPT-based model, which interprets the meal details and predicts the macronutrient distribution in percentage form.
-  
-This two-step approach helps reduce prediction error by focusing on proportionality rather than absolute values.
-Additionally, it predicts the refined carbohydrate content and sugar risk of the meal.
+3. **Microbiome Analyzer**  
+   Processes user **microbiome test results** to extract features related to **gut health**, **metabolism**, and **glucose regulation**.
 
-3. Microbiome Analyzer
-Processes user microbiome test results to extract features related to gut health, metabolism, and glucose regulation.
+4. **Glucose Monitor**  
+   Predicts the **personalized glucose response** to meals by integrating food analysis, microbiome data, and clinical features such as **fasting glucose** and **insulin levels**.
 
-4. Glucose Monitor
-Predicts the personalized glucose response to meals by integrating food analysis, microbiome data, and clinical features such as fasting glucose and insulin levels.
-
-5. User Interface (Frontend)
-A modern web application where users can upload meal images, view glucose predictions, and receive personalized dietary recommendations.
+5. **User Interface (Frontend)**  
+   A modern **web application** where users can upload meal images, view glucose predictions, and receive **personalized dietary recommendations**.
 
 ## Database Schema
 
