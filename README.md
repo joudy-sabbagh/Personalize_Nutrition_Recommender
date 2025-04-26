@@ -177,9 +177,18 @@ CLARIFAI_APP_ID
 OPENAI_API_KEY
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
-
+DOCKERHUB_USERNAME
+DOCKERHUB_TOKEN
 avaible as github secrets in our repository.
 ```
+## CI/CD
+Continous Deployement was implemented using the help of github actions through the docker-build-push.yml file that builds and publishes the docker images onto Docker Hub whenever anyone pushes onto main. The images are pushed into 6 main repositories: 
+ahmadeljazaerli/food-analyzer
+ahmadeljazaerli/glucose-monitor
+ahmadeljazaerli/microbiom-analyzer
+ahmadeljazaerli/ui-nutrition-analyzer
+ahmadeljazaerli/nutrition-predictor
+ahmadeljazaerli/nutrition-controller
 
 ### Running the Application
 ```bash
@@ -191,7 +200,7 @@ The application will be available at http://localhost:8000, with the UI at http:
 ### Dataset Access
 
 The dataset used for training and testing is not included in the main branch.  
-Download it from the google drive:
+Download it from the google drive: https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing
 
 ## Using the Different Services
 
@@ -212,9 +221,12 @@ The system includes Prometheus metrics and a Grafana dashboard for monitoring:
 - Prediction values
 - Service health
 
+
+
 ## Project Presentation
 
 You can view the full project presentation [here](Presentation_NutritionIQ.pdf).
+
 
 ## Troubleshooting
 
