@@ -50,6 +50,27 @@ The main services include:
 5. **User Interface (Frontend)**  
    A modern **web application** where users can upload meal images, view glucose predictions, and receive **personalized dietary recommendations**.
 
+## Dataset
+
+To develop our system, we used the publicly available **CGM Macros Dataset** from PhysioNet ([link](https://physionet.org/content/cgmacros/1.0.0/)).
+
+The dataset consists of data collected from a study on **45 participants**, and includes:
+
+- **Meal Logs**:  
+  Food pictures and timestamps for each meal consumed by the participants.
+
+- **Microbiome Data**:  
+  Information on gut bacteria presence or absence, providing insights into each participant's microbiome profile.
+
+- **Clinical Data**:  
+  Demographic and clinical features such as age, gender, weight, height, BMI, fasting insulin, and fasting glucose levels.
+
+- **Continuous Glucose Monitoring (CGM) Data**:  
+  Glucose levels recorded every minute, allowing us to precisely link meal intake to glucose spikes over time.
+
+This dataset enables the simulation of a real-world personalized nutrition system by linking meal composition, gut health, clinical markers, and glucose response.  
+It serves as a strong foundation for testing our models and validating the personalized prediction of glucose spikes based on food intake and biological data.
+
 ## Database Schema
 
 The system uses PostgreSQL with the following tables:
