@@ -114,6 +114,7 @@ The Glucose Monitor predicts personalized glucose spikes based on meal compositi
 - **Feature Selection**:  
   We trained a **Quick Random Forest model** to identify the most influential microbiome features linked to glucose spikes.  
   Only the top-ranked features were retained for the final prediction model to reduce noise and improve performance.
+  ![Result of Top 30 Bacteria](top30_bacteria_glucose_spike_60min.png)
 
 - **Model Training**:  
   The final glucose spike predictor used a **Voting Regressor** combining:
