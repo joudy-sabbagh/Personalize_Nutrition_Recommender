@@ -50,9 +50,15 @@ const GutHealthAnalyzer = () => {
     
     try {
       const response = await predictGutHealth(file);
+      console.log('Gut health API response:', response);
+      console.log('Response type:', typeof response);
+      console.log('Response keys:', Object.keys(response));
+      console.log('Prediction value:', response.prediction);
+      console.log('Probability good value:', response.probability_good);
       setResults(response);
       success('Gut health analysis completed successfully!');
     } catch (err) {
+      console.error('Error in gut health analysis:', err);
       error(err.response?.data?.error || 'Failed to analyze microbiome data');
     } finally {
       setLoading(false);
@@ -61,6 +67,18 @@ const GutHealthAnalyzer = () => {
 
   const renderResults = () => {
     if (!results) return null;
+    
+    console.log('Rendering results:', results);
+    console.log('Results type:', typeof results);
+    console.log('Results prediction:', results.prediction);
+    console.log('Results probability_good:', results.probability_good);
+    
+    const isGoodHealth = results.prediction === "Good";
+    console.log('isGoodHealth evaluation:', isGoodHealth, '(prediction === "Good")');
+    
+    const healthMessage = isGoodHealth 
+      ? "You currently have a healthy gut" 
+      : "Prebiotic and probiotic foods like whole grains, onions, garlic, fermented foods, miso and yogurt feed the good bacteria in your gut. A diet rich with fiber and prebiotics ensures that the bacteria grows.";
     
     return (
       <Card sx={{ mt: 4 }}>
@@ -72,7 +90,7 @@ const GutHealthAnalyzer = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Typography variant="subtitle1" gutterBottom>
-                Overall Gut Health Score
+                Overall Gut Health Status
               </Typography>
               
               <Paper 
@@ -80,20 +98,20 @@ const GutHealthAnalyzer = () => {
                 sx={{ 
                   p: 3, 
                   textAlign: 'center',
-                  backgroundColor: results.score > 70 ? '#e8f5e9' : results.score > 50 ? '#fff8e1' : '#ffebee'
+                  backgroundColor: isGoodHealth ? '#e8f5e9' : '#ffebee'
                 }}
               >
-                <Typography variant="h2" color={results.score > 70 ? 'success.main' : results.score > 50 ? 'warning.main' : 'error.main'}>
-                  {results.score}
+                <Typography variant="h2" color={isGoodHealth ? 'success.main' : 'error.main'}>
+                  {results.prediction || "Unknown"}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  out of 100
+                  Probability: {results.probability_good ? (results.probability_good * 100).toFixed(1) + "%" : "N/A"}
                 </Typography>
               </Paper>
               
               <Box sx={{ mt: 3 }}>
                 <Typography variant="body1" fontWeight="medium">
-                  {results.assessment || 'Your gut microbiome shows a moderate diversity profile. There is room for improvement in certain bacterial populations.'}
+                  {healthMessage}
                 </Typography>
               </Box>
             </Grid>
@@ -103,32 +121,43 @@ const GutHealthAnalyzer = () => {
                 Key Indicators
               </Typography>
               
-              {results.indicators ? (
-                results.indicators.map((indicator, index) => (
-                  <Box key={index} sx={{ mb: 2 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Typography variant="body1">
-                        {indicator.name}
-                      </Typography>
-                      <Typography 
-                        variant="body1" 
-                        fontWeight="medium"
-                        color={indicator.status === 'good' ? 'success.main' : indicator.status === 'fair' ? 'warning.main' : 'error.main'}
-                      >
-                        {indicator.status.charAt(0).toUpperCase() + indicator.status.slice(1)}
-                      </Typography>
-                    </Box>
-                    <Typography variant="body2" color="text.secondary">
-                      {indicator.description}
-                    </Typography>
-                    <Divider sx={{ mt: 1 }} />
-                  </Box>
-                ))
-              ) : (
+              <Box sx={{ mb: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="body1">
+                    Gut Microbiome Health
+                  </Typography>
+                  <Typography 
+                    variant="body1" 
+                    fontWeight="medium"
+                    color={isGoodHealth ? 'success.main' : 'error.main'}
+                  >
+                    {results.prediction}
+                  </Typography>
+                </Box>
                 <Typography variant="body2" color="text.secondary">
-                  No specific indicators available
+                  Overall assessment of your gut microbiome health
                 </Typography>
-              )}
+                <Divider sx={{ mt: 1 }} />
+              </Box>
+              
+              <Box sx={{ mb: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="body1">
+                    Healthy Bacteria Probability
+                  </Typography>
+                  <Typography 
+                    variant="body1" 
+                    fontWeight="medium"
+                    color={results.probability_good > 0.5 ? 'success.main' : 'error.main'}
+                  >
+                    {results.probability_good ? (results.probability_good * 100).toFixed(1) + "%" : "N/A"}
+                  </Typography>
+                </Box>
+                <Typography variant="body2" color="text.secondary">
+                  Likelihood of having good gut bacteria
+                </Typography>
+                <Divider sx={{ mt: 1 }} />
+              </Box>
             </Grid>
           </Grid>
           
@@ -138,21 +167,11 @@ const GutHealthAnalyzer = () => {
             Recommendations
           </Typography>
           
-          {results.recommendations ? (
-            <ul>
-              {results.recommendations.map((rec, index) => (
-                <li key={index}>
-                  <Typography variant="body1" paragraph>
-                    {rec}
-                  </Typography>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <Typography variant="body1" paragraph>
-              Based on your gut microbiome profile, consider increasing your intake of diverse plant-based foods to enhance microbial diversity. Fermented foods like yogurt and sauerkraut may help improve beneficial bacteria levels.
-            </Typography>
-          )}
+          <Typography variant="body1" paragraph>
+            {isGoodHealth 
+              ? "Your gut microbiome appears healthy. Continue maintaining a balanced diet with diverse plant foods, fermented products, and adequate fiber intake to support your gut health."
+              : "Based on your gut microbiome profile, we recommend increasing your intake of prebiotic and probiotic foods. Focus on whole grains, onions, garlic, fermented foods like miso, kimchi, and yogurt to feed the good bacteria in your gut. A diet rich with fiber and prebiotics ensures that beneficial bacteria grows."}
+          </Typography>
           
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
             <Button 
@@ -180,8 +199,123 @@ const GutHealthAnalyzer = () => {
         Upload your microbiome data to analyze your gut health and get personalized recommendations.
       </Typography>
       
-      <Grid container spacing={4}>
-        {!results && (
+      {results && (
+        <Card sx={{ mt: 4 }}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
+              Your Gut Health Analysis
+            </Typography>
+            
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Typography variant="subtitle1" gutterBottom>
+                  Overall Gut Health Status
+                </Typography>
+                
+                <Paper 
+                  elevation={0} 
+                  sx={{ 
+                    p: 3, 
+                    textAlign: 'center',
+                    backgroundColor: results.prediction === "Good" ? '#e8f5e9' : '#ffebee'
+                  }}
+                >
+                  <Typography variant="h2" color={results.prediction === "Good" ? 'success.main' : 'error.main'}>
+                    {results.prediction}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {results.probability_good !== undefined && 
+                      `Probability: ${(results.probability_good * 100).toFixed(1)}%`}
+                  </Typography>
+                </Paper>
+                
+                <Box sx={{ mt: 3 }}>
+                  <Typography variant="body1" fontWeight="medium">
+                    {console.log('Rendering message for prediction:', results.prediction)}
+                    {results.prediction === "Good" 
+                      ? "You currently have a healthy gut":
+                      results.prediction === "Bad" 
+                      ?"Prebiotic and probiotic foods like whole grains, onions, garlic, fermented foods, miso and yogurt feed the good bacteria in your gut. A diet rich with fiber and prebiotics ensures that the bacteria grows."
+                      : `Prediction: ${results.prediction || "Unknown"}`}
+                      </Typography>
+                </Box>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Typography variant="subtitle1" gutterBottom>
+                  Key Indicators
+                </Typography>
+                
+                <Box sx={{ mb: 2 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="body1">
+                      Gut Microbiome Health
+                    </Typography>
+                    <Typography 
+                      variant="body1" 
+                      fontWeight="medium"
+                      color={results.prediction === "Good" ? 'success.main' : 'error.main'}
+                    >
+                      {results.prediction}
+                    </Typography>
+                  </Box>
+                  <Typography variant="body2" color="text.secondary">
+                    Overall assessment of your gut microbiome health
+                  </Typography>
+                  <Divider sx={{ mt: 1 }} />
+                </Box>
+                
+                <Box sx={{ mb: 2 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="body1">
+                      Healthy Bacteria Probability
+                    </Typography>
+                    <Typography 
+                      variant="body1" 
+                      fontWeight="medium"
+                      color={results.probability_good > 0.5 ? 'success.main' : 'error.main'}
+                    >
+                      {results.probability_good ? (results.probability_good * 100).toFixed(1) + "%" : "N/A"}
+                    </Typography>
+                  </Box>
+                  <Typography variant="body2" color="text.secondary">
+                    Likelihood of having good gut bacteria
+                  </Typography>
+                  <Divider sx={{ mt: 1 }} />
+                </Box>
+              </Grid>
+            </Grid>
+            
+            <Divider sx={{ my: 3 }} />
+            
+            <Typography variant="h6" gutterBottom>
+              Recommendations
+            </Typography>
+            
+            <Typography variant="body1" paragraph>
+              {results.prediction === "Good" 
+                ? "Your gut microbiome appears healthy. Continue maintaining a balanced diet with diverse plant foods, fermented products, and adequate fiber intake to support your gut health."
+                : "Based on your gut microbiome profile, we recommend increasing your intake of prebiotic and probiotic foods. Focus on whole grains, onions, garlic, fermented foods like miso, kimchi, and yogurt to feed the good bacteria in your gut. A diet rich with fiber and prebiotics ensures that beneficial bacteria grows."}
+            </Typography>
+            
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+              <Button 
+                variant="contained" 
+                color="primary"
+                onClick={() => {
+                  setFile(null);
+                  setResults(null);
+                }}
+              >
+                Start New Analysis
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
+      )}
+      
+      {!results && (
+        <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Card>
               <CardContent>
@@ -269,37 +403,35 @@ const GutHealthAnalyzer = () => {
               </CardContent>
             </Card>
           </Grid>
-        )}
-        
-        <Grid item xs={12} md={results ? 12 : 6}>
-          {loading ? (
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400 }}>
-              <CircularProgress />
-              <Typography variant="body1" sx={{ mt: 2 }}>
-                Analyzing your microbiome data...
-              </Typography>
-            </Box>
-          ) : (
-            results ? renderResults() : (
-              <Card sx={{ height: '100%' }}>
-                <CardContent sx={{ height: '100%' }}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400 }}>
-                    <ScienceIcon sx={{ fontSize: 64, color: 'text.secondary', opacity: 0.3, mb: 2 }} />
-                    <Typography variant="h6" gutterBottom>
-                      How It Works
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" align="center" sx={{ maxWidth: 500 }}>
-                      Our advanced AI analyzes your gut microbiome data to assess your overall gut health.
-                      Based on the analysis, we provide personalized recommendations to improve your gut health,
-                      which can lead to better digestion, immunity, and even glucose response to meals.
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            )
-          )}
+          
+          <Grid item xs={12} md={6}>
+            <Card sx={{ height: '100%' }}>
+              <CardContent sx={{ height: '100%' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400 }}>
+                  <ScienceIcon sx={{ fontSize: 64, color: 'text.secondary', opacity: 0.3, mb: 2 }} />
+                  <Typography variant="h6" gutterBottom>
+                    How It Works
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" align="center" sx={{ maxWidth: 500 }}>
+                    Our advanced AI analyzes your gut microbiome data to assess your overall gut health.
+                    Based on the analysis, we provide personalized recommendations to improve your gut health,
+                    which can lead to better digestion, immunity, and even glucose response to meals.
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
+      
+      {loading && (
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400 }}>
+          <CircularProgress />
+          <Typography variant="body1" sx={{ mt: 2 }}>
+            Analyzing your microbiome data...
+          </Typography>
+        </Box>
+      )}
     </Container>
   );
 };

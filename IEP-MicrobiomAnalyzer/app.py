@@ -8,8 +8,18 @@ from sklearn.preprocessing import StandardScaler
 from io import StringIO, BytesIO
 import os
 import boto3
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 def load_data_from_s3(bucket_name, file_key):
     """Load data from S3 bucket"""

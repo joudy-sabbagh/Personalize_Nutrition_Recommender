@@ -1,13 +1,8 @@
-FROM node:22.13.1 AS build
-
+FROM node:18-alpine
 WORKDIR /app
-
-COPY package*.json ./
-
+COPY package.json ./
 RUN npm install
-
 COPY . .
-
+RUN npm run build
 EXPOSE 3000
-
-CMD ["npm", "start"] 
+CMD ["npx", "serve", "-s", "build", "-l", "3000"]
