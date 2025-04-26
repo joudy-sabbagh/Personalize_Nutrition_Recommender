@@ -1,37 +1,52 @@
 # Personalized Nutrition Recommender
 
-A comprehensive microservices-based application for personalized nutrition analysis and glucose response prediction.
+Today, countless diet plans are available, yet most fail to deliver lasting results because they overlook two critical factors: individual preferences and biological differences. Every person’s biology is unique, influencing how they respond to different foods and diets. Standardized diet plans often lead to poor adherence and ineffective outcomes without considering these personal variations. This highlights the growing need for a personalized nutrition solution that tailors recommendations based on each individual's biological and lifestyle factors.
 
-## Problem
+## How Glucose, Macronutriments, and Gut Health Affect Weight Gain
 
 ![Biology Overview](Biology.jpg)
 
+Weight gain is strongly influenced by how the body processes glucose from carbohydrates. When we eat carb-heavy meals, blood glucose levels rise. If these spikes are too high or frequent, the body releases more insulin to store the excess glucose as fat, leading to gradual weight gain.
 
-## Overview
+Balanced meals — combining carbohydrates with fiber, proteins, and healthy fats — help slow glucose absorption, preventing sharp spikes and reducing fat storage.
+Gut health also plays a critical role: a healthy gut microbiome supports efficient metabolism, while an imbalanced microbiome can promote fat accumulation and metabolic dysfunction.
 
-This project uses modern microservices architecture to analyze meals, predict glucose responses, and provide nutrition recommendations based on:
-- Visual food analysis
-- User clinical data
-- Microbiome profiles
-- Meal characteristics
+Importantly, scientific studies have shown that reducing and regulating glucose spikes is an effective, proven strategy for promoting fat loss and improving overall metabolic health.
+
+## Solution Overview
+
+Our Solution: Personalized Nutrition Analysis
+Recognizing the limitations of generic diet plans and the critical role of glucose regulation, gut health, and clinical factors in weight management, we have developed a system specifically designed to address these challenges.
+Our solution analyzes meal logs to evaluate macronutrients, sugar risk, and carb load, while also integrating microbiome test results to understand how gut bacteria influence metabolism. Additionally, clinical data such as fasting glucose, insulin levels, BMI, and lifestyle factors are considered to generate personalized nutrition insights.
 
 ## System Architecture
+Our system is built using a microservices architecture, where each major function operates as an independent service.
+These services are containerized using Docker to ensure modularity, scalability, and easier deployment.
+Each service communicates through the Nutrition Controller (API Gateway) to coordinate the system.
 
-The system consists of multiple microservices that work together:
+The main services include:
 
-1. **Nutrition Controller (API Gateway)**: Central controller that coordinates between all services
-2. **Food Analyzer**: Analyzes meal images to identify ingredients
-3. **Nutrition Predictor**: Predicts nutritional content of meals
-4. **Microbiome Analyzer**: Processes user microbiome data for gut health insights
-5. **Glucose Monitor**: Predicts personalized glucose responses to meals
-6. **User Interface**: Modern web interface for interacting with the system
+1. Food Analyzer
+This microservice uses a food item recognition model provided by Clarifai AI. It takes a meal image as input and returns a list of predicted ingredients present in the image.
 
-## Features
+2. Nutrition Predictor
+This service estimates the macronutrient composition (carbohydrates, protein, and fat) of a meal.
+The prediction process is divided into two steps:
 
-- **Meal Analysis**: Upload images of meals and get detailed nutritional breakdown
-- **Glucose Prediction**: Personalized glucose response predictions based on meal content, user biology, and microbiome
-- **Microbiome Analysis**: Gain insights about gut health based on microbiome profiles
-- **Monitoring Dashboard**: Real-time system metrics using Prometheus and Grafana
+- First, the extracted ingredients (and optionally the user-provided description) are processed. Note: if the confidence score of the identified ingredients is low, the system prompts the user to provide an optional meal description to enhance prediction quality.
+- Second, the combined input is passed to a ChatGPT-based model, which interprets the meal details and predicts the macronutrient distribution in percentage form.
+  
+This two-step approach helps reduce prediction error by focusing on proportionality rather than absolute values.
+Additionally, it predicts the refined carbohydrate content and sugar risk of the meal.
+
+3. Microbiome Analyzer
+Processes user microbiome test results to extract features related to gut health, metabolism, and glucose regulation.
+
+4. Glucose Monitor
+Predicts the personalized glucose response to meals by integrating food analysis, microbiome data, and clinical features such as fasting glucose and insulin levels.
+
+5. User Interface (Frontend)
+A modern web application where users can upload meal images, view glucose predictions, and receive personalized dietary recommendations.
 
 ## Database Schema
 
