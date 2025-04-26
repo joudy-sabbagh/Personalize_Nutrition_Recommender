@@ -211,11 +211,233 @@ def save_bacteria_data(user_id, bacteria_string):
         cursor.close()
         conn.close()
 
-def main():
+def save_clinical_data(user_id, clinical_data):
     """
-    Main function to create tables in the PostgreSQL database.
+    Save the clinical data for a user.
+    
+    Args:
+        user_id (int): The user ID
+        clinical_data (dict): Dictionary containing clinical data fields
+        
+    Returns:
+        tuple: (success, message) - True if successful, False if failed
     """
-    create_tables()
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Check if user already has clinical data
+        cursor.execute("SELECT 1 FROM clinical_user_data WHERE user_id = %s", (user_id,))
+        user_exists = cursor.fetchone()
+        
+        if user_exists:
+            # Update existing record
+            update_query = """
+            UPDATE clinical_user_data SET 
+                clinical_age = %s,
+                clinical_weight = %s,
+                clinical_height = %s,
+                clinical_bmi = %s,
+                clinical_fasting_glucose = %s,
+                clinical_fasting_insulin = %s,
+                clinical_hba1c = %s,
+                clinical_homa_ir = %s,
+                clinical_gender = %s
+            WHERE user_id = %s
+            """
+            cursor.execute(update_query, (
+                clinical_data.get('clinical_age'),
+                clinical_data.get('clinical_weight'),
+                clinical_data.get('clinical_height'),
+                clinical_data.get('clinical_bmi'),
+                clinical_data.get('clinical_fasting_glucose'),
+                clinical_data.get('clinical_fasting_insulin'),
+                clinical_data.get('clinical_hba1c'),
+                clinical_data.get('clinical_homa_ir'),
+                clinical_data.get('clinical_gender'),
+                user_id
+            ))
+        else:
+            # Insert new record
+            insert_query = """
+            INSERT INTO clinical_user_data (
+                user_id, 
+                clinical_age, 
+                clinical_weight, 
+                clinical_height, 
+                clinical_bmi, 
+                clinical_fasting_glucose, 
+                clinical_fasting_insulin, 
+                clinical_hba1c, 
+                clinical_homa_ir, 
+                clinical_gender
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            cursor.execute(insert_query, (
+                user_id,
+                clinical_data.get('clinical_age'),
+                clinical_data.get('clinical_weight'),
+                clinical_data.get('clinical_height'),
+                clinical_data.get('clinical_bmi'),
+                clinical_data.get('clinical_fasting_glucose'),
+                clinical_data.get('clinical_fasting_insulin'),
+                clinical_data.get('clinical_hba1c'),
+                clinical_data.get('clinical_homa_ir'),
+                clinical_data.get('clinical_gender')
+            ))
+        
+        conn.commit()
+        return True, "Clinical data saved successfully"
+    
+    except Exception as e:
+        conn.rollback()
+        return False, str(e)
+    
+    finally:
+        cursor.close()
+        conn.close()
 
-if __name__ == "__main__":
-    main()
+def save_meal_data(user_id, meal_data):
+    """
+    Save meal log data for a user.
+    
+    Args:
+        user_id (int): The user ID
+        meal_data (dict): Dictionary containing meal data fields
+        
+    Returns:
+        tuple: (meal_id, message) - meal_id if successful, None if failed
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Insert the meal data
+        insert_query = """
+        INSERT INTO meal_log (
+            user_id,
+            protein_pct,
+            carbs_pct,
+            fat_pct,
+            sugar_risk,
+            refined_carb,
+            meal_category,
+            glucose_spike_30min,
+            glucose_spike_60min
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        RETURNING meal_id
+        """
+        
+        cursor.execute(insert_query, (
+            user_id,
+            meal_data.get('protein_pct'),
+            meal_data.get('carbs_pct'),
+            meal_data.get('fat_pct'),
+            meal_data.get('sugar_risk'),
+            meal_data.get('refined_carb'),
+            meal_data.get('meal_category'),
+            meal_data.get('glucose_spike_30min'),
+            meal_data.get('glucose_spike_60min')
+        ))
+        
+        meal_id = cursor.fetchone()[0]
+        conn.commit()
+        
+        return meal_id, "Meal data saved successfully"
+    
+    except Exception as e:
+        conn.rollback()
+        return None, str(e)
+    
+    finally:
+        cursor.close()
+        conn.close()
+
+def get_user_clinical_data(user_id):
+    """
+    Retrieve clinical data for a user.
+    
+    Args:
+        user_id (int): The user ID
+        
+    Returns:
+        dict: User's clinical data or None if not found
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        cursor.execute("""
+            SELECT 
+                clinical_age,
+                clinical_weight,
+                clinical_height,
+                clinical_bmi,
+                clinical_fasting_glucose,
+                clinical_fasting_insulin,
+                clinical_hba1c,
+                clinical_homa_ir,
+                clinical_gender
+            FROM clinical_user_data 
+            WHERE user_id = %s
+        """, (user_id,))
+        
+        result = cursor.fetchone()
+        if not result:
+            return None
+            
+        return {
+            "clinical_age": result[0],
+            "clinical_weight": result[1],
+            "clinical_height": result[2],
+            "clinical_bmi": result[3],
+            "clinical_fasting_glucose": result[4],
+            "clinical_fasting_insulin": result[5],
+            "clinical_hba1c": result[6],
+            "clinical_homa_ir": result[7],
+            "clinical_gender": result[8]
+        }
+    
+    except Exception as e:
+        print(f"Error retrieving clinical data: {str(e)}")
+        return None
+    
+    finally:
+        cursor.close()
+        conn.close()
+
+def get_user_microbiome_data(user_id):
+    """
+    Retrieve the latest microbiome data for a user.
+    
+    Args:
+        user_id (int): The user ID
+        
+    Returns:
+        tuple: (bact_id, bact_test) or (None, None) if not found
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        cursor.execute("""
+            SELECT bact_id, bact_test
+            FROM microbiome_data 
+            WHERE user_id = %s
+            ORDER BY bact_id DESC
+            LIMIT 1
+        """, (user_id,))
+        
+        result = cursor.fetchone()
+        if not result:
+            return None, None
+            
+        return result[0], result[1]
+    
+    except Exception as e:
+        print(f"Error retrieving microbiome data: {str(e)}")
+        return None, None
+    
+    finally:
+        cursor.close()
+        conn.close()
