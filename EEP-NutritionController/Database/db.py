@@ -43,7 +43,7 @@ def create_tables():
                         protein_pct FLOAT,
                         carbs_pct FLOAT,
                         fat_pct FLOAT,
-                        sugar_risk VARCHAR(50),
+                        sugar_risk INTEGER,
                         refined_carb BOOLEAN,
                         meal_category VARCHAR(100),
                         glucose_spike_30min FLOAT,
