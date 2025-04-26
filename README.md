@@ -71,6 +71,64 @@ The dataset consists of data collected from a study on **45 participants**, and 
 This dataset enables the simulation of a real-world personalized nutrition system by linking meal composition, gut health, clinical markers, and glucose response.  
 It serves as a strong foundation for testing our models and validating the personalized prediction of glucose spikes based on food intake and biological data.
 
+## Data Processing and Model Training
+
+Different strategies were applied for data processing and model training across the services:
+
+### Food Analyzer and Nutrition Predictor
+
+For the Food Analyzer and Nutrition Predictor components, no data preprocessing or local model training was required.  
+Both services rely on API calls — Clarifai AI for food item recognition and a ChatGPT-based model for macronutrient estimation.  
+Thus, there was no need for additional data cleaning or handling at this stage.
+
+---
+
+### Microbiome Analyzer
+
+The Microbiome Analyzer predicts gut health status based on user microbiome test results.
+
+- **High Dimensionality**:  
+  The raw microbiome dataset contained over **1,900 bacterial species**. To reduce dimensionality and focus on the most relevant features, we applied an **ANOVA-F test** to select the top informative bacterial features linked to gut health.
+
+- **Data Imbalance**:  
+  The dataset exhibited imbalance between healthy and unhealthy gut labels.  
+  To address this, we applied **SMOTE (Synthetic Minority Over-sampling Technique)** to balance the classes before model training.
+
+- **Model Training**:  
+  We trained a **Voting Classifier** ensemble combining:
+  - **XGBoost Classifier** (captures complex patterns)
+  - **Logistic Regression** (strong baseline and interpretability)
+  - **Random Forest Classifier** (robustness and reduced overfitting)
+
+This ensemble achieved an approximate **accuracy of 0.95** in predicting gut health.
+
+---
+
+### Glucose Monitor
+
+The Glucose Monitor predicts personalized glucose spikes based on meal composition, microbiome profile, and clinical data.
+
+- **Missing Macronutrient Data**:  
+  The CGM Macros dataset lacked direct macronutrient information for meals.  
+  To overcome this, we used our Nutrition Predictor system to estimate **percentages of carbohydrates, proteins, and fats** based on meal images and descriptions.  
+  Although this introduces some approximation error, it was the best alternative to enrich the dataset for training.
+
+- **Feature Selection**:  
+  We trained a **Quick Random Forest model** to identify the most influential microbiome features linked to glucose spikes.  
+  Only the top-ranked features were retained for the final prediction model to reduce noise and improve performance.
+
+- **Model Training**:  
+  The final glucose spike predictor used a **Voting Regressor** combining:
+  - **ElasticNet Regressor** (handles multicollinearity and regularization)
+  - **Random Forest Regressor** (robustness and reduced overfitting)
+  - **HistGradientBoosting Regressor** (captures complex nonlinear patterns efficiently)
+
+  The ensemble was optimized to maximize prediction accuracy.
+
+---
+
+By carefully preprocessing the data, enriching missing information, and selecting the most impactful features, we ensured the models could deliver meaningful, personalized predictions despite real-world data limitations.
+
 ## Database Schema
 
 The system uses PostgreSQL with the following tables:
