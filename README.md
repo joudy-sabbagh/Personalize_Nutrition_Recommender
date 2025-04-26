@@ -50,6 +50,29 @@ The main services include:
 5. **User Interface (Frontend)**  
    A modern web application where users can upload meal images, view glucose predictions, and receive personalized dietary recommendations.
 
+### Architecture Diagram
+
+```
+
+┌───────────────────┐     ┌─────────────────┐
+│    UI Frontend    │◄────┤ API Gateway     │
+└───────────────────┘     │(NutritionController)
+                          └────────┬────────┘
+                                  ▲│▲
+                  ┌───────────────┘│└──────────────┬──────────────┐
+                  │                │               │              │
+        ┌─────────▼────────┐ ┌─────▼─────────┐ ┌───▼────────┐ ┌──▼──────────┐
+        │   Food Analyzer  │ │ Nutrition     │ │ Microbiome │ │ Glucose     │
+        │                  │ │ Predictor     │ │ Analyzer   │ │ Monitor     │
+        └──────────────────┘ └───────────────┘ └────────────┘ └─────────────┘
+                  │                │               │              │
+                  └────────────────┴───────────────┴──────────────┘
+                                       │
+                                   ┌───▼───┐
+                                   │ DB    │
+                                   └───────┘
+```
+
 ## Dataset
 
 To develop our system, we used the publicly available **CGM Macros Dataset** from PhysioNet ([link](https://physionet.org/content/cgmacros/1.0.0/)).
@@ -175,29 +198,6 @@ In the first section of the Glucose Response Predictor the user should input his
 
 ### Gut Health Analyzer
 The user enters his microbiome data as a .csv file and then presses Analyze Gut Health, and then the predicted gut health should be outputed and if the gut health is bad a small recomendation on how to improve it is also displayed.
-
-## Architecture Diagram
-
-```
-
-┌───────────────────┐     ┌─────────────────┐
-│    UI Frontend    │◄────┤ API Gateway     │
-└───────────────────┘     │(NutritionController)
-                          └────────┬────────┘
-                                  ▲│▲
-                  ┌───────────────┘│└──────────────┬──────────────┐
-                  │                │               │              │
-        ┌─────────▼────────┐ ┌─────▼─────────┐ ┌───▼────────┐ ┌──▼──────────┐
-        │   Food Analyzer  │ │ Nutrition     │ │ Microbiome │ │ Glucose     │
-        │                  │ │ Predictor     │ │ Analyzer   │ │ Monitor     │
-        └──────────────────┘ └───────────────┘ └────────────┘ └─────────────┘
-                  │                │               │              │
-                  └────────────────┴───────────────┴──────────────┘
-                                       │
-                                   ┌───▼───┐
-                                   │ DB    │
-                                   └───────┘
-```
 
 ## Monitoring
 
