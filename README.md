@@ -21,34 +21,34 @@ Our solution analyzes meal logs to evaluate macronutrients, sugar risk, and carb
 
 ## System Architecture
 
-Our system is built using a **microservices architecture**, where each major function operates as an independent service.  
-These services are **containerized using Docker** to ensure modularity, scalability, and easier deployment.  
-Each service communicates through the **Nutrition Controller (API Gateway)** to coordinate the system.
+Our system is built using a microservices architecture, where each major function operates as an independent service.  
+These services are containerized using Docker to ensure modularity, scalability, and easier deployment.  
+Each service communicates through the Nutrition Controller (API Gateway) to coordinate the system.
 
 The main services include:
 
 1. **Food Analyzer**  
-   This microservice uses a **food item recognition model** provided by **Clarifai AI**.  
+   This microservice uses a food item recognition model provided by Clarifai AI.  
    It takes a meal image as input and returns a list of predicted ingredients present in the image.  
    If the confidence score of the identified ingredients is low, the system prompts the user to provide an optional meal description to enhance prediction quality.
 
 2. **Nutrition Predictor**  
-   This service estimates the **macronutrient composition** (carbohydrates, protein, and fat) of a meal.  
+   This service estimates the macronutrient composition (carbohydrates, protein, and fat) of a meal.  
    The prediction process is divided into two steps:
    - **First**, the extracted ingredients (and optionally the user-provided description) are processed.
-   - **Second**, the combined input is passed to a **ChatGPT-based model**, which interprets the meal details and predicts the macronutrient distribution in percentage form.  
+   - **Second**, the combined input is passed to a ChatGPT-based model, which interprets the meal details and predicts the macronutrient distribution in percentage form.  
    
-   This two-step approach helps **reduce prediction error** by focusing on proportionality rather than absolute values.  
-   Additionally, it predicts the **refined carbohydrate content** and **sugar risk** of the meal.
+   This two-step approach helps reduce prediction error by focusing on proportionality rather than absolute values.  
+   Additionally, it predicts the refined carbohydrate content and sugar risk of the meal.
 
 3. **Microbiome Analyzer**  
-   Processes user **microbiome test results** to extract features related to **gut health**, **metabolism**, and **glucose regulation**.
+   Processes user microbiome test results to extract features related to gut health, metabolism, and glucose regulation.
 
 4. **Glucose Monitor**  
-   Predicts the **personalized glucose response** to meals by integrating food analysis, microbiome data, and clinical features such as **fasting glucose** and **insulin levels**.
+   Predicts the personalized glucose response to meals by integrating food analysis, microbiome data, and clinical features such as fasting glucose and insulin levels.
 
 5. **User Interface (Frontend)**  
-   A modern **web application** where users can upload meal images, view glucose predictions, and receive **personalized dietary recommendations**.
+   A modern web application where users can upload meal images, view glucose predictions, and receive personalized dietary recommendations.
 
 ## Dataset
 
@@ -87,14 +87,14 @@ Thus, there was no need for additional data cleaning or handling at this stage.
 The Microbiome Analyzer predicts gut health status based on user microbiome test results.
 
 - **High Dimensionality**:  
-  The raw microbiome dataset contained over **1,900 bacterial species**. To reduce dimensionality and focus on the most relevant features, we applied an **ANOVA-F test** to select the top informative bacterial features linked to gut health.
+  The raw microbiome dataset contained over 1,900 bacterial species. To reduce dimensionality and focus on the most relevant features, we applied an ANOVA-F test to select the top informative bacterial features linked to gut health.
 
 - **Data Imbalance**:  
   The dataset exhibited imbalance between healthy and unhealthy gut labels.  
-  To address this, we applied **SMOTE (Synthetic Minority Over-sampling Technique)** to balance the classes before model training.
+  To address this, we applied SMOTE (Synthetic Minority Over-sampling Technique) to balance the classes before model training.
 
 - **Model Training**:  
-  We trained a **Voting Classifier** ensemble combining:
+  We trained a Voting Classifier ensemble combining:
   - **XGBoost Classifier** (captures complex patterns)
   - **Logistic Regression** (strong baseline and interpretability)
   - **Random Forest Classifier** (robustness and reduced overfitting)
@@ -108,16 +108,16 @@ The Glucose Monitor predicts personalized glucose spikes based on meal compositi
 
 - **Missing Macronutrient Data**:  
   The CGM Macros dataset lacked direct macronutrient information for meals.  
-  To overcome this, we used our Nutrition Predictor system to estimate **percentages of carbohydrates, proteins, and fats** based on meal images and descriptions.  
+  To overcome this, we used our Nutrition Predictor system to estimate percentages of carbohydrates, proteins, and fats based on meal images and descriptions.  
   Although this introduces some approximation error, it was the best alternative to enrich the dataset for training.
 
 - **Feature Selection**:  
-  We trained a **Quick Random Forest model** to identify the most influential microbiome features linked to glucose spikes.  
+  We trained a Quick Random Forest model to identify the most influential microbiome features linked to glucose spikes.  
   Only the top-ranked features were retained for the final prediction model to reduce noise and improve performance.
   ![Result of Top 30 Bacteria](top30_bacteria_glucose_spike_60min.png)
 
 - **Model Training**:  
-  The final glucose spike predictor used a **Voting Regressor** combining:
+  The final glucose spike predictor used a Voting Regressor combining:
   - **ElasticNet Regressor** (handles multicollinearity and regularization)
   - **Random Forest Regressor** (robustness and reduced overfitting)
   - **HistGradientBoosting Regressor** (captures complex nonlinear patterns efficiently)
