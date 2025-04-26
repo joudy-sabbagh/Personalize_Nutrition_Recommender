@@ -188,6 +188,11 @@ docker-compose up
 
 The application will be available at http://localhost:8000, with the UI at http://localhost:3000.
 
+### Dataset Access
+
+The dataset used for training and testing is not included in the main branch.  
+Download it from the google drive:
+
 ## Using the Different Services
 
 ### Analyze a Meal
@@ -210,11 +215,6 @@ The system includes Prometheus metrics and a Grafana dashboard for monitoring:
 ## Project Presentation
 
 You can view the full project presentation [here](Presentation_NutritionIQ.pdf).
-
-## Dataset Access
-
-The dataset used for training and testing is not included in the main branch.  
-To access it, please switch to the **`main-with-data`** branch.
 
 ## Troubleshooting
 
