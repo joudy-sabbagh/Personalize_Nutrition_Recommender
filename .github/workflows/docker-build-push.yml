@@ -69,6 +69,6 @@ jobs:
       - name: Build and push UI
         uses: docker/build-push-action@v4
         with:
-          context: ./UI-NutritionAnalyzer
+          context: ./UI-NutritionAnalyzer/frontend
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/ui-nutrition-analyzer:latest
