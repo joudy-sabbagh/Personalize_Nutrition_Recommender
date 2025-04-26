@@ -152,6 +152,11 @@ The system includes Prometheus metrics and a Grafana dashboard for monitoring:
 - Prediction values
 - Service health
 
+## Project Presentation
+
+You can view the full project presentation [here](Presentation_NutritionIQ.pdf).
+
+
 ## Troubleshooting
 
 Common issues:
