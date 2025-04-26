@@ -81,7 +81,6 @@ For the Food Analyzer and Nutrition Predictor components, no data preprocessing 
 Both services rely on API calls — Clarifai AI for food item recognition and a ChatGPT-based model for macronutrient estimation.  
 Thus, there was no need for additional data cleaning or handling at this stage.
 
----
 
 ### Microbiome Analyzer
 
@@ -102,7 +101,6 @@ The Microbiome Analyzer predicts gut health status based on user microbiome test
 
 This ensemble achieved an approximate **accuracy of 0.95** in predicting gut health.
 
----
 
 ### Glucose Monitor
 
@@ -124,8 +122,6 @@ The Glucose Monitor predicts personalized glucose spikes based on meal compositi
   - **HistGradientBoosting Regressor** (captures complex nonlinear patterns efficiently)
 
   The ensemble was optimized to maximize prediction accuracy.
-
----
 
 By carefully preprocessing the data, enriching missing information, and selecting the most impactful features, we ensured the models could deliver meaningful, personalized predictions despite real-world data limitations.
 
