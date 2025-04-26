@@ -7,10 +7,13 @@ import requests
 import os
 import sys
 from pydantic import BaseModel
+import io
+import pandas as pd
+from typing import Optional
 
 # Add Database directory to the path so we can import the db module
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'Database')))
-from Database.db import user_signup, user_signin
+from Database.db import user_signup, user_signin, save_bacteria_data, save_clinical_data, save_meal_data, get_user_clinical_data, get_user_microbiome_data
 
 # Schemas for user authentication
 class UserSignup(BaseModel):
@@ -186,17 +189,62 @@ def predict_gut_health(file: UploadFile = File(...), user_id: int = Form(None)):
         return {"error": f"Error processing gut health data: {str(e)}"}
 
 @app.post("/predict-glucose-from-all")
-def predict_glucose_from_all(
+async def predict_glucose_from_all(
     image: UploadFile = File(...),
-    bio_file: UploadFile = File(...),
-    micro_file: UploadFile = File(...),
-    meal_category: str = Form(...)
+    bio_file: Optional[UploadFile] = File(None),
+    micro_file: Optional[UploadFile] = File(None),
+    meal_category: str = Form(...),
+    use_saved_bio: bool = Form(False),
+    use_saved_micro: bool = Form(False),
+    user_id: Optional[int] = Form(None)
 ):
     try:
-        # === Read input files ===
-        image_bytes = image.file.read()
-        bio_bytes = bio_file.file.read()
-        micro_bytes = micro_file.file.read()
+        # Variables to hold file data
+        bio_bytes = None
+        micro_bytes = None
+        image_bytes = await image.read()
+        
+        # === Check for user data in database if requested ===
+        if user_id and use_saved_bio:
+            clinical_data = get_user_clinical_data(user_id)
+            if not clinical_data:
+                return {"error": "No saved bio/clinical data found for this user"}
+            
+            # Create a CSV from the clinical data
+            import io
+            import pandas as pd
+            
+            # Create a DataFrame with headers in first row and values in second row
+            headers = list(clinical_data.keys())
+            values = [clinical_data[key] for key in headers]
+            
+            # Create DataFrame with one row
+            df = pd.DataFrame([values], columns=headers)
+            
+            # Convert to CSV bytes in memory
+            csv_buffer = io.BytesIO()
+            df.to_csv(csv_buffer, index=False)
+            bio_bytes = csv_buffer.getvalue()
+        elif bio_file:
+            bio_bytes = await bio_file.read()
+        else:
+            return {"error": "Bio file is required or use_saved_bio must be true"}
+
+        if user_id and use_saved_micro:
+            _, bacteria_string = get_user_microbiome_data(user_id)
+            if not bacteria_string:
+                return {"error": "No saved microbiome data found for this user"}
+            
+            # Convert the bacteria string (0s and 1s) back to a CSV format
+            import io
+            
+            # Create a simple CSV with one row of bacteria data
+            csv_content = ",".join(list(bacteria_string))
+            micro_bytes = io.BytesIO(csv_content.encode('utf-8')).getvalue()
+        elif micro_file:
+            micro_bytes = await micro_file.read()
+        else:
+            return {"error": "Microbiome file is required or use_saved_micro must be true"}
 
         # === STEP 1: Analyze Meal ===
         analyze_response = requests.post(
@@ -221,20 +269,110 @@ def predict_glucose_from_all(
                 "meal_category": meal_category
             },
             files={
-                "bio_file": ("bio.csv", bio_bytes, bio_file.content_type),
-                "micro_file": ("micro.csv", micro_bytes, micro_file.content_type)
+                "bio_file": ("bio.csv", bio_bytes, "text/csv"),
+                "micro_file": ("micro.csv", micro_bytes, "text/csv")
             }
         )
 
         if glucose_response.status_code != 200:
             return {"error": "glucose prediction failed", "details": glucose_response.text}
         glucose = glucose_response.json()
+        
+        # Save data to the database if user_id is provided
+        database_info = {}
+        if user_id:
+            # Save bio data if provided and not using saved data
+            if bio_file and not use_saved_bio:
+                # Parse the bio file to extract clinical data
+                bio_file.file.seek(0)  # Reset file pointer
+                bio_df = pd.read_csv(io.BytesIO(bio_bytes))
+                
+                if len(bio_df) >= 1:
+                    # Get column names from first row
+                    headers = bio_df.columns.tolist()
+                    # Get values from second row (index 0)
+                    values = bio_df.iloc[0].tolist()
+                    
+                    # Create clinical data dictionary
+                    clinical_data = {
+                        'clinical_age': None,
+                        'clinical_weight': None,
+                        'clinical_height': None,
+                        'clinical_bmi': None,
+                        'clinical_fasting_glucose': None,
+                        'clinical_fasting_insulin': None,
+                        'clinical_hba1c': None,
+                        'clinical_homa_ir': None,
+                        'clinical_gender': None
+                    }
+                    
+                    # Map values from bio file to clinical data
+                    # This mapping assumes standard column names - adjust as needed
+                    field_mapping = {
+                        'age': 'clinical_age',
+                        'weight': 'clinical_weight',
+                        'height': 'clinical_height',
+                        'bmi': 'clinical_bmi',
+                        'fasting_glucose': 'clinical_fasting_glucose',
+                        'fasting_insulin': 'clinical_fasting_insulin',
+                        'hba1c': 'clinical_hba1c',
+                        'homa_ir': 'clinical_homa_ir',
+                        'gender': 'clinical_gender'
+                    }
+                    
+                    for i, header in enumerate(headers):
+                        header_lower = header.lower()
+                        for key, field in field_mapping.items():
+                            if key in header_lower:
+                                clinical_data[field] = values[i]
+                    
+                    # Save to database
+                    success, msg = save_clinical_data(user_id, clinical_data)
+                    database_info["bio_saved"] = success
+                    database_info["bio_message"] = msg
 
-        return {
-            "caption": analyze.get("caption"),
+            # Save microbiome data if provided and not using saved data
+            if micro_file and not use_saved_micro:
+                # Parse the microbiome file to extract bacteria data
+                micro_file.file.seek(0)  # Reset file pointer
+                micro_df = pd.read_csv(io.BytesIO(micro_bytes))
+                
+                if len(micro_df) >= 1:
+                    # Get first row values and convert to string of 0s and 1s
+                    bacteria_values = micro_df.iloc[0].astype(str).values
+                    bacteria_string = ''.join([val.strip() for val in bacteria_values])
+                    
+                    # Save to database
+                    bact_id, msg = save_bacteria_data(user_id, bacteria_string)
+                    database_info["microbiome_saved"] = (bact_id is not None)
+                    database_info["microbiome_message"] = msg
+                    database_info["bact_id"] = bact_id
+
+            # Save meal and glucose prediction data
+            meal_data = {
+                'protein_pct': nutrition.get('protein_pct'),
+                'carbs_pct': nutrition.get('carbs_pct'),
+                'fat_pct': nutrition.get('fat_pct'),
+                'sugar_risk': nutrition.get('sugar_risk'),
+                'refined_carb': nutrition.get('refined_carb', False),
+                'meal_category': meal_category,
+                'glucose_spike_30min': glucose.get('glucose_spike_30min'),
+                'glucose_spike_60min': glucose.get('glucose_spike_60min')
+            }
+            
+            meal_id, msg = save_meal_data(user_id, meal_data)
+            database_info["meal_saved"] = (meal_id is not None)
+            database_info["meal_message"] = msg
+            database_info["meal_id"] = meal_id
+
+        # Return combined results
+        result = {
             "nutrition": nutrition,
-            "glucose_prediction": glucose
+            "glucose_prediction": glucose,
+            "database_info": database_info if user_id else None
         }
+
+        return result
 
     except Exception as e:
         return {"error": f"Internal server error: {str(e)}"}
