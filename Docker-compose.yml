@@ -80,25 +80,25 @@ services:
     networks:
       - nutrition-network
     
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./Monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - nutrition-network
+  #prometheus:
+   # image: prom/prometheus
+    #container_name: prometheus
+    #ports:
+    #  - "9090:9090"
+    #volumes:
+    #  - ./Monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    #networks:
+     # - nutrition-network
 
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - "3001:3000"
-    depends_on:
-      - prometheus
-    networks:
-      - nutrition-network
+  #grafana:
+   # image: grafana/grafana
+    #container_name: grafana
+    #ports:
+    #  - "3001:3000"
+    #depends_on:
+    #  - prometheus
+    #networks:
+    #  - nutrition-network
 
 
 networks:
