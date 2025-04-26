@@ -183,19 +183,19 @@ const MealAnalyzer = () => {
               
               <Paper elevation={0} sx={{ p: 2, backgroundColor: 'grey.50', borderRadius: 2, mb: 3 }}>
                 <Typography variant="body2" gutterBottom>
-                  Glucose Impact
+                  Refined Carbs
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                   <Box sx={{ width: '100%', mr: 1 }}>
                     <LinearProgress 
                       variant="determinate" 
-                      value={results.sugar_risk === 1 ? 100 : 0} 
-                      color={results.sugar_risk === 1 ? "warning" : "success"}
+                      value={results.refined_carb === 1 ? 100 : 0} 
+                      color={results.refined_carb === 1 ? "warning" : "success"}
                       sx={{ height: 10, borderRadius: 5 }}
                     />
                   </Box>
                   <Typography variant="body2" color="text.secondary">
-                    {results.sugar_risk === 1 ? 10 : 0}/10
+                    {results.refined_carb === 1 ? "present" : "not present"}
                   </Typography>
                 </Box>
                 
@@ -206,35 +206,16 @@ const MealAnalyzer = () => {
                   <Box sx={{ width: '100%', mr: 1 }}>
                     <LinearProgress 
                       variant="determinate" 
-                      value={results.refined_carb === 1 ? 100 : 0} 
-                      color={results.refined_carb === 1 ? "warning" : "success"}
+                      value={results.sugar_risk === 1 ? 100 : 0} 
+                      color={results.sugar_risk === 1 ? "warning" : "success"}
                       sx={{ height: 10, borderRadius: 5 }}
                     />
                   </Box>
                   <Typography variant="body2" color="text.secondary">
-                    {results.refined_carb === 1 ? 10 : 0}/10
+                    {results.sugar_risk === 1 ? "high" : "low"}
                   </Typography>
                 </Box>
               </Paper>
-              
-              <Typography variant="subtitle1" gutterBottom>
-                Ingredients
-              </Typography>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {(results.ingredients || []).map((ingredient, index) => (
-                  <Chip 
-                    key={index} 
-                    label={ingredient} 
-                    size="small"
-                    sx={{ margin: 0.5 }}
-                  />
-                ))}
-                {(!results.ingredients || results.ingredients.length === 0) && (
-                  <Typography variant="body2" color="text.secondary">
-                    No ingredients identified
-                  </Typography>
-                )}
-              </Box>
             </Grid>
           </Grid>
           

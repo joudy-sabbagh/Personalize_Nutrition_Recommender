@@ -47,6 +47,7 @@ const GlucosePredictor = () => {
   
   // Form state
   const [mealCategory, setMealCategory] = useState('lunch');
+  const [mealDescription, setMealDescription] = useState('');
   
   // UI state
   const [activeStep, setActiveStep] = useState(0);
@@ -80,6 +81,7 @@ const GlucosePredictor = () => {
     setBioFile(null);
     setMicroFile(null);
     setMealCategory('lunch');
+    setMealDescription('');
     setResults(null);
   };
   
@@ -100,7 +102,8 @@ const GlucosePredictor = () => {
       microFileName: microFile?.name,
       microFileType: microFile?.type,
       microFileSize: microFile?.size,
-      mealCategory
+      mealCategory,
+      mealDescription
     });
     
     try {
@@ -109,15 +112,28 @@ const GlucosePredictor = () => {
         mealImage,
         bioFile,
         microFile,
-        mealCategory
+        mealCategory,
+        mealDescription
       );
       
       console.log('Received response from predictGlucoseFromMeal:', response);
+      console.log('Response type:', typeof response);
+      console.log('Response keys:', Object.keys(response));
       
       if (response.error) {
         console.error('Error in response:', response.error);
         error(response.error || response.message || 'Failed to predict glucose response');
         return;
+      }
+      
+      // Check the glucose_prediction structure
+      if (response.glucose_prediction) {
+        console.log('Glucose prediction data:', response.glucose_prediction);
+        console.log('Glucose prediction type:', typeof response.glucose_prediction);
+        console.log('Glucose prediction keys:', Object.keys(response.glucose_prediction));
+        console.log('glucose_spike_60min:', response.glucose_prediction.glucose_spike_60min);
+      } else {
+        console.warn('No glucose_prediction data in response');
       }
       
       setResults(response);
@@ -420,6 +436,17 @@ const GlucosePredictor = () => {
                     />
                   </Box>
                   
+                  <TextField
+                    fullWidth
+                    label="Meal Description (Optional)"
+                    variant="outlined"
+                    value={mealDescription}
+                    onChange={(e) => setMealDescription(e.target.value)}
+                    placeholder="E.g., Grilled chicken salad with avocado"
+                    helperText="Provide details about your meal to improve prediction accuracy"
+                    sx={{ mb: 2 }}
+                  />
+                  
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel id="meal-category-label">Meal Category</InputLabel>
                     <Select
@@ -497,6 +524,7 @@ const GlucosePredictor = () => {
         }
         
         if (!results) {
+          console.log('No results available to render');
           return (
             <Box sx={{ textAlign: 'center', py: 4 }}>
               <Typography variant="h6" color="text.secondary">
@@ -512,6 +540,21 @@ const GlucosePredictor = () => {
               </Button>
             </Box>
           );
+        }
+        
+        console.log('Rendering results:', results);
+        console.log('Results nutrition:', results.nutrition);
+        console.log('Results glucose_prediction:', results.glucose_prediction);
+        
+        // Debug the values used for coloring
+        if (results.glucose_prediction) {
+          const glucose60min = results.glucose_prediction.glucose_spike_60min;
+          console.log('glucose_spike_60min value:', glucose60min);
+          console.log('Color conditions:', {
+            isError: glucose60min > 30,
+            isWarning: glucose60min > 20 && glucose60min <= 30,
+            isSuccess: glucose60min <= 20
+          });
         }
         
         return (
@@ -585,33 +628,7 @@ const GlucosePredictor = () => {
                       </Typography>
                       
                       <Grid container spacing={3}>
-                        <Grid item xs={12} sm={6}>
-                          <Paper
-                            elevation={0}
-                            sx={{
-                              p: 2,
-                              backgroundColor: 'grey.50',
-                              borderRadius: 2,
-                              textAlign: 'center',
-                            }}
-                          >
-                            <Typography variant="body2" color="text.secondary" gutterBottom>
-                              After 30 Minutes
-                            </Typography>
-                            <Typography 
-                              variant="h3" 
-                              color={results.glucose_prediction.spike_30min > 40 ? 'error.main' : 
-                                     results.glucose_prediction.spike_30min > 20 ? 'warning.main' : 'success.main'}
-                            >
-                              {results.glucose_prediction.spike_30min}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              mg/dL
-                            </Typography>
-                          </Paper>
-                        </Grid>
-                        
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12}>
                           <Paper
                             elevation={0}
                             sx={{
@@ -624,12 +641,14 @@ const GlucosePredictor = () => {
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                               After 60 Minutes
                             </Typography>
-                            <Typography 
-                              variant="h3" 
-                              color={results.glucose_prediction.spike_60min > 40 ? 'error.main' : 
-                                     results.glucose_prediction.spike_60min > 20 ? 'warning.main' : 'success.main'}
+                            <Typography
+                              variant="h3"
+                              color={results.glucose_prediction.glucose_spike_60min > 30 ? 'error.main'
+                                    : results.glucose_prediction.glucose_spike_60min > 20 ? 'warning.main'
+                                    : 'success.main'}
                             >
-                              {results.glucose_prediction.spike_60min}
+                              {console.log('Displaying glucose_spike_60min:', results.glucose_prediction.glucose_spike_60min)}
+                              {results.glucose_prediction.glucose_spike_60min}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                               mg/dL
@@ -642,74 +661,31 @@ const GlucosePredictor = () => {
                     <Grid item xs={12} md={6}>
                       <Paper elevation={0} sx={{ p: 3, backgroundColor: 'grey.50', borderRadius: 2 }}>
                         <Typography variant="subtitle1" gutterBottom>
-                          Key Insights
+                          Recommendation
                         </Typography>
                         
-                        <Box sx={{ mt: 2 }}>
-                          <Typography variant="body2" gutterBottom>
-                            Impact Level
-                          </Typography>
-                          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <Box sx={{ width: '100%', mr: 1 }}>
-                              <LinearProgress 
-                                variant="determinate" 
-                                value={Math.min(results.glucose_prediction.impact_score * 10, 100)} 
-                                color={results.glucose_prediction.impact_score > 7 ? "error" : 
-                                      results.glucose_prediction.impact_score > 4 ? "warning" : "success"}
-                                sx={{ height: 10, borderRadius: 5 }}
-                              />
-                            </Box>
-                            <Typography variant="body2" color="text.secondary">
-                              {results.glucose_prediction.impact_score}/10
-                            </Typography>
-                          </Box>
-                        </Box>
-                        
                         <Typography variant="body2" paragraph sx={{ mt: 2 }}>
-                          {results.glucose_prediction.recommendation || 
+                          {console.log('Message from API:', results.glucose_prediction.message)}
+                          {results.glucose_prediction.message || 
                            "Based on your unique profile, this meal will produce a moderate glucose response. Consider balancing with physical activity after eating."}
                         </Typography>
                         
-                        <Divider sx={{ my: 2 }} />
-                        
-                        <Typography variant="subtitle2" gutterBottom>
-                          Personal Factors
-                        </Typography>
-                        
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 1 }}>
-                          {results.glucose_prediction.factors && results.glucose_prediction.factors.map((factor, index) => (
-                            <Chip
-                              key={index}
-                              label={factor}
-                              size="small"
-                              color={index % 3 === 0 ? "primary" : index % 3 === 1 ? "secondary" : "default"}
-                              variant="outlined"
-                              sx={{ m: 0.5 }}
-                            />
-                          ))}
-                          {(!results.glucose_prediction.factors || results.glucose_prediction.factors.length === 0) && (
-                            <Typography variant="body2" color="text.secondary">
-                              Standard metabolic response expected
-                            </Typography>
-                          )}
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
+                          <Button 
+                            variant="outlined"
+                            onClick={handleReset}
+                            sx={{ mr: 2 }}
+                          >
+                            Start New Prediction
+                          </Button>
+                          <Button 
+                            variant="contained"
+                            color="secondary"
+                          >
+                            Save Results
+                          </Button>
                         </Box>
                       </Paper>
-                      
-                      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
-                        <Button 
-                          variant="outlined"
-                          onClick={handleReset}
-                          sx={{ mr: 2 }}
-                        >
-                          Start New Prediction
-                        </Button>
-                        <Button 
-                          variant="contained"
-                          color="secondary"
-                        >
-                          Save Results
-                        </Button>
-                      </Box>
                     </Grid>
                   </Grid>
                 </CardContent>

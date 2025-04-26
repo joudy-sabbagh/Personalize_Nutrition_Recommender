@@ -274,18 +274,25 @@ async def predict_glucose_from_all(
 
 
         # === Handle Microbiome Data ===
-        if user_id and use_saved_micro:
-            _, bacteria_string = get_user_microbiome_data(user_id)
+        if micro_file:
+            # 1) Client provided a CSV
+            micro_bytes = await micro_file.read()
+
+        elif user_id:
+            # 2) No upload → automatically fetch saved data for this user_id
+            bact_id, bacteria_string = get_user_microbiome_data(user_id)
             if not bacteria_string:
                 return {"error": "No saved microbiome data found for this user"}
             
-            # Convert bacteria string to CSV format
-            csv_content = ",".join(list(bacteria_string))
-            micro_bytes = io.BytesIO(csv_content.encode('utf-8')).getvalue()
-        elif micro_file:
-            micro_bytes = await micro_file.read()
+            print(bacteria_string)
+
+            # 3) Reconstruct one‐row CSV from the stored 0/1 string
+            csv_content = ",".join(bacteria_string)
+            micro_bytes = io.BytesIO(csv_content.encode("utf-8")).getvalue()
+
         else:
-            return {"error": "Microbiome file is required or use_saved_micro must be true"}
+            # 4) Neither a file nor a user_id → error
+            return {"error": "Microbiome file is required or user_id must be provided"}
 
         # === STEP 1: Analyze Meal ===
         # Reset image file pointer if needed (just in case)
