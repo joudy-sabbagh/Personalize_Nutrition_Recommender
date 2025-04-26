@@ -2,12 +2,11 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Install dependencies
+# 1) Copy and install pinned deps
 COPY requirements.txt .
-RUN pip install --no-cache-dir --default-timeout=1000 -r requirements.txt
-RUN pip install --no-cache-dir boto3
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# 2) Copy your code + model
 COPY . .
 
 # Expose the port the app runs on

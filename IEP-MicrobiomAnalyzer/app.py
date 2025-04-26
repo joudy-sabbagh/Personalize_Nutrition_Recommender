@@ -1,133 +1,50 @@
 # uvicorn app:app --reload --port 8003
-
-from fastapi import FastAPI, File, UploadFile, Request
+from fastapi import FastAPI, File, UploadFile
 import pandas as pd
 import joblib
-import re
 from sklearn.preprocessing import StandardScaler
-from io import StringIO, BytesIO
-import os
-import boto3
-import time
+from io import StringIO
+import re
 
-from prometheus_client import make_asgi_app, Counter, Summary, Gauge
-
-# === Monitoring Metrics ===
-REQUEST_COUNT = Counter("microbiom_analyzer_request_count", "Total number of requests to Microbiom Analyzer")
-REQUEST_LATENCY = Summary("microbiom_analyzer_request_latency_seconds", "Request latency in seconds")
-LAST_GUT_HEALTH_PROB = Gauge("microbiom_analyzer_last_gut_health_probability", "Last predicted gut health probability")
-
-# === FastAPI App Setup ===
 app = FastAPI()
 
-# Mount /metrics for Prometheus
-metrics_app = make_asgi_app()
-app.mount("/metrics", metrics_app)
-
-# Middleware to track request counts and latencies
-@app.middleware("http")
-async def prometheus_middleware(request: Request, call_next):
-    REQUEST_COUNT.inc()
-    start_time = time.time()
-    response = await call_next(request)
-    REQUEST_LATENCY.observe(time.time() - start_time)
-    return response
-
-# === Functions ===
-
-def load_data_from_s3(bucket_name, file_key):
-    """Load data from S3 bucket"""
-    s3_client = boto3.client(
-        's3',
-        aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
-        aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
-        region_name=os.environ.get('AWS_DEFAULT_REGION', 'eu-north-1')
-    )
-    
-    try:
-        response = s3_client.get_object(Bucket=bucket_name, Key=file_key)
-        return response['Body'].read()
-    except Exception as e:
-        print(f"Error loading data from S3: {str(e)}")
-        return None
-
-def load_model_and_features(model_path):
-    """Load model from S3 or local path"""
-    bucket_name = os.environ.get('S3_BUCKET_NAME')
-    if bucket_name:
-        try:
-            model_bytes = load_data_from_s3(bucket_name, f"Dataset/{model_path}")
-            if model_bytes:
-                model_data = joblib.load(BytesIO(model_bytes))
-                if isinstance(model_data, dict):
-                    return (
-                        model_data['model'],
-                        model_data['features'],
-                        model_data.get('scaler', StandardScaler())
-                    )
-        except Exception as e:
-            print(f"S3 model loading failed: {str(e)}. Trying local file.")
-    
-    # Fallback to local file
-    try:
-        model_data = joblib.load(model_path)
-        if isinstance(model_data, dict):
-            return (
-                model_data['model'],
-                model_data['features'],
-                model_data.get('scaler', StandardScaler())
-            )
-        else:
-            raise ValueError("Model missing feature metadata.")
-    except Exception as e:
-        print(f"Local model loading failed: {str(e)}")
-        raise ValueError(f"Could not load model from any source: {str(e)}")
-
-def clean_column_names(df):
-    raw_cols = df.columns.astype(str)
-    cleaned_cols = [re.sub(r'[\[\],<>]', '', col).strip() for col in raw_cols]
-    counts = {}
-    final_cols = []
-    for col in cleaned_cols:
-        counts[col] = counts.get(col, 0)
-        final_cols.append(f"{col}_{counts[col]}" if counts[col] else col)
-        counts[col] += 1
-    df.columns = final_cols
-    return df
-
-# === API Endpoints ===
+# Load model data once at startup
+try:
+    model_data = joblib.load("microbiome_model.pkl")
+    model = model_data['model']
+    feature_cols = model_data['features']
+    scaler = model_data.get('scaler', StandardScaler())
+except Exception as e:
+    raise RuntimeError(f"Failed to load model: {str(e)}")
 
 @app.post("/predict-gut-health-file")
-async def predict_gut_health_file(file: UploadFile = File(...)):
+async def predict_gut_health(file: UploadFile = File(...)):
     try:
+        # Read and parse the CSV file
         contents = await file.read()
         df = pd.read_csv(StringIO(contents.decode("utf-8")))
-        df = clean_column_names(df)
+        
+        # Clean column names by removing special characters
+        df.columns = [re.sub(r'[\[\],<>]', '', col).strip() for col in df.columns.astype(str)]
+        
+        # Check for required features
+        missing = set(feature_cols) - set(df.columns)
+        if missing:
+            return {"error": f"Missing required features: {missing}"}
 
-        MODEL_PATH = "microbiome_model.pkl"
-        model, feature_cols, scaler = load_model_and_features(MODEL_PATH)
-
-        missing_features = set(feature_cols) - set(df.columns)
-        if missing_features:
-            return {"error": f"Missing features: {missing_features}"}
-
+        # Prepare and scale features
         X = df[feature_cols]
-        X_scaled = scaler.transform(X)
+        X_scaled = scaler.transform(X) if scaler else X
 
-        prob_good = model.predict_proba(X_scaled)[0, 1]
-        prediction = "Good" if prob_good > 0.5 else "Bad"
-
-        # === Update Prometheus Metric ===
-        LAST_GUT_HEALTH_PROB.set(prob_good)
-
+        # Make prediction
+        prob = model.predict_proba(X_scaled)[0, 1]
+        
         return {
-            "probability_good": round(float(prob_good), 3),
-            "prediction": prediction
+            "probability": round(float(prob), 3),
+            "prediction": "Good" if prob > 0.5 else "Bad"
         }
 
+    except pd.errors.EmptyDataError:
+        return {"error": "Uploaded file is empty or invalid"}
     except Exception as e:
-        return {"error": str(e)}
-
-@app.get("/health")
-def health_check():
-    return {"status": "ok"}
+        return {"error": f"Prediction failed: {str(e)}"}

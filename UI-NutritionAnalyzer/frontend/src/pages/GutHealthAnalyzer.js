@@ -50,9 +50,14 @@ const GutHealthAnalyzer = () => {
     
     try {
       const response = await predictGutHealth(file);
+      console.log('Gut health API response:', response);
+      console.log('Response data type:', typeof response);
+      console.log('Response prediction:', response.prediction);
+      console.log('Response probability_good:', response.probability_good);
       setResults(response);
       success('Gut health analysis completed successfully!');
     } catch (err) {
+      console.error('Error in gut health analysis:', err);
       error(err.response?.data?.error || 'Failed to analyze microbiome data');
     } finally {
       setLoading(false);
@@ -69,103 +74,50 @@ const GutHealthAnalyzer = () => {
             Your Gut Health Analysis
           </Typography>
           
+          {console.log('Rendering results:', results)}
+          {console.log('Prediction value for display:', results.prediction)}
+          {console.log('Is good?', results.prediction === "Good")}
+          
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="subtitle1" gutterBottom>
-                Overall Gut Health Score
-              </Typography>
-              
+            <Grid item xs={12}>
               <Paper 
                 elevation={0} 
                 sx={{ 
                   p: 3, 
                   textAlign: 'center',
-                  backgroundColor: results.score > 70 ? '#e8f5e9' : results.score > 50 ? '#fff8e1' : '#ffebee'
+                  backgroundColor: results.prediction === "Good" ? '#e8f5e9' : '#ffebee',
+                  borderRadius: 2,
+                  mb: 3
                 }}
               >
-                <Typography variant="h2" color={results.score > 70 ? 'success.main' : results.score > 50 ? 'warning.main' : 'error.main'}>
-                  {results.score}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  out of 100
+                <Typography 
+                  variant="h2" 
+                  color={results.prediction === "Good" ? 'success.main' : 'error.main'}
+                >
+                  {results.prediction}
                 </Typography>
               </Paper>
               
-              <Box sx={{ mt: 3 }}>
-                <Typography variant="body1" fontWeight="medium">
-                  {results.assessment || 'Your gut microbiome shows a moderate diversity profile. There is room for improvement in certain bacterial populations.'}
-                </Typography>
-              </Box>
-            </Grid>
-            
-            <Grid item xs={12} md={6}>
-              <Typography variant="subtitle1" gutterBottom>
-                Key Indicators
-              </Typography>
-              
-              {results.indicators ? (
-                results.indicators.map((indicator, index) => (
-                  <Box key={index} sx={{ mb: 2 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Typography variant="body1">
-                        {indicator.name}
-                      </Typography>
-                      <Typography 
-                        variant="body1" 
-                        fontWeight="medium"
-                        color={indicator.status === 'good' ? 'success.main' : indicator.status === 'fair' ? 'warning.main' : 'error.main'}
-                      >
-                        {indicator.status.charAt(0).toUpperCase() + indicator.status.slice(1)}
-                      </Typography>
-                    </Box>
-                    <Typography variant="body2" color="text.secondary">
-                      {indicator.description}
-                    </Typography>
-                    <Divider sx={{ mt: 1 }} />
-                  </Box>
-                ))
-              ) : (
-                <Typography variant="body2" color="text.secondary">
-                  No specific indicators available
+              {results.prediction !== "Good" && (
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                  Based on your gut microbiome profile, consider increasing your intake of diverse plant-based foods to enhance microbial diversity. Fermented foods like yogurt and sauerkraut may help improve beneficial bacteria levels.
                 </Typography>
               )}
+              
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
+                <Button 
+                  variant="contained" 
+                  color="primary"
+                  onClick={() => {
+                    setFile(null);
+                    setResults(null);
+                  }}
+                >
+                  Start New Analysis
+                </Button>
+              </Box>
             </Grid>
           </Grid>
-          
-          <Divider sx={{ my: 3 }} />
-          
-          <Typography variant="h6" gutterBottom>
-            Recommendations
-          </Typography>
-          
-          {results.recommendations ? (
-            <ul>
-              {results.recommendations.map((rec, index) => (
-                <li key={index}>
-                  <Typography variant="body1" paragraph>
-                    {rec}
-                  </Typography>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <Typography variant="body1" paragraph>
-              Based on your gut microbiome profile, consider increasing your intake of diverse plant-based foods to enhance microbial diversity. Fermented foods like yogurt and sauerkraut may help improve beneficial bacteria levels.
-            </Typography>
-          )}
-          
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-            <Button 
-              variant="contained" 
-              color="primary"
-              onClick={() => {
-                setFile(null);
-                setResults(null);
-              }}
-            >
-              Start New Analysis
-            </Button>
-          </Box>
         </CardContent>
       </Card>
     );
