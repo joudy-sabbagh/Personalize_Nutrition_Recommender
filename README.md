@@ -6,6 +6,7 @@
 5) The application will be available at http://localhost:8000, with the UI at http://localhost:3000.
 6) In the google drive linked above there is also a folder named test_503N which includes a microbiome and clinical data .csv files that can be used for testing as well as images for two meals.
 7) When testing the meal analyzer or the glucose predictor, after inserting the image if the system gives a Image not clear error please give a brief description of the meal so that the model may accuratly predict the nutritional value. 
+8) Another small note, currently the register and signup features are not functional so the functionalities can all be tested without having to login.
 # Personalized Nutrition Recommender
 
 Today, countless diet plans are available, yet most fail to deliver lasting results because they overlook two critical factors: individual preferences and biological differences. Every person’s biology is unique, influencing how they respond to different foods and diets. Standardized diet plans often lead to poor adherence and ineffective outcomes without considering these personal variations. This highlights the growing need for a personalized nutrition solution that tailors recommendations based on each individual's biological and lifestyle factors.
