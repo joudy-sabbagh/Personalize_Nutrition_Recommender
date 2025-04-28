@@ -1,3 +1,11 @@
+#How to run and test
+1) Clone the repository by running the following command : git clone https://github.com/joudy-sabbagh/Personalize_Nutrition_Recommender
+2) After cloning the repository run the following command: cd Personalize_Nutrition_Recommender
+3) Then proceed to download the .env file from the following google drive link : https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing and then placing this .env file in the directory you are currently in
+4) Then run the following command: docker compose -f Docker-compose.yml up --build
+5) The application will be available at http://localhost:8000, with the UI at http://localhost:3000.
+6) In the google drive linked above there is also a folder named test_503N which includes a microbiome and clinical data .csv files that can be used for testing as well as images for two meals.
+7) When testing the meal analyzer or the glucose predictor, after inserting the image if the system gives a Image not clear error please give a brief description of the meal so that the model may accuratly predict the nutritional value. 
 # Personalized Nutrition Recommender
 
 Today, countless diet plans are available, yet most fail to deliver lasting results because they overlook two critical factors: individual preferences and biological differences. Every person’s biology is unique, influencing how they respond to different foods and diets. Standardized diet plans often lead to poor adherence and ineffective outcomes without considering these personal variations. This highlights the growing need for a personalized nutrition solution that tailors recommendations based on each individual's biological and lifestyle factors.
@@ -164,22 +172,35 @@ The system uses PostgreSQL with the following tables:
 - API keys for external services (Clarifai, OpenAI, etc.)
 
 ### Environment Configuration
-Create a `.env` file with the following variables
+The following variables are to be included in the .env file and we tried to have them as github secrets in our repository. However due to technical issues that didnt work so we included the .env file in our google drive : https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing
 
 DB_HOST
+
 DB_NAME
+
 DB_USER
+
 DB_PASSWORD
+
 DB_PORT
+
 CLARIFAI_PAT
+
 CLARIFAI_USER_ID
+
 CLARIFAI_APP_ID
+
 OPENAI_API_KEY
+
 AWS_ACCESS_KEY_ID
+
 AWS_SECRET_ACCESS_KEY
+
 DOCKERHUB_USERNAME
+
 DOCKERHUB_TOKEN
-avaible as github secrets in our repository.
+
+
 ```
 ## CI/CD
 Continous Deployement was implemented using the help of github actions through the docker-build-push.yml file that builds and publishes the docker images onto Docker Hub whenever anyone pushes onto main. These images are pushed into 6 main repositories: 
@@ -190,15 +211,8 @@ ahmadeljazaerli/ui-nutrition-analyzer
 ahmadeljazaerli/nutrition-predictor
 ahmadeljazaerli/nutrition-controller
 
-### Running the Application
-```bash
-docker-compose up
-```
-
-The application will be available at http://localhost:8000, with the UI at http://localhost:3000.
 
 ### Dataset Access
-
 The dataset used for training and testing is not included in the main branch.  
 Download it from the google drive: https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing
 
