@@ -1,12 +1,13 @@
-#How to run and test
+# How to run and test
 1) Clone the repository by running the following command : git clone https://github.com/joudy-sabbagh/Personalize_Nutrition_Recommender
 2) After cloning the repository run the following command: cd Personalize_Nutrition_Recommender
-3) Then proceed to download the .env file from the following google drive link : https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing and then placing this .env file in the directory you are currently in
+3) The secret keys are stored in GitHub Secrets and are automatically used during pull or push actions. If you're unable to access them, please download the .env file from the following Google Drive link: https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing. Once downloaded, place the .env file in your current working directory.
 4) Then run the following command: docker compose -f Docker-compose.yml up --build
 5) The application will be available at http://localhost:8000, with the UI at http://localhost:3000.
 6) In the google drive linked above there is also a folder named test_503N which includes a microbiome and clinical data .csv files that can be used for testing as well as images for two meals.
 7) When testing the meal analyzer or the glucose predictor, after inserting the image if the system gives a Image not clear error please give a brief description of the meal so that the model may accuratly predict the nutritional value. 
 8) Another small note, currently the register and signup features are not functional so the functionalities can all be tested without having to login.
+
 # Personalized Nutrition Recommender
 
 Today, countless diet plans are available, yet most fail to deliver lasting results because they overlook two critical factors: individual preferences and biological differences. Every person’s biology is unique, influencing how they respond to different foods and diets. Standardized diet plans often lead to poor adherence and ineffective outcomes without considering these personal variations. This highlights the growing need for a personalized nutrition solution that tailors recommendations based on each individual's biological and lifestyle factors.
@@ -173,7 +174,7 @@ The system uses PostgreSQL with the following tables:
 - API keys for external services (Clarifai, OpenAI, etc.)
 
 ### Environment Configuration
-The following variables are to be included in the .env file and we tried to have them as github secrets in our repository. However due to technical issues that didnt work so we included the .env file in our google drive : https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing
+The following variables are to be included in the .env file and are configured in the github secrets of our repository. In case of technical issues, we included the .env file in our google drive: https://drive.google.com/drive/folders/1rY2HXo94G7ltzqzv6xeBEryEC5bfB_NY?usp=sharing
 
 DB_HOST
 
