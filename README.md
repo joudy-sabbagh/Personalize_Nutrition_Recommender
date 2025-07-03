@@ -203,7 +203,6 @@ DOCKERHUB_USERNAME
 DOCKERHUB_TOKEN
 
 
-```
 ## CI/CD
 Continous Deployement was implemented using the help of github actions through the docker-build-push.yml file that builds and publishes the docker images onto Docker Hub whenever anyone pushes onto main. These images are pushed into 6 main repositories: 
 ahmadeljazaerli/food-analyzer
